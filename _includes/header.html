@@ -4,7 +4,7 @@
             <img src="{{ '/assets/images/uai-data-logo-large-colored.png' | relative_url }}" alt="{{ site.title }}">
         </a>
         <nav class="main-nav">
-            <a href="/" {% if page.url=="/" %}class="active" {% endif %}>Home</a>
+            <a href="{{ '/' | relative_url }}" {% if page.url=="/" %}class="active" {% endif %}>Home</a>
             <a href="{{ '/methodology.html' | relative_url }}" {% if page.url=="/methodology.html" %}class="active" {%
                 endif %}>The uai
                 Methodology</a>
