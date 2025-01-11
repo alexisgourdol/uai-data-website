@@ -49,19 +49,16 @@ title: Contact Us
 </section>
 
 
+
 <script>
     document.getElementById('contact-form').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent default form submission (no page reload)
+        event.preventDefault(); // Prevent default form submission
 
-        // Get form data
         const form = event.target;
         const formData = new FormData(form);
-
-        // Convert form data to URL-encoded string
         const formParams = new URLSearchParams();
         formData.forEach((value, key) => formParams.append(key, value));
 
-        // Submit form data to Google Apps Script using AJAX (fetch API)
         try {
             const response = await fetch('https://script.google.com/macros/s/AKfycbz9UWrWPogpuVG18ShX_4oeS75cAkqvXJ_QWIh898lBujIlpwn-wXTG3gGorZXuL2UF2Q/exec', {
                 method: 'POST',
@@ -69,10 +66,12 @@ title: Contact Us
             });
 
             if (response.ok) {
-                // Redirect to the thank-you page if the form submission succeeds
-                window.location.href = 'https://alexisgourdol.github.io/uai-data-website/thank-you.html';
+                const data = await response.json();
+                if (data.status === 'success') {
+                    window.location.href = data.redirect; // Redirect to thank-you page
+                }
             } else {
-                alert('Error: Unable to submit the form. Please send an email to alexis@uaidata.io.');
+                alert('There was an error submitting your form. Please send an email to alexis@uaidata.io instead.');
             }
         } catch (error) {
             console.error('Form submission failed:', error);
@@ -80,3 +79,4 @@ title: Contact Us
         }
     });
 </script>
+</body>
