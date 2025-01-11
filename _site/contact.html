@@ -1,71 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>uai data - Contact Us</title>
-
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180"
-        href="/uai-data-website/assets/images/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="/uai-data-website/assets/images/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="/uai-data-website/assets/images/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="/uai-data-website/assets/images/favicon_io/site.webmanifest">
-
-    <link rel="stylesheet" href="/uai-data-website/assets/css/style.css">
-    <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Contact Us | uai data</title>
-<meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="Contact Us" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="useful artificial intelligence" />
-<meta property="og:description" content="useful artificial intelligence" />
-<link rel="canonical" href="http://0.0.0.0:4000/uai-data-website/contact.html" />
-<meta property="og:url" content="http://0.0.0.0:4000/uai-data-website/contact.html" />
-<meta property="og:site_name" content="uai data" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Contact Us" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"useful artificial intelligence","headline":"Contact Us","url":"http://0.0.0.0:4000/uai-data-website/contact.html"}</script>
-<!-- End Jekyll SEO tag -->
-
-
-    <!-- Add redirect meta tag if specified -->
-    
-</head>
-
-<body>
-    <header class="site-header">
-    <div class="container">
-        <a href="/uai-data-website/" class="logo">
-            <img src="/uai-data-website/assets/images/uai-data-logo-large-colored.png" alt="uai data">
-        </a>
-        <nav class="main-nav">
-            <a href="/uai-data-website/" >Home</a>
-            <a href="/uai-data-website/methodology.html" >The uai
-                Methodology</a>
-            <a href="/uai-data-website/contact.html" class="active" >Contact us</a>
-        </nav>
-    </div>
-</header>
-
-
-    <main>
-        <div class="container">
-    <h1>Get in Touch</h1>
-</div>
-
 <form
     action="https://script.google.com/macros/s/AKfycbz9UWrWPogpuVG18ShX_4oeS75cAkqvXJ_QWIh898lBujIlpwn-wXTG3gGorZXuL2UF2Q/exec"
-    method="POST">
-    <label for="full-name">Full Name *:</label>
+    method="POST" target="hidden-iframe">
+    <label for="full-name">Full Name:</label>
     <input type="text" id="full-name" name="full_name" placeholder="Enter your full name" required>
 
-    <label for="email">Email *:</label>
+    <label for="email">Email:</label>
     <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
     <label for="company">Company:</label>
@@ -77,32 +16,14 @@
     <button type="submit">Send Message</button>
 </form>
 
-    </main>
+<!-- Hidden iframe to handle form submission -->
+<iframe name="hidden-iframe" style="display:none;"></iframe>
 
-    <footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="contact-info">
-                <h3>Contact</h3>
-                <div class="contact-with-avatar">
-                    <img src="/uai-data-website/assets/images/alexis-pic.png" alt="Alexis" class="avatar">
-                    <a href="mailto:alexis@uaidata.io">alexis@uaidata.io</a>
-                </div>
-            </div>
-            <div class="social-links">
-                <h3>Connect</h3>
-                <a href="https://www.linkedin.com/company/uai-data/" target="_blank" rel="noopener" class="social-icon">
-                    <img src="/uai-data-website/assets/images/linkedin-icon.svg" alt="LinkedIn" width="24" height="24">
-                    <span class="sr-only">LinkedIn</span>
-                </a>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2025 uai data. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
-</body>
-
-</html>
+<script>
+    // After form submission, manually redirect to thank-you.html
+    document.querySelector('form').addEventListener('submit', function () {
+        setTimeout(function () {
+            window.location.href = 'https://alexisgourdol.github.io/uai-data-website/thank-you.html';
+        }, 1000); // Small delay to ensure data is saved
+    });
+</script>
