@@ -5,9 +5,11 @@
         </a>
         <nav class="main-nav">
             <a href="/" {% if page.url=="/" %}class="active" {% endif %}>Home</a>
-            <a href="/methodology.html" {% if page.url=="/methodology.html" %}class="active" {% endif %}>The uai
+            <a href="{{ '/methodology.html' | relative_url }}" {% if page.url=="/methodology.html" %}class="active" {%
+                endif %}>The uai
                 Methodology</a>
-            <a href="/contact.html" {% if page.url=="/contact.html" %}class="active" {% endif %}>Contact us</a>
+            <a href="{{ '/contact.html' | relative_url }}" {% if page.url=="/contact.html" %}class="active" {% endif
+                %}>Contact us</a>
         </nav>
     </div>
 </header>
