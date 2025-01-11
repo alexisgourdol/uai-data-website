@@ -3,6 +3,10 @@ layout: default
 title: Contact Us
 ---
 
+<div class="container">
+    <h1>Get in Touch</h1>
+</div>
+
 <form
     action="https://script.google.com/macros/s/AKfycbz9UWrWPogpuVG18ShX_4oeS75cAkqvXJ_QWIh898lBujIlpwn-wXTG3gGorZXuL2UF2Q/exec"
     method="GET">
@@ -20,3 +24,30 @@ title: Contact Us
 
     <button type="submit">Send Message</button>
 </form>
+
+
+<section class="contact">
+    <div class="container">
+        <div class="contact-content">
+            <div class="contact-info">
+                <h2></h2>
+                <div class="contact-method">
+                    <h3>Email</h3>
+                    <div class="contact-with-avatar">
+                        <img src="{{ '/assets/images/alexis-pic.png' | relative_url }}" alt="Alexis" class="avatar">
+                        <a href="mailto:alexis@uaidata.io">alexis@uaidata.io</a>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <h3>LinkedIn</h3>
+                    <div class="contact-with-icon">
+                        <img src="{{ '/assets/images/linkedin-icon-blue.svg' | relative_url }}" alt="LinkedIn"
+                            class="contact-icon">
+                        <a href="https://www.linkedin.com/company/uai-data/" target="_blank" rel="noopener">Connect on
+                            LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
