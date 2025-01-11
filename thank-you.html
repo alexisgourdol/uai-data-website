@@ -2,9 +2,17 @@
 layout: default
 title: Thank you
 ---
+
+<head>
+    <meta http-equiv="refresh" content="5; URL='https://alexisgourdol.github.io/uai-data-website/'">
+</head>
+
 <div>
     <h1>Thank You!</h1>
-    <p>Your message has been sent successfully. Redirecting you back to the homepage...</p>
+    <p>Your message has been sent successfully. Redirecting you back to the homepage in a few seconds...</p>
+
+    <a href="{{ '/' | relative_url }}" class="button">Back to Home</a>
+
     <script>
         setTimeout(() => {
             window.location.href = '/uai-data-website/';
