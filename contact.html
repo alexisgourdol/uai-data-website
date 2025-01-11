@@ -1,3 +1,8 @@
+---
+layout: default
+title: Contact
+---
+
 <form
     action="https://script.google.com/macros/s/AKfycbz9UWrWPogpuVG18ShX_4oeS75cAkqvXJ_QWIh898lBujIlpwn-wXTG3gGorZXuL2UF2Q/exec"
     method="GET">
@@ -15,15 +20,3 @@
 
     <button type="submit">Send Message</button>
 </form>
-
-<!-- Hidden iframe to handle form submission -->
-<iframe name="hidden-iframe" style="display:none;"></iframe>
-
-<script>
-    // After form submission, manually redirect to thank-you.html
-    document.querySelector('form').addEventListener('submit', function () {
-        setTimeout(function () {
-            window.location.href = 'https://alexisgourdol.github.io/uai-data-website/thank-you.html';
-        }, 1000); // Small delay to ensure data is saved
-    });
-</script>
