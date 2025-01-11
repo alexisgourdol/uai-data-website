@@ -420,3 +420,7 @@ form label[for*="email"]::after {
 .custom-form button:hover {
     background-color: #0156B3;
 }
+
+.ghost {
+    display: none;
+}
