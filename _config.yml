@@ -1,0 +1,10 @@
+title: uai data
+description: useful artificial intelligence
+baseurl: ""
+url: ""
+
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-seo-tag

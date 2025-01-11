@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }} - {{ page.title }}</title>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/favicon_io/apple-touch-icon.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon_io/favicon-32x32.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon_io/favicon-16x16.png' | relative_url }}">
+    <link rel="manifest" href="{{ '/assets/images/favicon_io/site.webmanifest' | relative_url }}">
+    
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    {% seo %}
+</head>
+<body>
+    {% include header.html %}
+    
+    <main>
+        {{ content }}
+    </main>
+    
+    {% include footer.html %}
+</body>
+</html>

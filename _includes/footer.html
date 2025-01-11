@@ -1,0 +1,23 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact</h3>
+                <div class="contact-with-avatar">
+                    <img src="{{ '/assets/images/alexis-pic.png' | relative_url }}" alt="Alexis" class="avatar">
+                    <a href="mailto:alexis@uaidata.io">alexis@uaidata.io</a>
+                </div>
+            </div>
+            <div class="social-links">
+                <h3>Connect</h3>
+                <a href="https://www.linkedin.com/company/uai-data/" target="_blank" rel="noopener" class="social-icon">
+                    <img src="{{ '/assets/images/linkedin-icon.svg' | relative_url }}" alt="LinkedIn" width="24" height="24">
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
