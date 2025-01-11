@@ -245,6 +245,69 @@ body {
     color: var(--accent-color);
 }
 
+/* Contact Form Styles */
+form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    color: var(--light-text);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #e66c3c;
+}
+
+/* Style for required field labels */
+form label[for*="full-name"]::after,
+form label[for*="email"]::after {
+    content: " *";
+    color: #ff0000;
+}
+
 /* Footer styles */
 .site-footer {
     background: var(--primary-color);
