@@ -1,10 +1,11 @@
 title: uai data
 description: useful artificial intelligence
 baseurl: ""
-url: ""
+url: "https://uaidata.io"
 
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-minimal
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
