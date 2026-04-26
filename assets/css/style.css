@@ -1,11 +1,17 @@
 /* Base styles */
 :root {
     --primary-color: #007bff;
-    --secondary-color: #5e5e5e;
+    --primary-hover: #0056b3;
     --accent-color: #ff7f50;
-    --text-color: #333;
-    --light-text: #fff;
-    --container-width: 1200px;
+    --accent-hover: #e66c3c;
+    /* Darker coral for consistency */
+    --text-color: #2d3436;
+    /* Slightly softer professional black */
+    --text-muted: #636e72;
+    /* Replaces the old secondary-color */
+    --light-text: #ffffff;
+    --bg-light: #f8f9fa;
+    /* For section backgrounds */
 }
 
 body {
@@ -16,19 +22,26 @@ body {
     color: var(--text-color);
 }
 
+/* Generic Button Style */
 .button {
-    display: inline-block;
-    padding: 1rem 2rem;
     background-color: var(--accent-color);
     color: var(--light-text);
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 500;
     transition: background-color 0.3s ease;
 }
 
+/* FIX: Hover stays in the Coral family */
 .button:hover {
-    background-color: #0056b3;
+    background-color: var(--accent-hover);
+    color: var(--light-text);
+}
+
+/* If you have a secondary Blue button */
+.button-secondary {
+    background-color: var(--primary-color);
+}
+
+.button-secondary:hover {
+    background-color: var(--primary-hover);
 }
 
 .container {
@@ -39,15 +52,23 @@ body {
 
 /* Header styles */
 .site-header {
-    --background: white;
-    background: linear-gradient(90deg, #fffeec, #b9ffb9);
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 0.75rem 0;
+    /* Slightly tighter padding for a sleeker look */
+    border-bottom: 1px solid #e9ecef;
+    /* Subtle line to define the header area */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    /* Optional: keeps the header at the top while scrolling */
+    top: 0;
+    z-index: 1000;
 }
 
 .site-header .logo img {
     height: 50px;
     width: auto;
+    display: block;
+    /* Prevents unwanted whitespace below the image */
 }
 
 .main-nav {
@@ -122,58 +143,87 @@ body {
 /* Methodology page styles */
 .methodology {
     padding: 4rem 0;
+    background-color: var(--bg-light);
+    /* Light gray background to separate sections */
 }
 
 .methodology-steps {
     max-width: 800px;
-
+    margin: 0 auto;
+    /* Ensures the container stays centered */
 }
 
 .step {
-    padding: 1rem;
-    padding-bottom: 0;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background: #ffffff;
+    /* Solid white for a "card" look */
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
 
 .step h2 {
-    color: var(--accent-color);
+    color: var(--primary-color);
+    /* Changed from accent to primary for trust */
+    font-size: 1.5rem;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Optional: if you have a class for the description text */
+.step p {
+    color: var(--text-muted);
+    line-height: 1.6;
 }
 
 .tech-logos {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    /* Ensures responsiveness on smaller screens */
     gap: 3rem;
-    margin-top: 1.5rem;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
+    margin-top: 2rem;
+    padding: 2.5rem;
+    background: #ffffff;
+    /* Clean white background */
+    border: 1px dashed #dee2e6;
+    /* Dashed border for a "toolkit" aesthetic */
+    border-radius: 8px;
 }
 
 .tech-logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
 }
 
 .tech-logo-container p {
     margin: 0;
-    font-size: 0.9rem;
-    color: var(--text-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
 }
 
 .tech-logo {
-    height: 30px;
+    height: 35px;
+    /* Slightly larger for better visibility */
     width: auto;
-    opacity: 0.9;
-    transition: opacity 0.3s ease;
+    filter: grayscale(100%);
+    /* Institutional look: logos are gray until hovered */
+    opacity: 0.6;
+    transition: all 0.3s ease;
 }
 
 .tech-logo:hover {
+    filter: grayscale(0%);
     opacity: 1;
+    transform: translateY(-2px);
 }
 
 /* Contact page styles */
@@ -296,9 +346,11 @@ form label[for*="email"]::after {
 
 /* Footer styles */
 .site-footer {
-    background: var(--primary-color);
-    color: var(--light-text);
-    padding: 3rem 0;
+    background: #1a1c1e;
+    /* Deep professional charcoal */
+    color: #ced4da;
+    /* Soft gray text for better readability on dark */
+    padding: 4rem 0 2rem 0;
 }
 
 .footer-content {
@@ -308,12 +360,21 @@ form label[for*="email"]::after {
 }
 
 .footer-content h3 {
-    margin-bottom: 1rem;
+    color: #ffffff;
+    /* White headings for contrast */
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .footer-content a {
-    color: var(--light-text);
+    color: #ced4da;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-content a:hover {
+    color: var(--accent-color);
+    /* Coral pop on hover */
 }
 
 .social-icon {
@@ -322,18 +383,22 @@ form label[for*="email"]::after {
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    /* Squared circles look more "tech" */
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
 }
 
 .social-icon:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--primary-color);
+    transform: translateY(-3px);
 }
 
 .social-icon img {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    /* Ensures icons are white */
 }
 
 .sr-only {
@@ -350,9 +415,11 @@ form label[for*="email"]::after {
 
 .copyright {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+    color: #6c757d;
 }
 
 .ghost {
