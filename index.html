@@ -1,138 +1,152 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html lang="en">
 
-<section class="hero">
-    <div class="container">
-        <h1>useful artificial intelligence</h1>
-        <p>Empowering organizations with AI Agents that take care of repetitive, boring tasks</p>
-        <a href="{{ '/contact.html' | relative_url }}" class="button">Get in touch</a>
-    </div>
-</section>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>uai data — Freelance Data Analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/assets/images/favicon_io/site.webmanifest">
 
-<section class="services">
-    <div class="container">
-        <h2>Services</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <img src="{{ '/assets/images/brain-icon.svg' | relative_url }}" alt="Consulting" class="service-icon">
-                <h3>Consulting</h3>
-                <p>High level analysis of the client situation, goal setting and plan on how to achieve them</p>
-            </div>
-            <div class="service-card">
-                <img src="{{ '/assets/images/bot-icon.svg' | relative_url }}" alt="AI Agent" class="service-icon">
-                <h3>AI Agent on demand</h3>
-                <p>For specific goals, use a uai data AI Agent</p>
-            </div>
-        </div>
-        <div class="cta-container">
-            <a href="{{ '/contact.html' | relative_url }}" class="button">Get in touch</a>
-        </div>
-    </div>
-</section>
 
-<section class="why-uai">
-    <div class="container">
-        <h2>Why uai data?</h2>
-        <p>
-            Artificial Intelligence is a <strong>transformative technology</strong> like electricity and the internet.
-            We're still on the early stages of this revolution, but the rate of inonvation is staggering specially on
-            the Large Language Models (LLMs) front.
-        </p>
-        <p>
-            <strong>Every organization will soon have AI Agents performing tasks that were done by humans
-                before</strong>. Even though there are challenges and significant data engineering work for this to
-            materialize in our world, this is likely to happen quite fast in 2025 and 2026.
-        </p>
-        <p>
-            <strong>uai data</strong>'s mission is to create Useful Artificial Intelligence solutions connected to
-            organization's data. Our view is that:
-        </p>
-        <ul>
-            <li>business needs have to be clearly identified</li>
-            <li>technical requirements have to be thoroughly understood</li>
-            <li>an iterative process will start with a simple end-to-end project implement AI agents</li>
-        </ul>
-        <div class="cta-container">
-            <a href="{{ '/methodology.html' | relative_url }}" class="button">The uai Methodology</a>
-        </div>
-    </div>
-</section>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<section class="ai-agents">
-    <div class="container">
-        <h2>What Are AI Agents and Their Impact on Businesses?</h2>
-        <p>
-            AI agents are software entities powered by artificial intelligence that can autonomously perform tasks, make
-            decisions, and interact with systems or humans to achieve specific goals. They are designed to analyze data,
-            learn from patterns, and execute actions with minimal human intervention. AI agents can adapt to changing
-            environments and optimize their performance over time with the proper human supervision.
-        </p>
-    </div>
-</section>
+        :root {
+            --bg: #FAF9F6;
+            --surface: #F2F1ED;
+            --surface-2: #F5F4F0;
+            --border: #E5E4DF;
+            --text: #1C1C1A;
+            --text-muted: #6B6A66;
+            --accent: #0D9488;
+            --font-head: "DM Sans", sans-serif;
+            --font-mono: "JetBrains Mono", monospace;
+        }
 
-<section class="enhancing-processes">
-    <div class="container">
-        <h2>Enhancing Processes Across Companies</h2>
-        <p>
-            AI agents offer transformative potential for companies across all industries and departments. Here's how
-            they drive improvements:
-        </p>
+        html {
+            scroll-behavior: smooth;
+        }
 
-        <div class="benefits-list">
-            <div class="benefit-item">
-                <h3>1. Automation and Efficiency</h3>
-                <p>
-                    Repetitive tasks, such as data entry, customer support, and inventory management, can be automated
-                    by AI agents, reducing errors and freeing up employees for higher-value activities.
-                </p>
-            </div>
+        body {
+            font-family: var(--font-head);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-            <div class="benefit-item">
-                <h3>2. Data-Driven Decision Making</h3>
-                <p>
-                    AI agents can process vast amounts of data quickly, delivering actionable insights and predictive
-                    analytics. This empowers leaders to make informed decisions in real time.
-                </p>
-            </div>
+        #root {
+            min-height: 100vh;
+        }
 
-            <div class="benefit-item">
-                <h3>3. Personalization</h3>
-                <p>
-                    From marketing to customer service, AI agents can tailor interactions based on user preferences and
-                    behavior, enhancing customer satisfaction and loyalty.
-                </p>
-            </div>
+        /* Typography reset */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-head);
+        }
 
-            <div class="benefit-item">
-                <h3>4. Scalability</h3>
-                <p>
-                    As businesses grow, AI agents can seamlessly handle increased workload, ensuring consistent
-                    performance without the need for proportional resource expansion.
-                </p>
-            </div>
+        /* Responsive grid adjustments */
+        @media (max-width: 900px) {
 
-            <div class="benefit-item">
-                <h3>5. Innovation</h3>
-                <p>
-                    By identifying inefficiencies and suggesting process improvements, AI agents foster a culture of
-                    continuous innovation.
-                </p>
-            </div>
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+            }
 
-            <div class="benefit-item">
-                <h3>6. Cross-Departmental Benefits</h3>
-                <p>
-                    Whether in HR (automating recruitment screening), finance (detecting fraud), or supply chain
-                    (optimizing logistics), AI agents provide specialized support tailored to each function's needs.
-                </p>
-            </div>
-        </div>
+            .about-grid {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
 
-        <p class="conclusion">
-            By integrating AI agents into their operations, companies can unlock greater efficiency, reduce costs, and
-            maintain a competitive edge in today's rapidly evolving business landscape.
-        </p>
-    </div>
-</section>
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-cta {
+                display: none !important;
+            }
+
+            .nav-burger {
+                display: flex !important;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media (min-width: 641px) {
+            .nav-burger {
+                display: none !important;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+        integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+        integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+        integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+        crossorigin="anonymous"></script>
+
+    <script src="translations.js"></script>
+    <script type="text/babel" src="App.jsx"></script>
+</body>
+
+</html>
