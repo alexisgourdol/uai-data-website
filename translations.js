@@ -62,9 +62,10 @@ const TRANSLATIONS = {
             title: "Things I build",
             subtitle: "Side projects — tools I wanted to exist, so I made them.",
             github: "GitHub →",
+            demo: "Live demo →",
             items: [
                 { name: "ytsum", desc: "YouTube transcript downloader and multi-provider AI summarizer.", github: "https://github.com/alexisgourdol/ytsum" },
-                { name: "Scope", desc: "Personal project management tool inspired by Linear's clean design.", github: "https://github.com/alexisgourdol/scope" }
+                { name: "Scope", desc: "Personal project management tool inspired by Linear's clean design.", github: "https://github.com/alexisgourdol/scope", demo: "https://scope-gamma-seven.vercel.app/issues" }
             ]
         },
         about: {
@@ -189,9 +190,10 @@ const TRANSLATIONS = {
             title: "Ce que je construis",
             subtitle: "Projets personnels — des outils que je voulais voir exister, alors je les ai créés.",
             github: "GitHub →",
+            demo: "Démo en ligne →",
             items: [
                 { name: "ytsum", desc: "Téléchargeur de transcriptions YouTube avec résumé IA multi-fournisseurs.", github: "https://github.com/alexisgourdol/ytsum" },
-                { name: "Scope", desc: "Outil de gestion de projet personnel inspiré du design épuré de Linear.", github: "https://github.com/alexisgourdol/scope" }
+                { name: "Scope", desc: "Outil de gestion de projet personnel inspiré du design épuré de Linear.", github: "https://github.com/alexisgourdol/scope", demo: "https://scope-gamma-seven.vercel.app/issues" }
             ]
         },
         about: {
