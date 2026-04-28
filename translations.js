@@ -111,11 +111,11 @@ const TRANSLATIONS = {
         faq: {
             title: "Questions & answers",
             items: [
-                { q: "What kind of clients do you work with?", a: "Mostly early-stage and growth-stage startups who have accumulated data but haven't had the bandwidth to make sense of it. I also work with small teams inside larger companies who need focused analytical help." },
-                { q: "What tools do you use?", a: "Python (Pandas, NumPy, Matplotlib/Seaborn), SQL, Jupyter notebooks, Metabase, Google Sheets, and Looker Studio. I can adapt to the tools you already use." },
-                { q: "Do you work on fixed-price or hourly projects?", a: "Both. Short, well-scoped projects work best on a fixed price. Ongoing analytical support typically runs on a retainer or hourly basis. We'll figure out what makes sense for your project." },
-                { q: "How long does a typical project take?", a: "A focused analysis or dashboard build takes 1–3 weeks. Larger migrations or ongoing work is project-dependent. I'll give you a clear timeline during our discovery call." },
-                { q: "Do you sign NDAs?", a: "Yes, always. Client data and business context are treated with full confidentiality. Most of my portfolio work is anonymized for exactly this reason." }
+                { q: "What kind of clients do you work with?", a: "Mostly early-stage and growth-stage startups that have accumulated data but haven't had the bandwidth to make sense of it. I also work with small teams inside larger companies who need focused analytical support." },
+                { q: "What tools do you use?", a: "Python (Pandas, NumPy, Matplotlib/Seaborn), SQL, Jupyter Notebooks, Metabase, Google Sheets, and Looker Studio. I can adapt to the tools you already use." },
+                { q: "Do you work on a fixed price or daily rate?", a: "Both. Short, well-scoped projects work best on a fixed-price basis. Ongoing analytical support typically runs on a retainer or daily rate. We'll figure out what makes the most sense for your project." },
+                { q: "How long does a typical project take?", a: "A focused analysis or dashboard build usually takes 1-3 weeks. Larger migrations or ongoing work depend on the scope. I'll give you a clear timeline during our discovery call." },
+                { q: "Do you sign NDAs?", a: "Yes, always. Client data and business context are treated with full confidentiality. Most of my portfolio work is anonymized for exactly that reason." }
             ]
         },
         footer: {
@@ -173,7 +173,7 @@ const TRANSLATIONS = {
                 },
                 {
                     title: "Outils d'Analyse Opérationnelle",
-                    desc: "Développement de notebooks Python pour extraire des insights des données opérationnelles et informer les décisions stratégiques de startups en phase précoce.",
+                    desc: "Développement de Notebooks Python pour extraire des insights des données opérationnelles et informer les décisions stratégiques de startups en phase précoce.",
                     tags: ["Python", "Jupyter", "Opérations"],
                     github: false
                 },
@@ -240,7 +240,7 @@ const TRANSLATIONS = {
             items: [
                 { q: "Avec quels types de clients travaillez-vous ?", a: "Principalement des startups en phase de démarrage ou de croissance qui ont accumulé des données mais n'ont pas eu le temps de les exploiter. Je travaille aussi avec de petites équipes au sein de grandes entreprises qui ont besoin d'aide analytique ciblée." },
                 { q: "Quels outils utilisez-vous ?", a: "Python (Pandas, NumPy, Matplotlib/Seaborn), SQL, notebooks Jupyter, Metabase, Google Sheets et Looker Studio. Je m'adapte aux outils que vous utilisez déjà." },
-                { q: "Travaillez-vous à prix fixe ou à l'heure ?", a: "Les deux. Les projets courts et bien définis fonctionnent mieux à prix fixe. Le support analytique continu se fait généralement en forfait ou à l'heure. Nous trouverons ce qui convient à votre projet." },
+                { q: "Travaillez-vous à prix fixe ou à l'heure ?", a: "Les deux. Les projets courts et bien définis fonctionnent mieux à prix fixe. Le support analytique continu se fait généralement en forfait ou à la journée. Nous trouverons ce qui convient à votre projet." },
                 { q: "Combien de temps dure un projet typique ?", a: "Une analyse ciblée ou la construction d'un dashboard prend 1 à 3 semaines. Les migrations plus importantes dépendent du projet. Je vous donnerai un calendrier clair lors de notre appel découverte." },
                 { q: "Signez-vous des NDA ?", a: "Oui, toujours. Les données clients et le contexte business sont traités avec une totale confidentialité. La plupart de mon portfolio est anonymisé pour cette raison." }
             ]
