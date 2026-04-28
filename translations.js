@@ -12,17 +12,17 @@ const TRANSLATIONS = {
         hero: {
             eyebrow: "Freelance data analyst · Available for projects",
             headline: "I help growing companies make better decisions with their data",
-            sub: "Freelance data analyst with a startup operations background. I turn messy spreadsheets and scattered databases into clear, actionable insights.",
+            sub: "Freelance data analyst with a startup operations background. I turn messy spreadsheets and scattered databases into clear, concrete answers.",
             cta1: "Book a discovery call",
             cta2: "See my work"
         },
         services: {
             title: "What I do",
-            subtitle: "From one-off analyses to ongoing analytical support — I work across the full data lifecycle.",
+            subtitle: "One-off analysis or ongoing support — I can step in at any point in the process.",
             items: [
-                { title: "Operational Analytics", desc: "Streamline operations with data. Identify bottlenecks, optimize processes, measure what matters." },
-                { title: "Churn & Retention Analysis", desc: "Understand why customers leave and what keeps them. Data-driven retention strategies based on real patterns." },
-                { title: "Dashboards & Reporting", desc: "Transform raw data into visual dashboards your team actually uses. From KPI tracking to executive reporting." },
+                { title: "Operational Analytics", desc: "Use your operational data to find where things break down and what's actually worth tracking." },
+                { title: "Churn & Retention Analysis", desc: "Understand why customers leave and what keeps them. Retention strategies built on what your data actually shows, not assumptions." },
+                { title: "Dashboards & Reporting", desc: "Transform raw data into visual dashboards your team actually uses — whether it's KPI tracking or monthly exec reports." },
                 { title: "Data Cleanup & Migration", desc: "Messy data? Switching tools? I handle data mapping, validation, and clean migrations between systems." }
             ]
         },
@@ -46,7 +46,7 @@ const TRANSLATIONS = {
                 },
                 {
                     title: "Operational Analysis Tools",
-                    desc: "Developed Python-based analysis notebooks to surface insights from operational data, informing strategic decisions at early-stage startups.",
+                    desc: "Built Python notebooks to help a startup dig into their operational data and figure out what to act on.",
                     tags: ["Python", "Jupyter", "Operations"],
                     github: false
                 },
@@ -71,7 +71,7 @@ const TRANSLATIONS = {
             title: "The person behind the data",
             body: [
                 "I'm Alexis — a freelance data analyst based in Paris (France). Before going independent, I spent years in operations at tech startups, where I learned that the best data work starts with understanding the business, not just the SQL query.",
-                "I trained in Data Science and Data Engineering at Le Wagon, hold the Google Data Analytics Professional Certificate.",
+                "I trained in Data Science and Data Engineering at Le Wagon and hold the Google Data Analytics Professional Certificate.",
                 "The name 'uai' (pronounced 'why') is a common expression from Minas Gerais, Brazil — where I'm partly from. It means surprise, curiosity, or just 'huh!' — which is exactly the reaction I want people to have when they see what their data can tell them."
             ],
             credentials: "Credentials & training",
@@ -88,7 +88,7 @@ const TRANSLATIONS = {
         },
         blog: {
             title: "Writing & insights",
-            subtitle: "Occasional essays on data, startups, and building things that make sense.",
+            subtitle: "Occasional writing about data work and startup ops.",
             read: "Read →",
             items: [
                 {
@@ -139,17 +139,17 @@ const TRANSLATIONS = {
         hero: {
             eyebrow: "Analyste de données freelance · Disponible pour vos missions",
             headline: "J'aide les entreprises en croissance à prendre de meilleures décisions grâce à leurs données",
-            sub: "Analyste de données freelance avec un background en opérations startup. Je transforme des feuilles de calcul chaotiques et des bases de données éparpillées en insights clairs et actionnables.",
+            sub: "Analyste de données freelance avec un background en opérations startup. Je transforme des feuilles de calcul inexploitables et des bases de données éparpillées en réponses concrètes.",
             cta1: "Réserver un appel découverte",
             cta2: "Voir mes projets"
         },
         services: {
             title: "Ce que je fais",
-            subtitle: "De l'analyse ponctuelle au support analytique continu — j'interviens sur tout le cycle de vie des données.",
+            subtitle: "Analyse ponctuelle ou support continu — je peux intervenir à n'importe quelle étape du projet.",
             items: [
                 { title: "Dashboards & Reporting", desc: "Transformez vos données brutes en tableaux de bord visuels que votre équipe utilise vraiment. Du suivi des KPIs aux rapports de direction." },
                 { title: "Analyse Churn & Rétention", desc: "Comprendre pourquoi les clients partent et ce qui les retient. Stratégies de rétention basées sur des patterns réels." },
-                { title: "Analytics Opérationnel", desc: "Optimisez vos opérations avec les données. Identifiez les goulots d'étranglement, optimisez les processus, mesurez ce qui compte." },
+                { title: "Analytics Opérationnel", desc: "Utilisez vos données opérationnelles pour trouver où ça coince et ce qui vaut vraiment la peine d'être mesuré." },
                 { title: "Nettoyage & Migration", desc: "Données en désordre ? Changement d'outils ? Je gère le mapping, la validation et les migrations propres entre systèmes." }
             ]
         },
@@ -173,7 +173,7 @@ const TRANSLATIONS = {
                 },
                 {
                     title: "Outils d'Analyse Opérationnelle",
-                    desc: "Développement de Notebooks Python pour extraire des insights des données opérationnelles et informer les décisions stratégiques de startups en phase précoce.",
+                    desc: "Développement de notebooks Python pour aider une startup à comprendre leurs données opérationnelles et éclairer les priorités.",
                     tags: ["Python", "Jupyter", "Opérations"],
                     github: false
                 },
@@ -215,7 +215,7 @@ const TRANSLATIONS = {
         },
         blog: {
             title: "Écrits & réflexions",
-            subtitle: "Des essais occasionnels sur les données, les startups et la création de choses qui ont du sens.",
+            subtitle: "Des articles occasionnels sur le travail data et les opérations en startup.",
             read: "Lire →",
             items: [
                 {
