@@ -64,6 +64,13 @@
 
         /* Responsive grid adjustments */
         @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .hero-visual {
+                display: none !important;
+            }
 
             .services-grid,
             .portfolio-grid {
@@ -103,6 +110,14 @@
 
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .hero-eyebrow-full {
+                display: none !important;
+            }
+
+            .hero-eyebrow-short {
+                display: inline !important;
             }
         }
 

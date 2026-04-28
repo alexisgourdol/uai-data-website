@@ -216,8 +216,221 @@ function Nav({ t, lang, setLang }) {
     );
 }
 
+// ─── DATA NETWORK CANVAS ──────────────────────────────────────────────────────
+function DataNetworkCanvas({ accent }) {
+    const canvasRef = useRef(null);
+    const animRef = useRef(null);
+    const imgRef = useRef(null);
+    const nodesRef = useRef([]);
+
+    useEffect(() => {
+        const img = new Image();
+        img.src = "assets/images/alexis-pic.png";
+        imgRef.current = img;
+
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const dpr = window.devicePixelRatio || 1;
+        const LOGICAL = 480;
+        canvas.width = LOGICAL * dpr;
+        canvas.height = LOGICAL * dpr;
+        canvas.style.width = "100%";
+        canvas.style.maxWidth = LOGICAL + "px";
+        canvas.style.height = "auto";
+        ctx.scale(dpr, dpr);
+        const W = LOGICAL;
+        const H = LOGICAL;
+        const cx = W / 2;
+        const cy = H / 2;
+        const portraitR = 88;
+        const exclusionR = portraitR + 24;
+
+        // Parse accent color to rgb
+        function hexToRgb(hex) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return { r, g, b };
+        }
+        const rgb = hexToRgb(accent || "#D97706");
+
+        // Generate nodes — avoid portrait center
+        const NODE_COUNT = 34;
+        const nodes = [];
+        let attempts = 0;
+        while (nodes.length < NODE_COUNT && attempts < 2000) {
+            attempts++;
+            const x = 28 + Math.random() * (W - 56);
+            const y = 28 + Math.random() * (H - 56);
+            const dx = x - cx, dy = y - cy;
+            if (Math.sqrt(dx * dx + dy * dy) < exclusionR) continue;
+            const bright = Math.random() > 0.72;
+            const size = bright ? 3 + Math.random() * 2.5 : 1.5 + Math.random() * 2;
+            nodes.push({
+                x, y,
+                vx: (Math.random() - 0.5) * 0.28,
+                vy: (Math.random() - 0.5) * 0.28,
+                size,
+                bright,
+                phase: Math.random() * Math.PI * 2,
+                speed: 0.012 + Math.random() * 0.018,
+                pulseAmp: 0.4 + Math.random() * 0.6
+            });
+        }
+        nodesRef.current = nodes;
+
+        let t = 0;
+        function draw() {
+            t += 1;
+            ctx.clearRect(0, 0, W, H);
+
+            // Faint radial glow behind portrait
+            const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, portraitR * 2.2);
+            glow.addColorStop(0, `rgba(${rgb.r},${rgb.g},${rgb.b},0.10)`);
+            glow.addColorStop(1, "rgba(0,0,0,0)");
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, W, H);
+
+            // Draw edges
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 110) {
+                        const alpha = (1 - dist / 110) * 0.18;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Lines from nodes to portrait center (brightest nodes only)
+            nodes.forEach(n => {
+                if (!n.bright) return;
+                const dx = cx - n.x, dy = cy - n.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const alpha = Math.max(0, (1 - dist / 260) * 0.12);
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${alpha})`;
+                ctx.lineWidth = 0.8;
+                ctx.setLineDash([3, 6]);
+                ctx.moveTo(n.x, n.y);
+                // Stop at portrait edge
+                const ux = dx / dist, uy = dy / dist;
+                ctx.lineTo(n.x + ux * (dist - exclusionR), n.y + uy * (dist - exclusionR));
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+
+            // Draw nodes
+            nodes.forEach(n => {
+                const pulse = 1 + Math.sin(n.phase + t * n.speed) * n.pulseAmp * 0.18;
+                const r = n.size * pulse;
+                if (n.bright) {
+                    // Glow ring
+                    const g2 = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 3.5);
+                    g2.addColorStop(0, `rgba(${rgb.r},${rgb.g},${rgb.b},0.22)`);
+                    g2.addColorStop(1, "rgba(0,0,0,0)");
+                    ctx.fillStyle = g2;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r * 3.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    // Core dot
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.9)`;
+                    ctx.fill();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.28)`;
+                    ctx.fill();
+                }
+
+                // Move node
+                n.x += n.vx;
+                n.y += n.vy;
+                // Bounce off walls
+                if (n.x < 20 || n.x > W - 20) n.vx *= -1;
+                if (n.y < 20 || n.y > H - 20) n.vy *= -1;
+                // Repel from portrait
+                const ndx = n.x - cx, ndy = n.y - cy;
+                const nd = Math.sqrt(ndx * ndx + ndy * ndy);
+                if (nd < exclusionR + 8) {
+                    n.x = cx + (ndx / nd) * (exclusionR + 8);
+                    n.y = cy + (ndy / nd) * (exclusionR + 8);
+                    n.vx += (ndx / nd) * 0.3;
+                    n.vy += (ndy / nd) * 0.3;
+                }
+                // Speed cap
+                const spd = Math.sqrt(n.vx * n.vx + n.vy * n.vy);
+                if (spd > 0.5) { n.vx = (n.vx / spd) * 0.5; n.vy = (n.vy / spd) * 0.5; }
+            });
+
+            // Portrait circle clip
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(cx, cy, portraitR, 0, Math.PI * 2);
+            ctx.clip();
+            if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+                const iw = imgRef.current.naturalWidth;
+                const ih = imgRef.current.naturalHeight;
+                const scale = (portraitR * 2) / Math.min(iw, ih);
+                const dw = iw * scale, dh = ih * scale;
+                ctx.drawImage(imgRef.current, cx - dw / 2, cy - dh / 2 - portraitR * 0.08, dw, dh);
+            } else {
+                ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.15)`;
+                ctx.fillRect(0, 0, W, H);
+            }
+            ctx.restore();
+
+            // Portrait ring
+            ctx.beginPath();
+            ctx.arc(cx, cy, portraitR, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.55)`;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            // Outer dashed orbit ring
+            ctx.beginPath();
+            ctx.arc(cx, cy, portraitR + 18, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.10)`;
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 8]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Name label under portrait
+            ctx.font = '600 13px "DM Sans", sans-serif';
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+            ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.9)`;
+            ctx.fillText("Alexis", cx, cy + portraitR + 24);
+
+            animRef.current = requestAnimationFrame(draw);
+        }
+
+        img.onload = () => { };
+        animRef.current = requestAnimationFrame(draw);
+        return () => cancelAnimationFrame(animRef.current);
+    }, [accent]);
+
+    return (
+        <canvas
+            ref={canvasRef}
+            style={{ display: "block" }}
+        />
+    );
+}
+
 // ─── HERO ─────────────────────────────────────────────────────────────────────
-function Hero({ t }) {
+function Hero({ t, accent }) {
     const scrollTo = (href) => {
         const el = document.querySelector(href);
         if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -225,80 +438,88 @@ function Hero({ t }) {
 
     return (
         <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 100, paddingBottom: 80, position: "relative", overflow: "hidden" }}>
-            {/* Subtle dot-grid decoration */}
-            <div style={{
-                position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.35,
-                backgroundImage: "radial-gradient(circle, var(--text) 1px, transparent 1px)",
-                backgroundSize: "32px 32px",
-                maskImage: "radial-gradient(ellipse 80% 80% at 70% 50%, black 20%, transparent 80%)",
-                WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 70% 50%, black 20%, transparent 80%)"
-            }}></div>
+            <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 clamp(1.5rem, 5vw, 3rem)", position: "relative", width: "100%" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }} className="hero-grid">
 
-            {/* Accent blob */}
-            <div style={{
-                position: "absolute", right: "8%", top: "15%", width: 420, height: 420,
-                background: "radial-gradient(circle, oklch(0.72 0.12 178 / 0.12) 0%, transparent 70%)",
-                pointerEvents: "none"
-            }}></div>
+                    {/* LEFT: text */}
+                    <div>
+                        {/* Eyebrow */}
+                        <Reveal>
+                            <div style={{
+                                display: "inline-flex", alignItems: "center", gap: 10, marginBottom: "1.5rem",
+                                background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 100,
+                                padding: "5px 14px 5px 5px", fontSize: "0.8rem", fontFamily: "var(--font-mono)", color: "var(--text-muted)"
+                            }}>
+                                {/* Mini portrait */}
+                                <img
+                                    src="assets/images/alexis-pic.png"
+                                    alt="Alexis"
+                                    style={{
+                                        width: 28, height: 28, borderRadius: "50%",
+                                        objectFit: "cover", objectPosition: "center top",
+                                        flexShrink: 0,
+                                        border: "1.5px solid var(--accent)"
+                                    }}
+                                />
+                                <span className="hero-eyebrow-full">{t.hero.eyebrow}</span>
+                                <span className="hero-eyebrow-short" style={{ display: "none" }}>{t.hero.eyebrowShort}</span>
+                            </div>
+                        </Reveal>
 
-            <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 clamp(1.5rem, 5vw, 3rem)", position: "relative" }}>
-                {/* Eyebrow */}
-                <Reveal>
-                    <div style={{
-                        display: "inline-flex", alignItems: "center", gap: 8, marginBottom: "1.5rem",
-                        background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 100,
-                        padding: "6px 14px", fontSize: "0.8rem", fontFamily: "var(--font-mono)", color: "var(--text-muted)"
-                    }}>
-                        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--accent)", display: "inline-block" }}></span>
-                        {t.hero.eyebrow}
+                        {/* Headline */}
+                        <Reveal delay={80}>
+                            <h1 style={{
+                                fontSize: "clamp(2.2rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.1,
+                                letterSpacing: "-0.03em", color: "var(--text)",
+                                marginBottom: "1.5rem"
+                            }}>
+                                {t.hero.headline}
+                            </h1>
+                        </Reveal>
+
+                        {/* Sub */}
+                        <Reveal delay={160}>
+                            <p style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)", color: "var(--text-muted)", lineHeight: 1.75, marginBottom: "2.5rem" }}>
+                                {t.hero.sub}
+                            </p>
+                        </Reveal>
+
+                        {/* CTAs */}
+                        <Reveal delay={240}>
+                            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                                <a href="https://calendar.app.google/1PBpmZw9S5cVDVb26" target="_blank" rel="noopener noreferrer"
+                                    style={{
+                                        background: "var(--accent)", color: "#fff", padding: "14px 28px",
+                                        borderRadius: 10, fontWeight: 700, fontSize: "1rem", textDecoration: "none",
+                                        display: "inline-flex", alignItems: "center", gap: 8,
+                                        boxShadow: "0 4px 20px rgba(217,119,6,0.3)",
+                                        transition: "transform 0.2s, box-shadow 0.2s"
+                                    }}
+                                    onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 28px rgba(217,119,6,0.4)"; }}
+                                    onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(217,119,6,0.3)"; }}>
+                                    {t.hero.cta1} <icons.ArrowUpRight />
+                                </a>
+                                <a href="#portfolio" onClick={e => { e.preventDefault(); scrollTo("#portfolio"); }}
+                                    style={{
+                                        background: "var(--surface)", color: "var(--text)", padding: "14px 28px",
+                                        borderRadius: 10, fontWeight: 600, fontSize: "1rem", textDecoration: "none",
+                                        border: "1.5px solid var(--border)", transition: "border-color 0.2s, color 0.2s, background 0.2s"
+                                    }}
+                                    onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.background = "var(--bg)"; }}
+                                    onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text)"; e.currentTarget.style.background = "var(--surface)"; }}>
+                                    {t.hero.cta2}
+                                </a>
+                            </div>
+                        </Reveal>
                     </div>
-                </Reveal>
 
-                {/* Headline */}
-                <Reveal delay={80}>
-                    <h1 style={{
-                        fontSize: "clamp(2.6rem, 5.5vw, 4.25rem)", fontWeight: 800, lineHeight: 1.08,
-                        letterSpacing: "-0.03em", color: "var(--text)", maxWidth: 780,
-                        marginBottom: "1.75rem"
-                    }}>
-                        {t.hero.headline}
-                    </h1>
-                </Reveal>
-
-                {/* Sub */}
-                <Reveal delay={160}>
-                    <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", color: "var(--text-muted)", maxWidth: 540, lineHeight: 1.7, marginBottom: "2.5rem" }}>
-                        {t.hero.sub}
-                    </p>
-                </Reveal>
-
-                {/* CTAs */}
-                <Reveal delay={240}>
-                    <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                        <a href="https://calendar.app.google/1PBpmZw9S5cVDVb26" target="_blank" rel="noopener noreferrer"
-                            style={{
-                                background: "var(--accent)", color: "#fff", padding: "14px 28px",
-                                borderRadius: 10, fontWeight: 700, fontSize: "1rem", textDecoration: "none",
-                                display: "inline-flex", alignItems: "center", gap: 8,
-                                boxShadow: "0 4px 20px oklch(0.72 0.12 178 / 0.3)",
-                                transition: "transform 0.2s, box-shadow 0.2s"
-                            }}
-                            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 28px oklch(0.72 0.12 178 / 0.4)"; }}
-                            onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px oklch(0.72 0.12 178 / 0.3)"; }}>
-                            {t.hero.cta1} <icons.ArrowUpRight />
-                        </a>
-                        <a href="#portfolio" onClick={e => { e.preventDefault(); scrollTo("#portfolio"); }}
-                            style={{
-                                background: "var(--surface)", color: "var(--text)", padding: "14px 28px",
-                                borderRadius: 10, fontWeight: 600, fontSize: "1rem", textDecoration: "none",
-                                border: "1.5px solid var(--border)", transition: "border-color 0.2s, color 0.2s, background 0.2s"
-                            }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.background = "var(--bg)"; }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text)"; e.currentTarget.style.background = "var(--surface)"; }}>
-                            {t.hero.cta2}
-                        </a>
-                    </div>
-                </Reveal>
+                    {/* RIGHT: animated network */}
+                    <Reveal delay={120} className="hero-visual">
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <DataNetworkCanvas accent={accent} />
+                        </div>
+                    </Reveal>
+                </div>
             </div>
         </section>
     );
@@ -461,10 +682,23 @@ function Projects({ t }) {
                                     </a>
                                 </div>
                                 <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>{p.desc}</p>
-                                <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                                <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", gap: "1.25rem", alignItems: "center" }}>
                                     <a href={p.github} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
                                         {t.projects.github}
                                     </a>
+                                    {p.demo && (
+                                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                                            <a href={p.demo} target="_blank" rel="noopener noreferrer"
+                                                style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", textDecoration: "none", fontWeight: 600, transition: "color 0.2s" }}
+                                                onMouseEnter={e => e.currentTarget.style.color = "#fff"}
+                                                onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}>
+                                                {t.projects.demo}
+                                            </a>
+                                            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 5, padding: "2px 7px", letterSpacing: "0.03em" }}>
+                                                pw: scopedemo
+                                            </span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </Reveal>
@@ -752,7 +986,7 @@ function App() {
     return (
         <div style={{ "--accent": tweaks.accent, "--bg": tweaks.bg }}>
             <Nav t={t} lang={lang} setLang={setLang} />
-            <Hero t={t} />
+            <Hero t={t} accent={tweaks.accent} />
             <Stats t={t} />
             <Services t={t} />
             <Portfolio t={t} />
