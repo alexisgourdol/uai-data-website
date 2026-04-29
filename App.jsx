@@ -1,6 +1,32 @@
 const { useState, useEffect, useRef } = React;
 
-// ─── Scroll reveal hook ───────────────────────────────────────────────────────
+// ─── Dark mode hook ───────────────────────────────────────────────────────────
+function useDarkMode() {
+    const [dark, setDark] = useState(() => {
+        const stored = localStorage.getItem("uai-theme");
+        if (stored) return stored === "dark";
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    });
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+        localStorage.setItem("uai-theme", dark ? "dark" : "light");
+    }, [dark]);
+
+    // Listen for OS preference changes (only if user hasn't explicitly chosen)
+    useEffect(() => {
+        const mq = window.matchMedia("(prefers-color-scheme: dark)");
+        const handler = (e) => {
+            if (!localStorage.getItem("uai-theme")) setDark(e.matches);
+        };
+        mq.addEventListener("change", handler);
+        return () => mq.removeEventListener("change", handler);
+    }, []);
+
+    return [dark, setDark];
+}
+
+
 function useReveal(threshold = 0.12) {
     const ref = useRef(null);
     const [visible, setVisible] = useState(false);
@@ -97,6 +123,16 @@ const icons = {
             <circle cx="12" cy="8" r="7" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
         </svg>
     ),
+    Sun: () => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+            <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+    ),
+    Moon: () => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+    ),
     BookOpen: () => (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
@@ -105,7 +141,7 @@ const icons = {
 };
 
 // ─── NAV ─────────────────────────────────────────────────────────────────────
-function Nav({ t, lang, setLang }) {
+function Nav({ t, lang, setLang, dark, setDark }) {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -132,7 +168,7 @@ function Nav({ t, lang, setLang }) {
     return (
         <nav style={{
             position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-            background: scrolled ? "rgba(250,249,246,0.95)" : "transparent",
+            background: scrolled ? (dark ? "rgba(20,20,18,0.95)" : "rgba(250,249,246,0.95)") : "transparent",
             backdropFilter: scrolled ? "blur(12px)" : "none",
             borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
             transition: "all 0.3s ease",
@@ -160,6 +196,19 @@ function Nav({ t, lang, setLang }) {
 
                 {/* Right: lang + CTA */}
                 <div style={{ display: "flex", alignItems: "center", gap: "1rem" }} className="nav-right">
+                    {/* Dark mode toggle */}
+                    <button onClick={() => setDark(!dark)}
+                        style={{
+                            background: "none", border: "1.5px solid var(--border)", borderRadius: "var(--radius-btn)",
+                            cursor: "pointer", color: "var(--text-muted)", width: 36, height: 36,
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            transition: "color 0.2s, border-color 0.2s"
+                        }}
+                        title={dark ? "Switch to light mode" : "Switch to dark mode"}
+                        onMouseEnter={e => { e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.borderColor = "var(--accent)"; }}
+                        onMouseLeave={e => { e.currentTarget.style.color = "var(--text-muted)"; e.currentTarget.style.borderColor = "var(--border)"; }}>
+                        {dark ? <icons.Sun /> : <icons.Moon />}
+                    </button>
                     <div style={{ display: "flex", gap: "0.25rem", fontSize: "0.8rem", fontWeight: 600 }}>
                         {["en", "fr"].map(l => (
                             <button key={l} onClick={() => setLang(l)}
@@ -217,7 +266,7 @@ function Nav({ t, lang, setLang }) {
 }
 
 // ─── DATA NETWORK CANVAS ──────────────────────────────────────────────────────
-function DataNetworkCanvas({ accent }) {
+function DataNetworkCanvas({ accent, dark }) {
     const canvasRef = useRef(null);
     const animRef = useRef(null);
     const imgRef = useRef(null);
@@ -383,7 +432,9 @@ function DataNetworkCanvas({ accent }) {
                 const ih = imgRef.current.naturalHeight;
                 const scale = (portraitR * 2) / Math.min(iw, ih);
                 const dw = iw * scale, dh = ih * scale;
+                if (dark) ctx.filter = "brightness(0.8) contrast(1.05)";
                 ctx.drawImage(imgRef.current, cx - dw / 2, cy - dh / 2 - portraitR * 0.08, dw, dh);
+                ctx.filter = "none";
             } else {
                 ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.15)`;
                 ctx.fillRect(0, 0, W, H);
@@ -419,7 +470,7 @@ function DataNetworkCanvas({ accent }) {
         img.onload = () => { };
         animRef.current = requestAnimationFrame(draw);
         return () => cancelAnimationFrame(animRef.current);
-    }, [accent]);
+    }, [accent, dark]);
 
     return (
         <canvas
@@ -430,7 +481,7 @@ function DataNetworkCanvas({ accent }) {
 }
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
-function Hero({ t, accent }) {
+function Hero({ t, accent, dark }) {
     const scrollTo = (href) => {
         const el = document.querySelector(href);
         if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -458,7 +509,8 @@ function Hero({ t, accent }) {
                                         width: 28, height: 28, borderRadius: "50%",
                                         objectFit: "cover", objectPosition: "center top",
                                         flexShrink: 0,
-                                        border: "1.5px solid var(--accent)"
+                                        border: "1.5px solid var(--accent)",
+                                        filter: dark ? "brightness(0.85) contrast(1.05)" : "none"
                                     }}
                                 />
                                 <span className="hero-eyebrow-full">{t.hero.eyebrow}</span>
@@ -490,19 +542,19 @@ function Hero({ t, accent }) {
                                 <a href="https://calendar.app.google/1PBpmZw9S5cVDVb26" target="_blank" rel="noopener noreferrer"
                                     style={{
                                         background: "var(--accent)", color: "#fff", padding: "14px 28px",
-                                        borderRadius: 10, fontWeight: 700, fontSize: "1rem", textDecoration: "none",
+                                        borderRadius: "var(--radius-btn)", fontWeight: 700, fontSize: "1rem", textDecoration: "none",
                                         display: "inline-flex", alignItems: "center", gap: 8,
-                                        boxShadow: "0 4px 20px rgba(217,119,6,0.3)",
+                                        boxShadow: "var(--shadow-cta)",
                                         transition: "transform 0.2s, box-shadow 0.2s"
                                     }}
-                                    onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 28px rgba(217,119,6,0.4)"; }}
-                                    onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(217,119,6,0.3)"; }}>
+                                    onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "var(--shadow-cta-hover)"; }}
+                                    onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "var(--shadow-cta)"; }}>
                                     {t.hero.cta1} <icons.ArrowUpRight />
                                 </a>
                                 <a href="#portfolio" onClick={e => { e.preventDefault(); scrollTo("#portfolio"); }}
                                     style={{
                                         background: "var(--surface)", color: "var(--text)", padding: "14px 28px",
-                                        borderRadius: 10, fontWeight: 600, fontSize: "1rem", textDecoration: "none",
+                                        borderRadius: "var(--radius-btn)", fontWeight: 600, fontSize: "1rem", textDecoration: "none",
                                         border: "1.5px solid var(--border)", transition: "border-color 0.2s, color 0.2s, background 0.2s"
                                     }}
                                     onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.background = "var(--bg)"; }}
@@ -516,7 +568,7 @@ function Hero({ t, accent }) {
                     {/* RIGHT: animated network */}
                     <Reveal delay={120} className="hero-visual">
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <DataNetworkCanvas accent={accent} />
+                            <DataNetworkCanvas accent={accent} dark={dark} />
                         </div>
                     </Reveal>
                 </div>
@@ -528,7 +580,7 @@ function Hero({ t, accent }) {
 // ─── STATS BAR ─────────────────────────────────────────────────────────────
 function Stats({ t }) {
     return (
-        <section style={{ background: "var(--text)", padding: "3rem clamp(1.5rem, 5vw, 3rem)" }}>
+        <section style={{ background: "#1C1C1A", padding: "3rem clamp(1.5rem, 5vw, 3rem)" }}>
             <div style={{ maxWidth: 1120, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem" }} className="stats-grid">
                 {t.stats.items.map((s, i) => (
                     <Reveal key={i} delay={i * 80}>
@@ -564,13 +616,13 @@ function Services({ t }) {
                             <Reveal key={i} delay={i * 80}>
                                 <div style={{
                                     background: "var(--surface)", border: "1px solid var(--border)",
-                                    borderRadius: 14, padding: "2rem 2rem 2.25rem",
+                                    borderRadius: "var(--radius-card)", padding: "2rem 2rem 2.25rem",
                                     transition: "box-shadow 0.25s, transform 0.25s", cursor: "default"
                                 }}
-                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
                                     onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
                                     <div style={{
-                                        width: 44, height: 44, borderRadius: 10, background: "oklch(0.72 0.12 178 / 0.1)",
+                                        width: 44, height: 44, borderRadius: "var(--radius-btn)", background: "var(--accent-subtle)",
                                         display: "flex", alignItems: "center", justifyContent: "center",
                                         color: "var(--accent)", marginBottom: "1.25rem"
                                     }}>
@@ -589,7 +641,7 @@ function Services({ t }) {
 }
 
 // ─── PORTFOLIO ────────────────────────────────────────────────────────────────
-const accentColors = ["#0D9488", "#6366F1", "#F59E0B", "#EC4899"];
+const accentColors = ["var(--project-1)", "var(--project-2)", "var(--project-3)", "var(--project-4)"];
 
 function Portfolio({ t }) {
     return (
@@ -607,11 +659,11 @@ function Portfolio({ t }) {
                     {t.portfolio.items.map((p, i) => (
                         <Reveal key={i} delay={i * 80}>
                             <div style={{
-                                background: "var(--bg)", borderRadius: 14, overflow: "hidden",
+                                background: "var(--bg)", borderRadius: "var(--radius-card)", overflow: "hidden",
                                 border: "1px solid var(--border)",
                                 transition: "box-shadow 0.25s, transform 0.25s"
                             }}
-                                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                                onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
                                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
                                 {/* Top accent bar */}
                                 <div style={{ height: 4, background: accentColors[i] }}></div>
@@ -665,10 +717,10 @@ function Projects({ t }) {
                     {t.projects.items.map((p, i) => (
                         <Reveal key={i} delay={i * 100}>
                             <div style={{
-                                background: "var(--text)", borderRadius: 14, padding: "2rem",
+                                background: "#1C1C1A", borderRadius: "var(--radius-card)", padding: "2rem",
                                 transition: "transform 0.25s, box-shadow 0.25s"
                             }}
-                                onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.2)"; }}
+                                onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "var(--shadow-card-dark)"; }}
                                 onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}>
                                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "1rem" }}>
                                     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -731,7 +783,7 @@ function About({ t }) {
                         {/* Accent card */}
                         <div style={{
                             position: "absolute", bottom: -20, right: -20, background: "var(--accent)",
-                            borderRadius: 14, padding: "1rem 1.5rem", color: "#fff",
+                            borderRadius: "var(--radius-card)", padding: "1rem 1.5rem", color: "#fff",
                             boxShadow: "0 8px 24px oklch(0.72 0.12 178 / 0.35)"
                         }}>
                             <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", opacity: 0.8, marginBottom: 2 }}>uai</div>
@@ -790,11 +842,11 @@ function Blog({ t }) {
                         <Reveal key={i} delay={i * 80}>
                             <a href="#" style={{ textDecoration: "none", display: "block" }}>
                                 <div style={{
-                                    background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 14,
+                                    background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius-card)",
                                     padding: "2rem", height: "100%",
                                     transition: "box-shadow 0.25s, transform 0.25s"
                                 }}
-                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
                                     onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
                                     <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--text-muted)", marginBottom: "1rem" }}>{b.date}</div>
                                     <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text)", lineHeight: 1.4, marginBottom: "0.75rem", letterSpacing: "-0.01em" }}>{b.title}</h3>
@@ -863,7 +915,7 @@ function Footer({ t, lang, setLang }) {
             {/* CTA Block */}
             <section style={{
                 padding: "8rem clamp(1.5rem, 5vw, 3rem)",
-                background: "var(--text)", textAlign: "center", position: "relative", overflow: "hidden"
+                background: "#1C1C1A", textAlign: "center", position: "relative", overflow: "hidden"
             }}>
                 <div style={{
                     position: "absolute", inset: 0, pointerEvents: "none",
@@ -884,7 +936,7 @@ function Footer({ t, lang, setLang }) {
                             <a href="https://calendar.app.google/1PBpmZw9S5cVDVb26" target="_blank" rel="noopener noreferrer"
                                 style={{
                                     background: "var(--accent)", color: "#fff", padding: "14px 32px",
-                                    borderRadius: 10, fontWeight: 700, fontSize: "1rem", textDecoration: "none",
+                                    borderRadius: "var(--radius-btn)", fontWeight: 700, fontSize: "1rem", textDecoration: "none",
                                     boxShadow: "0 4px 20px oklch(0.72 0.12 178 / 0.4)",
                                     transition: "transform 0.2s, box-shadow 0.2s"
                                 }}
@@ -895,7 +947,7 @@ function Footer({ t, lang, setLang }) {
                             <a href="mailto:alexis@uaidata.io"
                                 style={{
                                     background: "rgba(255,255,255,0.08)", color: "#fff", padding: "14px 32px",
-                                    borderRadius: 10, fontWeight: 600, fontSize: "1rem", textDecoration: "none",
+                                    borderRadius: "var(--radius-btn)", fontWeight: 600, fontSize: "1rem", textDecoration: "none",
                                     border: "1.5px solid rgba(255,255,255,0.15)",
                                     transition: "background 0.2s"
                                 }}
@@ -949,8 +1001,9 @@ function Footer({ t, lang, setLang }) {
 // ─── APP ──────────────────────────────────────────────────────────────────────
 function App() {
     const [lang, setLang] = useState("en");
+    const [dark, setDark] = useDarkMode();
     const [tweaks, setTweaks] = useState({
-        accent: "#D97706",
+        accent: "#F59E0B",
         bg: "#FFFFFF",
         fontSize: "regular"
     });
@@ -984,9 +1037,9 @@ function App() {
     ];
 
     return (
-        <div style={{ "--accent": tweaks.accent, "--bg": tweaks.bg }}>
-            <Nav t={t} lang={lang} setLang={setLang} />
-            <Hero t={t} accent={tweaks.accent} />
+        <div style={{ "--accent": tweaks.accent, ...(!dark && { "--bg": tweaks.bg }) }}>
+            <Nav t={t} lang={lang} setLang={setLang} dark={dark} setDark={setDark} />
+            <Hero t={t} accent={tweaks.accent} dark={dark} />
             <Stats t={t} />
             <Services t={t} />
             <Portfolio t={t} />
@@ -1000,7 +1053,7 @@ function App() {
             {tweakOpen && (
                 <div style={{
                     position: "fixed", bottom: 24, right: 24, zIndex: 9999,
-                    background: "#fff", border: "1px solid #e5e4e0", borderRadius: 14,
+                    background: "#fff", border: "1px solid #e5e4e0", borderRadius: "var(--radius-card)",
                     padding: "1.25rem", width: 240, boxShadow: "0 8px 40px rgba(0,0,0,0.14)"
                 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
@@ -1033,7 +1086,7 @@ function App() {
                                 <button key={b.value} onClick={() => updateTweak("bg", b.value)} title={b.label}
                                     style={{
                                         flex: 1, padding: "5px 0", fontSize: "0.72rem", fontWeight: 600, borderRadius: 6,
-                                        background: b.value, border: tweaks.bg === b.value ? "2px solid #0D9488" : "1.5px solid #e5e4e0",
+                                        background: b.value, border: tweaks.bg === b.value ? "2px solid var(--accent)" : "1.5px solid #e5e4e0",
                                         cursor: "pointer", color: "#555"
                                     }}>{b.label}</button>
                             ))}
@@ -1045,6 +1098,6 @@ function App() {
     );
 }
 
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{ "accent": "#D97706", "bg": "#FFFFFF", "fontSize": "regular" }/*EDITMODE-END*/;
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{ "accent": "#F59E0B", "bg": "#FFFFFF", "fontSize": "regular" }/*EDITMODE-END*/;
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);

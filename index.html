@@ -15,7 +15,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/assets/images/favicon_io/site.webmanifest">
 
-
     <style>
         *,
         *::before,
@@ -25,6 +24,7 @@
             padding: 0;
         }
 
+        /* ─── Light Mode ─────────────────────────────────────────────── */
         :root {
             --bg: #FAF9F6;
             --surface: #F2F1ED;
@@ -32,9 +32,71 @@
             --border: #E5E4DF;
             --text: #1C1C1A;
             --text-muted: #6B6A66;
-            --accent: #0D9488;
+            --text-on-accent: #FFFFFF;
+            --accent: #F59E0B;
+            --accent-hover: #D97706;
+            --accent-subtle: rgba(245, 158, 11, 0.10);
+            --stats-bg: #1C1C1A;
+            --project-1: #F59E0B;
+            --project-2: #6366F1;
+            --project-3: #0D9488;
+            --project-4: #EC4899;
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-card-dark: 0 12px 40px rgba(0, 0, 0, 0.20);
+            --shadow-cta: 0 4px 20px rgba(245, 158, 11, 0.30);
+            --shadow-cta-hover: 0 8px 28px rgba(245, 158, 11, 0.40);
             --font-head: "DM Sans", sans-serif;
+            --font-body: "DM Sans", sans-serif;
             --font-mono: "JetBrains Mono", monospace;
+            --text-xs: 0.72rem;
+            --text-sm: 0.8rem;
+            --text-base: 0.875rem;
+            --text-md: 1rem;
+            --text-lg: 1.1rem;
+            --text-xl: 1.15rem;
+            --text-2xl: clamp(1.75rem, 3vw, 2.5rem);
+            --text-3xl: clamp(2rem, 3.5vw, 2.75rem);
+            --text-4xl: clamp(2.2rem, 4vw, 3.5rem);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-btn: 10px;
+            --radius-card: 14px;
+            --radius-lg: 20px;
+            --radius-pill: 100px;
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-14: 3.5rem;
+            --space-28: 7rem;
+            --max-width: 1120px;
+            --nav-height: 64px;
+            --section-pad-v: var(--space-28);
+            --section-pad-h: clamp(1.5rem, 5vw, 3rem);
+        }
+
+        /* ─── Dark Mode ──────────────────────────────────────────────── */
+        [data-theme="dark"] {
+            --bg: #141412;
+            --surface: #1E1D1B;
+            --surface-2: #191817;
+            --border: #2E2D2A;
+            --text: #F0EFE8;
+            --text-muted: #8A8882;
+            --text-on-accent: #FFFFFF;
+            --accent: #FBBF24;
+            --accent-hover: #F59E0B;
+            --accent-subtle: rgba(251, 191, 36, 0.12);
+            --stats-bg: #0D0D0B;
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.30);
+            --shadow-card-dark: 0 12px 40px rgba(0, 0, 0, 0.50);
+            --shadow-cta: 0 4px 20px rgba(245, 158, 11, 0.35);
+            --shadow-cta-hover: 0 8px 28px rgba(245, 158, 11, 0.45);
         }
 
         html {
@@ -54,7 +116,6 @@
             min-height: 100vh;
         }
 
-        /* Typography reset */
         h1,
         h2,
         h3,
@@ -62,7 +123,7 @@
             font-family: var(--font-head);
         }
 
-        /* Responsive grid adjustments */
+        /* ─── Responsive ─────────────────────────────────────────────── */
         @media (max-width: 900px) {
             .hero-grid {
                 grid-template-columns: 1fr !important;
@@ -127,7 +188,7 @@
             }
         }
 
-        /* Scrollbar */
+        /* ─── Scrollbar ──────────────────────────────────────────────── */
         ::-webkit-scrollbar {
             width: 8px;
         }
