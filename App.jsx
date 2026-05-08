@@ -826,9 +826,9 @@ function Projects({ t }) {
     };
 
     const btnBase = {
-        background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)",
+        background: "var(--surface)", border: "1px solid var(--border)",
         borderRadius: "50%", width: 40, height: 40, display: "flex", alignItems: "center",
-        justifyContent: "center", cursor: "pointer", color: "rgba(255,255,255,0.55)",
+        justifyContent: "center", cursor: "pointer", color: "var(--text-muted)",
         transition: "background 0.2s, color 0.2s", fontSize: "1.25rem", lineHeight: 1
     };
 
@@ -862,13 +862,13 @@ function Projects({ t }) {
                 {/* Arrows */}
                 <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginTop: "1.5rem" }}>
                     <button style={btnBase} onClick={prev}
-                        onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.14)"; e.currentTarget.style.color = "#fff"; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}>
+                        onMouseEnter={e => { e.currentTarget.style.background = "var(--surface-2)"; e.currentTarget.style.color = "var(--text)"; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "var(--surface)"; e.currentTarget.style.color = "var(--text-muted)"; }}>
                         ‹
                     </button>
                     <button style={btnBase} onClick={next}
-                        onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.14)"; e.currentTarget.style.color = "#fff"; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}>
+                        onMouseEnter={e => { e.currentTarget.style.background = "var(--surface-2)"; e.currentTarget.style.color = "var(--text)"; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "var(--surface)"; e.currentTarget.style.color = "var(--text-muted)"; }}>
                         ›
                     </button>
                 </div>
