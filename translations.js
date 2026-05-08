@@ -65,7 +65,8 @@ const TRANSLATIONS = {
             demo: "Live demo →",
             items: [
                 { name: "ytsum", desc: "YouTube transcript downloader and multi-provider AI summarizer.", github: "https://github.com/alexisgourdol/ytsum" },
-                { name: "Scope", desc: "Personal project management tool inspired by Linear's clean design.", github: "https://github.com/alexisgourdol/scope", demo: "https://scope-gamma-seven.vercel.app/issues" }
+                { name: "Scope", desc: "Personal project management tool inspired by Linear's clean design.", github: "https://github.com/alexisgourdol/scope", demo: "https://scope-gamma-seven.vercel.app/issues" },
+                { name: "bpm-finder", desc: "Find the BPM of any song instantly — tap or upload audio to detect tempo.", demo: "https://bpmfinder-web.vercel.app/" }
             ]
         },
         about: {
