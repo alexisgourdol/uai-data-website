@@ -702,7 +702,136 @@ function Portfolio({ t }) {
 }
 
 // ─── PROJECTS ─────────────────────────────────────────────────────────────────
+function ProjectCard({ p, t }) {
+    return (
+        <div style={{ background: "#1C1C1A", borderRadius: "var(--radius-card)", padding: "2rem", height: "100%", boxSizing: "border-box" }}>
+            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "1rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{ color: "var(--accent)" }}><icons.Terminal /></div>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "1.1rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.01em" }}>{p.name}</span>
+                </div>
+                {p.github && (
+                    <a href={p.github} target="_blank" rel="noopener noreferrer"
+                        style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", display: "flex", alignItems: "center" }}
+                        onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
+                        onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.45)"}>
+                        <icons.Github />
+                    </a>
+                )}
+            </div>
+            <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>{p.desc}</p>
+            <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", gap: "1.25rem", alignItems: "center" }}>
+                {p.github && (
+                    <a href={p.github} target="_blank" rel="noopener noreferrer"
+                        style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
+                        {t.projects.github}
+                    </a>
+                )}
+                {p.demo && (
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <a href={p.demo} target="_blank" rel="noopener noreferrer"
+                            style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", textDecoration: "none", fontWeight: 600, transition: "color 0.2s" }}
+                            onMouseEnter={e => e.currentTarget.style.color = "#fff"}
+                            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}>
+                            {t.projects.demo}
+                        </a>
+                        {p.name === "Scope" && (
+                            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 5, padding: "2px 7px", letterSpacing: "0.03em" }}>
+                                pw: scopedemo
+                            </span>
+                        )}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
 function Projects({ t }) {
+    const items = t.projects.items;
+    const slides = [...items, ...items]; // duplicate for seamless infinite loop
+
+    const CARD_W = 360;
+    const GAP = 24;
+    const STEP = CARD_W + GAP;            // 384px per slot
+    const TOTAL = items.length * STEP;    // distance for one full cycle (1152px)
+    const DURATION = 14;                  // seconds per loop
+    const trackWidth = slides.length * CARD_W + (slides.length - 1) * GAP; // 2280px
+
+    const trackRef = React.useRef(null);
+    const pausedRef = React.useRef(false);
+
+    React.useEffect(() => {
+        const styleEl = document.createElement('style');
+        styleEl.id = 'projects-marquee-kf';
+        styleEl.textContent = `
+            @keyframes projectsMarquee {
+                from { transform: translateX(0); }
+                to   { transform: translateX(-${TOTAL}px); }
+            }
+            .projects-marquee-wrap::before,
+            .projects-marquee-wrap::after {
+                content: "";
+                position: absolute;
+                top: 0; bottom: 0;
+                width: 140px;
+                z-index: 2;
+                pointer-events: none;
+            }
+            .projects-marquee-wrap::before {
+                left: 0;
+                background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+            }
+            .projects-marquee-wrap::after {
+                right: 0;
+                background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+            }
+        `;
+        document.head.appendChild(styleEl);
+        if (trackRef.current) {
+            trackRef.current.style.animation = `projectsMarquee ${DURATION}s linear infinite`;
+        }
+        return () => document.getElementById('projects-marquee-kf')?.remove();
+    }, []);
+
+    const getCurrentX = () => {
+        if (!trackRef.current) return 0;
+        return new DOMMatrix(getComputedStyle(trackRef.current).transform).m41;
+    };
+
+    const seekTo = (targetX) => {
+        const track = trackRef.current;
+        if (!track) return;
+        let x = targetX % (-TOTAL);
+        if (x > 0) x -= TOTAL;
+        if (x < -TOTAL) x += TOTAL;
+        const delay = (-x / TOTAL) * DURATION;
+        track.style.animation = 'none';
+        void track.offsetHeight; // force reflow to restart animation
+        track.style.animation = `projectsMarquee ${DURATION}s linear infinite`;
+        track.style.animationDelay = `-${delay}s`;
+        track.style.animationPlayState = pausedRef.current ? 'paused' : 'running';
+    };
+
+    const next = () => seekTo(getCurrentX() - STEP);
+    const prev = () => seekTo(getCurrentX() + STEP);
+
+    const onEnter = () => {
+        pausedRef.current = true;
+        if (trackRef.current) trackRef.current.style.animationPlayState = 'paused';
+    };
+    const onLeave = () => {
+        pausedRef.current = false;
+        if (trackRef.current) trackRef.current.style.animationPlayState = 'running';
+    };
+
+    const btnBase = {
+        background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: "50%", width: 40, height: 40, display: "flex", alignItems: "center",
+        justifyContent: "center", cursor: "pointer", color: "rgba(255,255,255,0.55)",
+        transition: "background 0.2s, color 0.2s", fontSize: "1.25rem", lineHeight: 1
+    };
+
     return (
         <section style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)" }}>
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
@@ -713,48 +842,35 @@ function Projects({ t }) {
                         <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.projects.subtitle}</p>
                     </div>
                 </Reveal>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.25rem" }} className="projects-grid">
-                    {t.projects.items.map((p, i) => (
-                        <Reveal key={i} delay={i * 100}>
-                            <div style={{
-                                background: "#1C1C1A", borderRadius: "var(--radius-card)", padding: "2rem",
-                                transition: "transform 0.25s, box-shadow 0.25s"
-                            }}
-                                onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "var(--shadow-card-dark)"; }}
-                                onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}>
-                                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "1rem" }}>
-                                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                                        <div style={{ color: "var(--accent)" }}><icons.Terminal /></div>
-                                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "1.1rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.01em" }}>{p.name}</span>
-                                    </div>
-                                    <a href={p.github} target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}
-                                        onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
-                                        onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.45)"}>
-                                        <icons.Github />
-                                    </a>
-                                </div>
-                                <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>{p.desc}</p>
-                                <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", gap: "1.25rem", alignItems: "center" }}>
-                                    <a href={p.github} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
-                                        {t.projects.github}
-                                    </a>
-                                    {p.demo && (
-                                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                                            <a href={p.demo} target="_blank" rel="noopener noreferrer"
-                                                style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", textDecoration: "none", fontWeight: 600, transition: "color 0.2s" }}
-                                                onMouseEnter={e => e.currentTarget.style.color = "#fff"}
-                                                onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}>
-                                                {t.projects.demo}
-                                            </a>
-                                            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 5, padding: "2px 7px", letterSpacing: "0.03em" }}>
-                                                pw: scopedemo
-                                            </span>
-                                        </div>
-                                    )}
-                                </div>
+
+                {/* Marquee track */}
+                <div
+                    className="projects-marquee-wrap"
+                    onMouseEnter={onEnter}
+                    onMouseLeave={onLeave}
+                    style={{ overflow: "hidden", position: "relative" }}
+                >
+                    <div ref={trackRef} style={{ display: "flex", gap: GAP, width: trackWidth }}>
+                        {slides.map((p, i) => (
+                            <div key={i} style={{ width: CARD_W, flexShrink: 0 }}>
+                                <ProjectCard p={p} t={t} />
                             </div>
-                        </Reveal>
-                    ))}
+                        ))}
+                    </div>
+                </div>
+
+                {/* Arrows */}
+                <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginTop: "1.5rem" }}>
+                    <button style={btnBase} onClick={prev}
+                        onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.14)"; e.currentTarget.style.color = "#fff"; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}>
+                        ‹
+                    </button>
+                    <button style={btnBase} onClick={next}
+                        onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.14)"; e.currentTarget.style.color = "#fff"; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}>
+                        ›
+                    </button>
                 </div>
             </div>
         </section>
