@@ -956,7 +956,7 @@ function Blog({ t }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.25rem" }} className="blog-grid">
                     {t.blog.items.map((b, i) => (
                         <Reveal key={i} delay={i * 80}>
-                            <a href="#" style={{ textDecoration: "none", display: "block" }}>
+                            <a href="https://alexisgourdol.substack.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}>
                                 <div style={{
                                     background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius-card)",
                                     padding: "2rem", height: "100%",
