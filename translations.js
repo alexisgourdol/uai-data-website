@@ -58,7 +58,8 @@ const TRANSLATIONS = {
         stack: {
             eyebrow: "Stack",
             title: "The stack I actually use.",
-            body: "Claude Code (Anthropic), Python, TypeScript, Next.js. Sandboxed devcontainers: AI tooling gets access to what the task needs, nothing it shouldn't touch. PostgreSQL or whatever you already run. HubSpot, Intercom, Slack, Notion, Linear, wired in where they need to be.",
+            tools: ["Claude Code", "Python", "TypeScript", "Next.js", "PostgreSQL", "DuckDB", "devcontainers", "HubSpot", "Intercom", "Slack", "Notion", "Linear"],
+            devcontainer: "Sandboxed devcontainers: AI tooling gets access to what the task needs, nothing it shouldn't touch.",
             footnote: "If your stack isn't in this list, send me an email and I'll tell you honestly whether I'm the right person for it."
         },
         work: {
@@ -106,7 +107,7 @@ const TRANSLATIONS = {
             items: [
                 {
                     q: "How is this different from hiring a fractional CTO or an agency?",
-                    a: "Fractionals usually run your whole engineering side and bill by the hour. Agencies build the thing and leave. I do one workflow, fixed price, four weeks, and you own it at the end."
+                    a: "Fractionals run your whole engineering org and bill by the hour. Agencies build a system, hand over a black box, and move on. I do one workflow, fixed scope. The difference: your team can read and maintain the code the Monday after delivery, and I stay for a 30-day check-in. You end up with a capability you own, not a dependency on me."
                 },
                 {
                     q: "What if my team is non-technical?",
@@ -127,6 +128,10 @@ const TRANSLATIONS = {
                 {
                     q: "What if our project is bigger than 4 weeks?",
                     a: "We scope it into a sequence of sprints, each with a working deliverable. Easier to manage, easier to stop."
+                },
+                {
+                    q: "Why is it called UAI DATA?",
+                    a: "UAI (pronounced 'why') is a common expression from Minas Gerais, Brazil — where I'm partly from. It means surprise, curiosity, or just 'huh!' — the reaction I want people to have when they see what AI can actually do for their operations."
                 }
             ]
         },
@@ -139,7 +144,10 @@ const TRANSLATIONS = {
         footer: {
             tagline: "UAI DATA — Alexis Gourdol",
             location: "Paris, France · alexis@uaidata.io",
-            copy: "© 2026 uai data."
+            copy: "© 2026 uai data.",
+            cta: "Want a senior outside read on where to start with AI?",
+            sub: "The audit takes an hour. You leave with three concrete next steps your team can act on this week.",
+            book: "Book the audit"
         }
     },
 
@@ -202,7 +210,8 @@ const TRANSLATIONS = {
         stack: {
             eyebrow: "Stack",
             title: "La stack que j'utilise vraiment.",
-            body: "Claude Code (Anthropic), Python, TypeScript, Next.js. Devcontainers sandboxés : l'outillage IA accède uniquement à ce dont la tâche a besoin, rien de plus. PostgreSQL ou ce que vous utilisez déjà. HubSpot, Intercom, Slack, Notion, Linear, branchés où nécessaire.",
+            tools: ["Claude Code", "Python", "TypeScript", "Next.js", "PostgreSQL", "DuckDB", "devcontainers", "HubSpot", "Intercom", "Slack", "Notion", "Linear"],
+            devcontainer: "Devcontainers sandboxés : l'outillage IA accède uniquement à ce dont la tâche a besoin, rien de plus.",
             footnote: "Si votre stack n'est pas dans cette liste, écrivez-moi et je vous dirai honnêtement si je suis la bonne personne."
         },
         work: {
@@ -250,7 +259,7 @@ const TRANSLATIONS = {
             items: [
                 {
                     q: "En quoi est-ce différent d'un CTO fractionnel ou d'une agence ?",
-                    a: "Un fractionnel pilote toute votre ingénierie et facture à l'heure. Une agence construit la chose et part. Moi je livre un workflow, prix fixe, quatre semaines, et vous en êtes propriétaire à la fin."
+                    a: "Un fractionnel pilote toute votre ingénierie et facture à l'heure. Une agence construit un système, vous remet une boîte noire et passe à autre chose. Moi je fais un workflow, périmètre fixe. La différence : votre équipe peut lire et maintenir le code le lundi suivant la livraison, et je reste disponible 30 jours après. Vous repartez avec une capacité que vous possédez, pas une dépendance envers moi."
                 },
                 {
                     q: "Et si mon équipe est non-technique ?",
@@ -271,6 +280,10 @@ const TRANSLATIONS = {
                 {
                     q: "Et si notre projet fait plus que 4 semaines ?",
                     a: "On le découpe en une séquence de sprints, chacun avec un livrable fonctionnel. Plus simple à piloter, plus simple à arrêter."
+                },
+                {
+                    q: "Pourquoi UAI DATA ?",
+                    a: "UAI (prononcé 'ouaï') est une expression courante du Minas Gerais, au Brésil — d'où je suis en partie. Ça signifie la surprise, la curiosité, ou juste 'ah bon !' — la réaction que je veux que les gens aient quand ils voient ce que l'IA peut vraiment faire pour leurs opérations."
                 }
             ]
         },
@@ -283,7 +296,10 @@ const TRANSLATIONS = {
         footer: {
             tagline: "UAI DATA — Alexis Gourdol",
             location: "Paris, France · alexis@uaidata.io",
-            copy: "© 2026 uai data."
+            copy: "© 2026 uai data.",
+            cta: "Vous voulez un regard senior extérieur sur où commencer avec l'IA ?",
+            sub: "L'audit dure une heure. Vous repartez avec trois prochaines étapes concrètes que votre équipe peut activer cette semaine.",
+            book: "Réserver l'audit"
         }
     }
 };

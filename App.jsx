@@ -703,7 +703,19 @@ function Stack({ t }) {
                     </div>
                 </Reveal>
                 <Reveal delay={80}>
-                    <p style={{ fontSize: "1.05rem", color: "var(--text)", lineHeight: 1.75, marginBottom: "1.5rem" }}>{t.stack.body}</p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "2rem" }}>
+                        {t.stack.tools.map((tool, i) => (
+                            <span key={i} style={{
+                                fontFamily: "var(--font-mono)", fontSize: "0.82rem", fontWeight: 500,
+                                padding: "6px 14px", borderRadius: "var(--radius-pill)",
+                                background: "var(--surface)", border: "1px solid var(--border)",
+                                color: "var(--text)"
+                            }}>{tool}</span>
+                        ))}
+                    </div>
+                </Reveal>
+                <Reveal delay={120}>
+                    <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1rem" }}>{t.stack.devcontainer}</p>
                 </Reveal>
                 <Reveal delay={160}>
                     <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.7, fontStyle: "italic" }}>{t.stack.footnote}</p>
@@ -731,7 +743,7 @@ function Work({ t }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.25rem" }} className="portfolio-grid">
                     {t.work.items.map((p, i) => (
                         <Reveal key={i} delay={i * 80}>
-                            <div style={{
+                            <div className="portfolio-card" style={{
                                 background: "var(--bg)", borderRadius: "var(--radius-card)", overflow: "hidden",
                                 border: "1px solid var(--border)",
                                 transition: "box-shadow 0.25s, transform 0.25s",
