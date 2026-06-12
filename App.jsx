@@ -743,7 +743,7 @@ function Work({ t }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.25rem" }} className="portfolio-grid">
                     {t.work.items.map((p, i) => (
                         <Reveal key={i} delay={i * 80}>
-                            <div className="portfolio-card" style={{
+                            <div style={{
                                 background: "var(--bg)", borderRadius: "var(--radius-card)", overflow: "hidden",
                                 border: "1px solid var(--border)",
                                 transition: "box-shadow 0.25s, transform 0.25s",
