@@ -152,10 +152,11 @@ function Nav({ t, lang, setLang, dark, setDark }) {
     }, []);
 
     const links = [
-        { label: t.nav.services, href: "#services" },
-        { label: t.nav.portfolio, href: "#portfolio" },
+        { label: t.nav.offer, href: "#offer" },
+        { label: t.nav.sprint, href: "#sprint" },
+        { label: t.nav.work, href: "#work" },
         { label: t.nav.about, href: "#about" },
-        { label: t.nav.blog, href: "#blog" },
+        { label: t.nav.faq, href: "#faq" },
         { label: t.nav.contact, href: "#contact" }
     ];
 
@@ -551,7 +552,7 @@ function Hero({ t, accent, dark }) {
                                     onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "var(--shadow-cta)"; }}>
                                     {t.hero.cta1} <icons.ArrowUpRight />
                                 </a>
-                                <a href="#portfolio" onClick={e => { e.preventDefault(); scrollTo("#portfolio"); }}
+                                <a href="mailto:alexis@uaidata.io"
                                     style={{
                                         background: "var(--surface)", color: "var(--text)", padding: "14px 28px",
                                         borderRadius: "var(--radius-btn)", fontWeight: 600, fontSize: "1rem", textDecoration: "none",
@@ -577,120 +578,73 @@ function Hero({ t, accent, dark }) {
     );
 }
 
-// ─── STATS BAR ─────────────────────────────────────────────────────────────
-function Stats({ t }) {
+// ─── PROOF BAR ─────────────────────────────────────────────────────────────
+function ProofBar({ t }) {
     return (
-        <section style={{ background: "#1C1C1A", padding: "3rem clamp(1.5rem, 5vw, 3rem)" }}>
-            <div style={{ maxWidth: 1120, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem" }} className="stats-grid">
-                {t.stats.items.map((s, i) => (
-                    <Reveal key={i} delay={i * 80}>
-                        <div style={{ textAlign: "center" }}>
-                            <div style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.value}</div>
-                            <div style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.55)", marginTop: "0.5rem", fontFamily: "var(--font-mono)" }}>{s.label}</div>
-                        </div>
-                    </Reveal>
-                ))}
+        <section style={{ background: "#1C1C1A", padding: "2.5rem clamp(1.5rem, 5vw, 3rem)" }}>
+            <div style={{ maxWidth: 880, margin: "0 auto" }}>
+                <Reveal>
+                    <p style={{
+                        textAlign: "center",
+                        fontSize: "clamp(0.9rem, 1.1vw, 1rem)",
+                        color: "rgba(255,255,255,0.75)",
+                        lineHeight: 1.7,
+                        fontFamily: "var(--font-mono)",
+                        letterSpacing: "-0.005em"
+                    }}>
+                        {t.proof.line}
+                    </p>
+                </Reveal>
             </div>
         </section>
     );
 }
 
-// ─── SERVICES ─────────────────────────────────────────────────────────────────
-const serviceIcons = [icons.BarChart2, icons.TrendingDown, icons.Settings, icons.Database];
-
-function Services({ t }) {
+// ─── OFFER (2 cards: Audit + Sprint) ──────────────────────────────────────────
+function Offer({ t }) {
     return (
-        <section id="services" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)" }}>
+        <section id="offer" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)" }}>
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Services</div>
-                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.services.title}</h2>
-                        <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.services.subtitle}</p>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.offer.eyebrow}</div>
+                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.offer.title}</h2>
+                        <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 560 }}>{t.offer.subtitle}</p>
                     </div>
                 </Reveal>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.25rem" }} className="services-grid">
-                    {t.services.items.map((s, i) => {
-                        const Icon = serviceIcons[i];
-                        return (
-                            <Reveal key={i} delay={i * 80}>
-                                <div style={{
-                                    background: "var(--surface)", border: "1px solid var(--border)",
-                                    borderRadius: "var(--radius-card)", padding: "2rem 2rem 2.25rem",
-                                    transition: "box-shadow 0.25s, transform 0.25s", cursor: "default"
-                                }}
-                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
-                                    <div style={{
-                                        width: 44, height: 44, borderRadius: "var(--radius-btn)", background: "var(--accent-subtle)",
-                                        display: "flex", alignItems: "center", justifyContent: "center",
-                                        color: "var(--accent)", marginBottom: "1.25rem"
-                                    }}>
-                                        <Icon />
-                                    </div>
-                                    <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text)", marginBottom: "0.6rem", letterSpacing: "-0.01em" }}>{s.title}</h3>
-                                    <p style={{ fontSize: "0.925rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{s.desc}</p>
-                                </div>
-                            </Reveal>
-                        );
-                    })}
-                </div>
-            </div>
-        </section>
-    );
-}
-
-// ─── PORTFOLIO ────────────────────────────────────────────────────────────────
-const accentColors = ["var(--project-1)", "var(--project-2)", "var(--project-3)", "var(--project-4)"];
-
-function Portfolio({ t }) {
-    return (
-        <section id="portfolio" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
-            <div style={{ maxWidth: 1120, margin: "0 auto" }}>
-                <Reveal>
-                    <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Work</div>
-                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.portfolio.title}</h2>
-                        <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.portfolio.subtitle}</p>
-                    </div>
-                </Reveal>
-
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.25rem" }} className="portfolio-grid">
-                    {t.portfolio.items.map((p, i) => (
-                        <Reveal key={i} delay={i * 80}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }} className="services-grid">
+                    {t.offer.cards.map((c, i) => (
+                        <Reveal key={i} delay={i * 100}>
                             <div style={{
-                                background: "var(--bg)", borderRadius: "var(--radius-card)", overflow: "hidden",
-                                border: "1px solid var(--border)",
-                                transition: "box-shadow 0.25s, transform 0.25s"
+                                background: "var(--surface)", border: "1px solid var(--border)",
+                                borderRadius: "var(--radius-card)", padding: "2.25rem 2rem 2rem",
+                                transition: "box-shadow 0.25s, transform 0.25s",
+                                display: "flex", flexDirection: "column", height: "100%"
                             }}
                                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
                                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
-                                {/* Top accent bar */}
-                                <div style={{ height: 4, background: accentColors[i] }}></div>
-                                <div style={{ padding: "1.75rem 2rem 2rem" }}>
-                                    {!p.github && (
-                                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--text-muted)", marginBottom: "0.75rem", opacity: 0.6 }}>
-                                            {t.portfolio.nda}
-                                        </div>
-                                    )}
-                                    <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--text)", marginBottom: "0.75rem", letterSpacing: "-0.01em" }}>{p.title}</h3>
-                                    <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1.25rem" }}>{p.desc}</p>
-                                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", alignItems: "center", justifyContent: "space-between" }}>
-                                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                                            {p.tags.map(tag => (
-                                                <span key={tag} style={{
-                                                    fontFamily: "var(--font-mono)", fontSize: "0.72rem", fontWeight: 500,
-                                                    background: "var(--surface)", border: "1px solid var(--border)",
-                                                    borderRadius: 6, padding: "3px 9px", color: "var(--text-muted)"
-                                                }}>{tag}</span>
-                                            ))}
-                                        </div>
-                                        {p.github && (
-                                            <a href="https://github.com/alexisgourdol/waze-churn-analysis" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
-                                                {t.portfolio.viewGithub}
-                                            </a>
-                                        )}
-                                    </div>
+                                <div style={{
+                                    fontFamily: "var(--font-mono)", fontSize: "0.72rem", fontWeight: 700,
+                                    color: "var(--accent)", letterSpacing: "0.12em", textTransform: "uppercase",
+                                    marginBottom: "0.75rem"
+                                }}>{c.kicker}</div>
+                                <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "var(--text)", marginBottom: "1rem", letterSpacing: "-0.01em" }}>{c.title}</h3>
+                                <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1.25rem" }}>{c.body}</p>
+                                <p style={{ fontSize: "0.85rem", color: "var(--text)", lineHeight: 1.6, marginBottom: "1.75rem", fontStyle: "italic", opacity: 0.85 }}>{c.best}</p>
+                                <div style={{ marginTop: "auto" }}>
+                                    <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                        style={{
+                                            display: "inline-flex", alignItems: "center", gap: 8,
+                                            background: "var(--accent)", color: "#fff",
+                                            padding: "11px 22px", borderRadius: "var(--radius-btn)",
+                                            fontWeight: 700, fontSize: "0.9rem", textDecoration: "none",
+                                            transition: "transform 0.2s, box-shadow 0.2s",
+                                            boxShadow: "var(--shadow-cta)"
+                                        }}
+                                        onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "var(--shadow-cta-hover)"; }}
+                                        onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "var(--shadow-cta)"; }}>
+                                        {c.cta} <icons.ArrowUpRight />
+                                    </a>
                                 </div>
                             </div>
                         </Reveal>
@@ -701,176 +655,108 @@ function Portfolio({ t }) {
     );
 }
 
-// ─── PROJECTS ─────────────────────────────────────────────────────────────────
-function ProjectCard({ p, t }) {
+// ─── SPRINT STEPS ─────────────────────────────────────────────────────────────
+function SprintSteps({ t }) {
     return (
-        <div style={{ background: "#1C1C1A", borderRadius: "var(--radius-card)", padding: "2rem", height: "100%", boxSizing: "border-box" }}>
-            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "1rem" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div style={{ color: "var(--accent)" }}><icons.Terminal /></div>
-                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "1.1rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.01em" }}>{p.name}</span>
-                </div>
-                {p.github && (
-                    <a href={p.github} target="_blank" rel="noopener noreferrer"
-                        style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", display: "flex", alignItems: "center" }}
-                        onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
-                        onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.45)"}>
-                        <icons.Github />
-                    </a>
-                )}
-            </div>
-            <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>{p.desc}</p>
-            <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", gap: "1.25rem", alignItems: "center" }}>
-                {p.github && (
-                    <a href={p.github} target="_blank" rel="noopener noreferrer"
-                        style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
-                        {t.projects.github}
-                    </a>
-                )}
-                {p.demo && (
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                        <a href={p.demo} target="_blank" rel="noopener noreferrer"
-                            style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", textDecoration: "none", fontWeight: 600, transition: "color 0.2s" }}
-                            onMouseEnter={e => e.currentTarget.style.color = "#fff"}
-                            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}>
-                            {t.projects.demo}
-                        </a>
-                        {p.name === "scope" && (
-                            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 5, padding: "2px 7px", letterSpacing: "0.03em" }}>
-                                pw: scopedemo
-                            </span>
-                        )}
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-}
-
-function Projects({ t }) {
-    const items = t.projects.items;
-    const slides = [...items, ...items]; // duplicate for seamless infinite loop
-
-    const CARD_W = 360;
-    const GAP = 24;
-    const STEP = CARD_W + GAP;            // 384px per slot
-    const TOTAL = items.length * STEP;    // distance for one full cycle (1152px)
-    const DURATION = 14;                  // seconds per loop
-    const trackWidth = slides.length * CARD_W + (slides.length - 1) * GAP; // 2280px
-
-    const trackRef = React.useRef(null);
-    const pausedRef = React.useRef(false);
-
-    React.useEffect(() => {
-        const styleEl = document.createElement('style');
-        styleEl.id = 'projects-marquee-kf';
-        styleEl.textContent = `
-            @keyframes projectsMarquee {
-                from { transform: translateX(0); }
-                to   { transform: translateX(-${TOTAL}px); }
-            }
-            .projects-marquee-wrap::before,
-            .projects-marquee-wrap::after {
-                content: "";
-                position: absolute;
-                top: 0; bottom: 0;
-                width: 140px;
-                z-index: 2;
-                pointer-events: none;
-            }
-            .projects-marquee-wrap::before {
-                left: 0;
-                background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
-            }
-            .projects-marquee-wrap::after {
-                right: 0;
-                background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
-            }
-        `;
-        document.head.appendChild(styleEl);
-        if (trackRef.current) {
-            trackRef.current.style.animation = `projectsMarquee ${DURATION}s linear infinite`;
-        }
-        return () => document.getElementById('projects-marquee-kf')?.remove();
-    }, []);
-
-    const getCurrentX = () => {
-        if (!trackRef.current) return 0;
-        return new DOMMatrix(getComputedStyle(trackRef.current).transform).m41;
-    };
-
-    const seekTo = (targetX) => {
-        const track = trackRef.current;
-        if (!track) return;
-        let x = targetX % (-TOTAL);
-        if (x > 0) x -= TOTAL;
-        if (x < -TOTAL) x += TOTAL;
-        const delay = (-x / TOTAL) * DURATION;
-        track.style.animation = 'none';
-        void track.offsetHeight; // force reflow to restart animation
-        track.style.animation = `projectsMarquee ${DURATION}s linear infinite`;
-        track.style.animationDelay = `-${delay}s`;
-        track.style.animationPlayState = pausedRef.current ? 'paused' : 'running';
-    };
-
-    const next = () => seekTo(getCurrentX() - STEP);
-    const prev = () => seekTo(getCurrentX() + STEP);
-
-    const onEnter = () => {
-        pausedRef.current = true;
-        if (trackRef.current) trackRef.current.style.animationPlayState = 'paused';
-    };
-    const onLeave = () => {
-        pausedRef.current = false;
-        if (trackRef.current) trackRef.current.style.animationPlayState = 'running';
-    };
-
-    const btnBase = {
-        background: "var(--surface)", border: "1px solid var(--border)",
-        borderRadius: "50%", width: 40, height: 40, display: "flex", alignItems: "center",
-        justifyContent: "center", cursor: "pointer", color: "var(--text-muted)",
-        transition: "background 0.2s, color 0.2s", fontSize: "1.25rem", lineHeight: 1
-    };
-
-    return (
-        <section style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)" }}>
+        <section id="sprint" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Side projects</div>
-                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.projects.title}</h2>
-                        <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.projects.subtitle}</p>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.sprint.eyebrow}</div>
+                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.sprint.title}</h2>
+                        <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.sprint.subtitle}</p>
+                    </div>
+                </Reveal>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.25rem" }} className="services-grid">
+                    {t.sprint.steps.map((s, i) => (
+                        <Reveal key={i} delay={i * 80}>
+                            <div style={{
+                                background: "var(--bg)", border: "1px solid var(--border)",
+                                borderRadius: "var(--radius-card)", padding: "1.75rem 1.5rem 1.75rem",
+                                height: "100%", display: "flex", flexDirection: "column"
+                            }}>
+                                <div style={{
+                                    fontFamily: "var(--font-mono)", fontSize: "0.72rem", fontWeight: 700,
+                                    color: "var(--accent)", letterSpacing: "0.12em", textTransform: "uppercase",
+                                    marginBottom: "0.75rem"
+                                }}>{s.week}</div>
+                                <h3 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", marginBottom: "0.6rem", letterSpacing: "-0.01em" }}>{s.title}</h3>
+                                <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{s.body}</p>
+                            </div>
+                        </Reveal>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ─── STACK ────────────────────────────────────────────────────────────────────
+function Stack({ t }) {
+    return (
+        <section id="stack" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)" }}>
+            <div style={{ maxWidth: 880, margin: "0 auto" }}>
+                <Reveal>
+                    <div style={{ marginBottom: "2.5rem" }}>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.stack.eyebrow}</div>
+                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.stack.title}</h2>
+                    </div>
+                </Reveal>
+                <Reveal delay={80}>
+                    <p style={{ fontSize: "1.05rem", color: "var(--text)", lineHeight: 1.75, marginBottom: "1.5rem" }}>{t.stack.body}</p>
+                </Reveal>
+                <Reveal delay={160}>
+                    <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.7, fontStyle: "italic" }}>{t.stack.footnote}</p>
+                </Reveal>
+            </div>
+        </section>
+    );
+}
+
+// ─── WORK (Recent work — 3 tiles) ─────────────────────────────────────────────
+const workAccentColors = ["var(--project-1)", "var(--project-2)", "var(--project-3)"];
+
+function Work({ t }) {
+    return (
+        <section id="work" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
+            <div style={{ maxWidth: 1120, margin: "0 auto" }}>
+                <Reveal>
+                    <div style={{ marginBottom: "3.5rem" }}>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.work.eyebrow}</div>
+                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.work.title}</h2>
+                        <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.work.subtitle}</p>
                     </div>
                 </Reveal>
 
-                {/* Marquee track */}
-                <div
-                    className="projects-marquee-wrap"
-                    onMouseEnter={onEnter}
-                    onMouseLeave={onLeave}
-                    style={{ overflow: "hidden", position: "relative" }}
-                >
-                    <div ref={trackRef} style={{ display: "flex", gap: GAP, width: trackWidth }}>
-                        {slides.map((p, i) => (
-                            <div key={i} style={{ width: CARD_W, flexShrink: 0 }}>
-                                <ProjectCard p={p} t={t} />
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.25rem" }} className="portfolio-grid">
+                    {t.work.items.map((p, i) => (
+                        <Reveal key={i} delay={i * 80}>
+                            <div style={{
+                                background: "var(--bg)", borderRadius: "var(--radius-card)", overflow: "hidden",
+                                border: "1px solid var(--border)",
+                                transition: "box-shadow 0.25s, transform 0.25s",
+                                height: "100%", display: "flex", flexDirection: "column"
+                            }}
+                                onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                                onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
+                                <div style={{ height: 4, background: workAccentColors[i] }}></div>
+                                <div style={{ padding: "1.75rem 1.75rem 1.75rem", display: "flex", flexDirection: "column", flex: 1 }}>
+                                    <div style={{
+                                        fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "var(--text-muted)",
+                                        marginBottom: "0.75rem", textTransform: "uppercase", letterSpacing: "0.08em"
+                                    }}>{p.status}</div>
+                                    <h3 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", marginBottom: "0.75rem", letterSpacing: "-0.01em" }}>{p.name}</h3>
+                                    <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1.25rem", flex: 1 }}>{p.desc}</p>
+                                    {p.href && p.cta && (
+                                        <a href={p.href} target="_blank" rel="noopener noreferrer"
+                                            style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                                            {p.cta} <icons.ArrowUpRight />
+                                        </a>
+                                    )}
+                                </div>
                             </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Arrows */}
-                <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginTop: "1.5rem" }}>
-                    <button style={btnBase} onClick={prev}
-                        onMouseEnter={e => { e.currentTarget.style.background = "var(--surface-2)"; e.currentTarget.style.color = "var(--text)"; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = "var(--surface)"; e.currentTarget.style.color = "var(--text-muted)"; }}>
-                        ‹
-                    </button>
-                    <button style={btnBase} onClick={next}
-                        onMouseEnter={e => { e.currentTarget.style.background = "var(--surface-2)"; e.currentTarget.style.color = "var(--text)"; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = "var(--surface)"; e.currentTarget.style.color = "var(--text-muted)"; }}>
-                        ›
-                    </button>
+                        </Reveal>
+                    ))}
                 </div>
             </div>
         </section>
@@ -912,7 +798,7 @@ function About({ t }) {
                 {/* Text */}
                 <div>
                     <Reveal>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>About</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.about.eyebrow}</div>
                         <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "2rem" }}>{t.about.title}</h2>
                     </Reveal>
                     {t.about.body.map((para, i) => (
@@ -920,58 +806,13 @@ function About({ t }) {
                             <p style={{ fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "1.25rem" }}>{para}</p>
                         </Reveal>
                     ))}
-                    {/* Credentials */}
+                    {/* Languages */}
                     <Reveal delay={280}>
                         <div style={{ marginTop: "2.5rem", padding: "1.5rem", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12 }}>
-                            <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--text-muted)", marginBottom: "1rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>{t.about.credentials}</div>
-                            {[
-                                { icon: icons.BookOpen, label: t.about.leWagon },
-                                { icon: icons.Award, label: t.about.google }
-                            ].map((c, i) => (
-                                <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: i === 0 ? "0.75rem" : 0 }}>
-                                    <span style={{ color: "var(--accent)" }}><c.icon /></span>
-                                    <span style={{ fontSize: "0.9rem", color: "var(--text)", fontWeight: 500 }}>{c.label}</span>
-                                </div>
-                            ))}
+                            <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--text-muted)", marginBottom: "0.75rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>{t.about.credentials}</div>
+                            <div style={{ fontSize: "0.95rem", color: "var(--text)", fontWeight: 500 }}>{t.about.languages}</div>
                         </div>
                     </Reveal>
-                </div>
-            </div>
-        </section>
-    );
-}
-
-// ─── BLOG ─────────────────────────────────────────────────────────────────────
-function Blog({ t }) {
-    return (
-        <section id="blog" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)" }}>
-            <div style={{ maxWidth: 1120, margin: "0 auto" }}>
-                <Reveal>
-                    <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Blog</div>
-                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.blog.title}</h2>
-                        <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.blog.subtitle}</p>
-                    </div>
-                </Reveal>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.25rem" }} className="blog-grid">
-                    {t.blog.items.map((b, i) => (
-                        <Reveal key={i} delay={i * 80}>
-                            <a href="#" style={{ textDecoration: "none", display: "block" }}>
-                                <div style={{
-                                    background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius-card)",
-                                    padding: "2rem", height: "100%",
-                                    transition: "box-shadow 0.25s, transform 0.25s"
-                                }}
-                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
-                                    <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--text-muted)", marginBottom: "1rem" }}>{b.date}</div>
-                                    <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text)", lineHeight: 1.4, marginBottom: "0.75rem", letterSpacing: "-0.01em" }}>{b.title}</h3>
-                                    <p style={{ fontSize: "0.88rem", color: "var(--text-muted)", lineHeight: 1.65, marginBottom: "1.5rem" }}>{b.excerpt}</p>
-                                    <div style={{ fontWeight: 600, fontSize: "0.85rem", color: "var(--accent)" }}>{t.blog.read}</div>
-                                </div>
-                            </a>
-                        </Reveal>
-                    ))}
                 </div>
             </div>
         </section>
@@ -1156,12 +997,12 @@ function App() {
         <div style={{ "--accent": tweaks.accent, ...(!dark && { "--bg": tweaks.bg }) }}>
             <Nav t={t} lang={lang} setLang={setLang} dark={dark} setDark={setDark} />
             <Hero t={t} accent={tweaks.accent} dark={dark} />
-            <Stats t={t} />
-            <Services t={t} />
-            <Portfolio t={t} />
-            <Projects t={t} />
+            <ProofBar t={t} />
+            <Offer t={t} />
+            <SprintSteps t={t} />
+            <Stack t={t} />
+            <Work t={t} />
             <About t={t} />
-            <Blog t={t} />
             <FAQ t={t} />
             <Footer t={t} lang={lang} setLang={setLang} />
 
