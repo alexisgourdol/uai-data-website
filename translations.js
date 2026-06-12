@@ -58,7 +58,7 @@ const TRANSLATIONS = {
         stack: {
             eyebrow: "Stack",
             title: "The stack I actually use.",
-            body: "Claude Code (Anthropic), Python, TypeScript, Next.js. Sandboxed devcontainers so AI tooling can't reach your prod credentials. PostgreSQL or whatever you already run. HubSpot, Intercom, Slack, Notion, Linear, wired in where they need to be.",
+            body: "Claude Code (Anthropic), Python, TypeScript, Next.js. Sandboxed devcontainers: AI tooling gets access to what the task needs, nothing it shouldn't touch. PostgreSQL or whatever you already run. HubSpot, Intercom, Slack, Notion, Linear, wired in where they need to be.",
             footnote: "If your stack isn't in this list, send me an email and I'll tell you honestly whether I'm the right person for it."
         },
         work: {
@@ -83,7 +83,7 @@ const TRANSLATIONS = {
                 {
                     name: "Claude Code devcontainer pattern",
                     status: "case study soon",
-                    desc: "The sandboxed devcontainer setup that lets a small team run Claude Code without giving it production credentials or breaking the firewall. Used in production. Write-up published in week 2.",
+                    desc: "The sandboxed devcontainer setup that scopes AI tooling to the resources it needs — no accidental prod writes, no runaway deletions. Used in production. Write-up coming in week 2.",
                     href: null,
                     cta: null
                 }
@@ -114,7 +114,7 @@ const TRANSLATIONS = {
                 },
                 {
                     q: "Can you work with our data security or compliance requirements?",
-                    a: "Yes. The devcontainer pattern is specifically built for teams that can't hand prod credentials to AI tools. We talk through scope on the audit call."
+                    a: "Yes. The devcontainer pattern scopes what AI tooling can reach — relevant resources in, everything else out. We talk through the specifics on the audit call."
                 },
                 {
                     q: "Do you do retainers?",
@@ -202,7 +202,7 @@ const TRANSLATIONS = {
         stack: {
             eyebrow: "Stack",
             title: "La stack que j'utilise vraiment.",
-            body: "Claude Code (Anthropic), Python, TypeScript, Next.js. Devcontainers sandboxés pour que l'outillage IA n'atteigne pas vos credentials prod. PostgreSQL ou ce que vous utilisez déjà. HubSpot, Intercom, Slack, Notion, Linear, branchés où nécessaire.",
+            body: "Claude Code (Anthropic), Python, TypeScript, Next.js. Devcontainers sandboxés : l'outillage IA accède uniquement à ce dont la tâche a besoin, rien de plus. PostgreSQL ou ce que vous utilisez déjà. HubSpot, Intercom, Slack, Notion, Linear, branchés où nécessaire.",
             footnote: "Si votre stack n'est pas dans cette liste, écrivez-moi et je vous dirai honnêtement si je suis la bonne personne."
         },
         work: {
@@ -227,7 +227,7 @@ const TRANSLATIONS = {
                 {
                     name: "Pattern devcontainer Claude Code",
                     status: "case study à venir",
-                    desc: "Le setup devcontainer sandboxé qui permet à une petite équipe d'utiliser Claude Code sans lui confier les credentials prod ni casser le firewall. Utilisé en production. Write-up publié en semaine 2.",
+                    desc: "Le setup devcontainer sandboxé qui restreint l'accès de l'outillage IA aux ressources pertinentes — pas d'écritures prod accidentelles, pas de suppressions incontrôlées. Utilisé en production. Write-up à venir en semaine 2.",
                     href: null,
                     cta: null
                 }
@@ -258,7 +258,7 @@ const TRANSLATIONS = {
                 },
                 {
                     q: "Pouvez-vous travailler avec nos contraintes data ou compliance ?",
-                    a: "Oui. Le pattern devcontainer est spécifiquement construit pour les équipes qui ne peuvent pas confier de credentials prod à des outils IA. On en parle pendant l'audit."
+                    a: "Oui. Le pattern devcontainer restreint ce que l'outillage IA peut atteindre — ressources pertinentes incluses, tout le reste exclu. On parle des spécificités pendant l'audit."
                 },
                 {
                     q: "Faites-vous des retainers ?",
