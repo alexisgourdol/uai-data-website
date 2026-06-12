@@ -2,257 +2,304 @@ const TRANSLATIONS = {
     en: {
         nav: {
             logo: "uai data",
-            services: "Services",
-            portfolio: "Portfolio",
+            offer: "Offer",
+            sprint: "Sprint",
+            work: "Work",
             about: "About",
-            blog: "Blog",
+            faq: "FAQ",
             contact: "Contact",
-            cta: "Book a call"
+            cta: "Book the audit"
         },
         hero: {
-            eyebrow: "Freelance data analyst · Available for projects",
-            headline: "I help growing companies make better decisions with their data",
-            sub: "Freelance data analyst with a startup operations background. I turn messy spreadsheets and scattered databases into clear, concrete answers.",
-            cta1: "Book a discovery call",
-            cta2: "See my work"
+            eyebrow: "AI integration sprints for B2B SaaS founders",
+            eyebrowShort: "AI integration sprints",
+            headline: "AI workflows your team didn't have time to build. I ship them.",
+            sub: "I run 4-week AI integration sprints for B2B SaaS founders. Fixed price, working software at the end, your team owns it.",
+            cta1: "Book a 60-min audit",
+            cta2: "Or email: alexis@uaidata.io"
         },
-        services: {
-            title: "What I do",
-            subtitle: "One-off analysis or ongoing support — I can step in at any point in the process.",
-            items: [
-                { title: "Operational Analytics", desc: "Use your operational data to find where things break down and what's actually worth tracking." },
-                { title: "Churn & Retention Analysis", desc: "Understand why customers leave and what keeps them. Retention strategies built on what your data actually shows, not assumptions." },
-                { title: "Dashboards & Reporting", desc: "Transform raw data into visual dashboards your team actually uses — whether it's KPI tracking or monthly exec reports." },
-                { title: "Data Cleanup & Migration", desc: "Messy data? Switching tools? I handle data mapping, validation, and clean migrations between systems." }
-            ]
+        proof: {
+            line: "Ex-COO at Lum Network ($323k TVL, on Cosmos-SDK). VP Project Management at Movinga (€80M raised). Built scope.pro and bpm-finder with Claude Code. Le Wagon instructor, 100+ data students."
         },
-        portfolio: {
-            title: "Selected work",
-            subtitle: "A sample of recent projects. Most client work is anonymized or under NDA.",
-            nda: "Client under NDA",
-            viewGithub: "View on GitHub →",
-            items: [
+        offer: {
+            eyebrow: "Offer",
+            title: "Two ways to work with me.",
+            subtitle: "One short engagement to figure out what to ship. One four-week sprint to ship it.",
+            cards: [
                 {
-                    title: "ATS Data Migration",
-                    desc: "Led the migration of thousands of candidate records between applicant tracking systems. Data mapping, validation, and zero-loss transfer across complex relational data.",
-                    tags: ["Migration", "Python", "Data Quality"],
-                    github: false
+                    kicker: "Audit",
+                    title: "AI Readiness Audit",
+                    body: "60-min call. 1-page written recap within 24 hours, with the 3 concrete next steps your team should ship first. If we work together on the sprint within 30 days, the audit fee credits to the sprint.",
+                    best: "Best for: founders who want a senior outside read on where to start, not a \"strategic roadmap\" that ends up in a drawer.",
+                    cta: "Book the audit",
+                    href: "https://calendar.app.google/1PBpmZw9S5cVDVb26"
                 },
                 {
-                    title: "Financial Scenario Simulator",
-                    desc: "Built a multi-scenario financial simulator for a blockchain company, enabling leadership to model business outcomes under different market conditions.",
-                    tags: ["Python", "Simulation", "Financial Modeling"],
-                    github: false
-                },
-                {
-                    title: "Operational Analysis Tools",
-                    desc: "Built Python notebooks to help a startup dig into their operational data and figure out what to act on.",
-                    tags: ["Python", "Jupyter", "Operations"],
-                    github: false
-                },
-                {
-                    title: "User Churn Analysis",
-                    desc: "Analyzed 15K user records to identify the top predictors of churn through exploratory data analysis, enabling targeted retention strategy.",
-                    tags: ["EDA", "Python", "Pandas"],
-                    github: true
+                    kicker: "Sprint",
+                    title: "AI Workflow Sprint",
+                    body: "4 weeks. Fixed price (we scope on a call). At the end you have a working integration deployed in your stack, a pipeline your team can maintain on Monday morning, and a written playbook for the next iteration.",
+                    best: "Best for: teams that have decided what to ship and need someone who will actually ship it.",
+                    cta: "Talk about a sprint",
+                    href: "mailto:alexis@uaidata.io?subject=AI%20Workflow%20Sprint"
                 }
             ]
         },
-        projects: {
-            title: "Things I build",
-            subtitle: "Side projects — tools I wanted to exist, so I made them.",
-            github: "GitHub →",
-            demo: "Live demo →",
+        sprint: {
+            eyebrow: "How it runs",
+            title: "How a sprint runs.",
+            subtitle: "Four steps, one sentence each. No jargon.",
+            steps: [
+                { week: "Week 0", title: "Scope.", body: "We agree on the one outcome, the integration points, and the success metric. You get a one-page scope doc before any work starts." },
+                { week: "Week 1", title: "Spike.", body: "I build the thinnest end-to-end version that proves the workflow works. We review on Friday." },
+                { week: "Weeks 2-3", title: "Ship.", body: "I integrate against your real stack, write tests, and harden the edges your team will hit on Monday." },
+                { week: "Week 4", title: "Handover.", body: "Documentation, a playbook for the next iteration, and a 30-day check-in. Your team owns it from there." }
+            ]
+        },
+        stack: {
+            eyebrow: "Stack",
+            title: "The stack I actually use.",
+            tools: ["Claude Code", "Python", "TypeScript", "Next.js", "PostgreSQL", "DuckDB", "devcontainers", "HubSpot", "Intercom", "Slack", "Notion", "Linear"],
+            devcontainer: "Sandboxed devcontainers: AI tooling gets access to what the task needs, nothing it shouldn't touch.",
+            footnote: "If your stack isn't in this list, send me an email and I'll tell you honestly whether I'm the right person for it."
+        },
+        work: {
+            eyebrow: "Work",
+            title: "Recent work.",
+            subtitle: "Three tiles. Two live. One write-up coming.",
             items: [
-                { name: "ytsum", desc: "YouTube transcript downloader and multi-provider AI summarizer.", github: "https://github.com/alexisgourdol/ytsum" },
-                { name: "scope", desc: "Personal project management tool inspired by Linear's clean design.", github: "https://github.com/alexisgourdol/scope", demo: "https://scope-gamma-seven.vercel.app/issues" },
-                { name: "bpm-finder", desc: "Find the BPM of any song instantly — use device mic or upload audio.", demo: "https://bpmfinder-web.vercel.app/" }
+                {
+                    name: "scope.pro",
+                    status: "live",
+                    desc: "Issue tracker built in a week with Claude Code. The one I use to run my own work every day. The main app is SSO-only; a public read-only demo is available.",
+                    href: "https://scope-gamma-seven.vercel.app/issues",
+                    cta: "See the demo"
+                },
+                {
+                    name: "bpm-finder",
+                    status: "live",
+                    desc: "Find the BPM of any song via mic or audio file. Built and deployed in under an hour, mostly to prove the AI-tooling stack worked end-to-end on a non-trivial problem.",
+                    href: "https://bpmfinder-web.vercel.app/",
+                    cta: "Try it"
+                },
+                {
+                    name: "Claude Code devcontainer pattern",
+                    status: "case study soon",
+                    desc: "The sandboxed devcontainer setup that scopes AI tooling to the resources it needs — no accidental prod writes, no runaway deletions. Used in production. Write-up coming in week 2.",
+                    href: null,
+                    cta: null
+                }
             ]
         },
         about: {
-            title: "The person behind the data",
+            eyebrow: "About",
+            title: "About Alexis.",
             body: [
-                "I'm Alexis — a freelance data analyst based in Paris (France). Before going independent, I spent years in operations at tech startups, where I learned that the best data work starts with understanding the business, not just the SQL query.",
-                "I trained in Data Science and Data Engineering at Le Wagon and hold the Google Data Analytics Professional Certificate.",
-                "The name 'uai' (pronounced 'why') is a common expression from Minas Gerais, Brazil — where I'm partly from. It means surprise, curiosity, or just 'huh!' — which is exactly the reaction I want people to have when they see what their data can tell them."
+                "I'm a French-Brazilian operator turned AI-integration consultant. I spent 10 years building and running ops at startups (Movinga, Jobmaker, Lum Network, Tripda). In 2024 I went deep on Le Wagon's data-engineering bootcamp and started shipping production AI workflows with Claude Code.",
+                "The combination is the point. Most \"AI consultants\" can't ship code. Most engineers can't read a P&L or design a sales process. I do both, and I keep the scope small enough that what gets built actually gets used.",
+                "Based in Paris. Working with US and EU founders. Open to traveling."
             ],
-            credentials: "Credentials & training",
-            leWagon: "Le Wagon — Data Science & Engineering",
-            google: "Google Data Analytics Certificate"
+            credentials: "Languages",
+            languages: "English · French · Portuguese · Spanish"
         },
-        stats: {
-            items: [
-                { value: "15K+", label: "Records analyzed" },
-                { value: "8+", label: "Years in ops & data" },
-                { value: "3", label: "Languages spoken" },
-                { value: "100%", label: "NDA compliance" }
-            ]
-        },
-        blog: {
-            title: "Writing & insights",
-            subtitle: "Occasional writing about data work and startup ops.",
-            read: "Read →",
+        faq: {
+            eyebrow: "FAQ",
+            title: "Questions founders ask.",
             items: [
                 {
-                    title: "Why most dashboards fail (and how to fix yours)",
-                    date: "Apr 2026",
-                    excerpt: "The problem isn't your visualization tool. It's that nobody agreed on what to measure."
+                    q: "How is this different from hiring a fractional CTO or an agency?",
+                    a: "Fractionals run your whole engineering org and bill by the hour. Agencies build a system, hand over a black box, and move on. I do one workflow, fixed scope. The difference: your team can read and maintain the code the Monday after delivery, and I stay for a 30-day check-in. You end up with a capability you own, not a dependency on me."
                 },
                 {
-                    title: "From spreadsheets to SQL: a migration story",
-                    date: "Mar 2026",
-                    excerpt: "A behind-the-scenes look at migrating a 5-year-old Excel-based reporting system to a proper database."
+                    q: "What if my team is non-technical?",
+                    a: "Half my work is with founder-led teams where there's no senior engineer in the room. The handover doc and the 30-day check-in are designed for exactly this."
                 },
                 {
-                    title: "EDA as a superpower: what I learned from 15K Waze users",
-                    date: "Feb 2026",
-                    excerpt: "How exploratory data analysis revealed surprising patterns in user behavior — and what it means for retention."
+                    q: "Can you work with our data security or compliance requirements?",
+                    a: "Yes. The devcontainer pattern scopes what AI tooling can reach — relevant resources in, everything else out. We talk through the specifics on the audit call."
+                },
+                {
+                    q: "Do you do retainers?",
+                    a: "No. Retainers reward the consultant for billing time; sprints reward both of us for shipping. If you want a long-term relationship, we run consecutive sprints."
+                },
+                {
+                    q: "Where are you based, and can you travel?",
+                    a: "Paris. I work remotely with US and EU clients, and travel for the kickoff if it matters to you."
+                },
+                {
+                    q: "What if our project is bigger than 4 weeks?",
+                    a: "We scope it into a sequence of sprints, each with a working deliverable. Easier to manage, easier to stop."
+                },
+                {
+                    q: "Why is it called UAI DATA?",
+                    a: "UAI (pronounced 'why') is a common expression from Minas Gerais, Brazil — where I'm partly from. It means surprise, curiosity, or just 'huh!' — the reaction I want people to have when they see what AI can actually do for their operations."
                 }
             ]
         },
-        faq: {
-            title: "Questions & answers",
-            items: [
-                { q: "What kind of clients do you work with?", a: "Mostly early-stage and growth-stage startups that have accumulated data but haven't had the bandwidth to make sense of it. I also work with small teams inside larger companies who need focused analytical support." },
-                { q: "What tools do you use?", a: "Python (Pandas, NumPy, Matplotlib/Seaborn), SQL, Jupyter Notebooks, Metabase, Google Sheets, and Looker Studio. I can adapt to the tools you already use." },
-                { q: "Do you work on a fixed price or daily rate?", a: "Both. Short, well-scoped projects work best on a fixed-price basis. Ongoing analytical support typically runs on a retainer or daily rate. We'll figure out what makes the most sense for your project." },
-                { q: "How long does a typical project take?", a: "A focused analysis or dashboard build usually takes 1-3 weeks. Larger migrations or ongoing work depend on the scope. I'll give you a clear timeline during our discovery call." },
-                { q: "Do you sign NDAs?", a: "Yes, always. Client data and business context are treated with full confidentiality. Most of my portfolio work is anonymized for exactly that reason." }
-            ]
+        finalCta: {
+            title: "Want a senior outside read on where to start with AI?",
+            body: "The audit takes an hour. You leave with three concrete next steps your team can act on this week.",
+            cta: "Book the audit",
+            sub: "Or email me directly: alexis@uaidata.io. I read everything."
         },
         footer: {
-            cta: "Let's work together",
-            sub: "Whether you have a defined project or just a question about your data, I'm happy to chat.",
-            book: "Book a discovery call",
-            copy: "© 2026 uai data. All rights reserved."
+            tagline: "UAI DATA — Alexis Gourdol",
+            location: "Paris, France · alexis@uaidata.io",
+            copy: "© 2026 uai data.",
+            cta: "Want a senior outside read on where to start with AI?",
+            sub: "The audit takes an hour. You leave with three concrete next steps your team can act on this week.",
+            book: "Book the audit"
         }
     },
 
     fr: {
         nav: {
             logo: "uai data",
-            services: "Services",
-            portfolio: "Portfolio",
+            offer: "Offre",
+            sprint: "Sprint",
+            work: "Réalisations",
             about: "À propos",
-            blog: "Blog",
+            faq: "FAQ",
             contact: "Contact",
-            cta: "Prendre contact"
+            cta: "Réserver l'audit"
         },
         hero: {
-            eyebrow: "Analyste de données freelance · Disponible pour vos missions",
-            headline: "J'aide les entreprises en croissance à prendre de meilleures décisions grâce à leurs données",
-            sub: "Analyste de données freelance avec un background en opérations startup. Je transforme des feuilles de calcul inexploitables et des bases de données éparpillées en réponses concrètes.",
-            cta1: "Réserver un appel découverte",
-            cta2: "Voir mes projets"
+            eyebrow: "Sprints d'intégration IA pour fondateurs B2B SaaS",
+            eyebrowShort: "Sprints d'intégration IA",
+            headline: "Les workflows IA que votre équipe n'a pas eu le temps de construire. Je les livre.",
+            sub: "Je conduis des sprints d'intégration IA de 4 semaines pour fondateurs B2B SaaS. Prix fixe, logiciel fonctionnel à la fin, votre équipe en est propriétaire.",
+            cta1: "Réserver un audit de 60 min",
+            cta2: "Ou par email : alexis@uaidata.io"
         },
-        services: {
-            title: "Ce que je fais",
-            subtitle: "Analyse ponctuelle ou support continu — je peux intervenir à n'importe quelle étape du projet.",
-            items: [
-                { title: "Dashboards & Reporting", desc: "Transformez vos données brutes en tableaux de bord visuels que votre équipe utilise vraiment. Du suivi des KPIs aux rapports de direction." },
-                { title: "Analyse Churn & Rétention", desc: "Comprendre pourquoi les clients partent et ce qui les retient. Stratégies de rétention basées sur des patterns réels." },
-                { title: "Analytics Opérationnel", desc: "Utilisez vos données opérationnelles pour trouver où ça coince et ce qui vaut vraiment la peine d'être mesuré." },
-                { title: "Nettoyage & Migration", desc: "Données en désordre ? Changement d'outils ? Je gère le mapping, la validation et les migrations propres entre systèmes." }
-            ]
+        proof: {
+            line: "Ancien COO chez Lum Network ($323k TVL, sur Cosmos-SDK). VP Project Management chez Movinga (80M€ levés). Auteur de scope.pro et bpm-finder avec Claude Code. Instructeur Le Wagon, 100+ étudiants data."
         },
-        portfolio: {
-            title: "Missions effectuées",
-            subtitle: "Un échantillon de projets récents. La plupart des travaux clients sont anonymisés ou sous NDA.",
-            nda: "Client sous NDA",
-            viewGithub: "Voir sur GitHub →",
-            items: [
+        offer: {
+            eyebrow: "Offre",
+            title: "Deux façons de travailler avec moi.",
+            subtitle: "Une mission courte pour décider quoi livrer. Un sprint de quatre semaines pour le livrer.",
+            cards: [
                 {
-                    title: "Migration ATS",
-                    desc: "Direction de la migration de milliers de dossiers candidats entre systèmes de suivi. Mapping des données, validation et transfert sans perte dans des données relationnelles complexes.",
-                    tags: ["Migration", "Python", "Qualité"],
-                    github: false
+                    kicker: "Audit",
+                    title: "Audit AI Readiness",
+                    body: "Appel de 60 min. Compte-rendu écrit d'une page sous 24h, avec les 3 prochaines étapes concrètes à livrer. Si nous travaillons ensemble sur un sprint dans les 30 jours, le prix de l'audit est crédité sur le sprint.",
+                    best: "Pour les fondateurs qui veulent un regard senior extérieur sur le point de départ, pas une \"feuille de route stratégique\" qui finit dans un tiroir.",
+                    cta: "Réserver l'audit",
+                    href: "https://calendar.app.google/1PBpmZw9S5cVDVb26"
                 },
                 {
-                    title: "Simulateur Financier",
-                    desc: "Construction d'un simulateur multi-scénarios pour une entreprise blockchain, permettant à la direction de modéliser les résultats sous différentes conditions de marché.",
-                    tags: ["Python", "Simulation", "Modélisation"],
-                    github: false
-                },
-                {
-                    title: "Outils d'Analyse Opérationnelle",
-                    desc: "Développement de notebooks Python pour aider une startup à comprendre leurs données opérationnelles et éclairer les priorités.",
-                    tags: ["Python", "Jupyter", "Opérations"],
-                    github: false
-                },
-                {
-                    title: "Analyse Churn Waze",
-                    desc: "Analyse de 15K enregistrements utilisateurs pour identifier les principaux prédicteurs du churn par analyse exploratoire des données.",
-                    tags: ["EDA", "Python", "Pandas"],
-                    github: true
+                    kicker: "Sprint",
+                    title: "Sprint AI Workflow",
+                    body: "4 semaines. Prix fixe (on cadre lors d'un appel). À la fin, vous avez une intégration fonctionnelle déployée dans votre stack, une pipeline que votre équipe peut maintenir le lundi matin, et un playbook écrit pour l'itération suivante.",
+                    best: "Pour les équipes qui ont décidé quoi livrer et veulent quelqu'un qui livre vraiment.",
+                    cta: "Parler du sprint",
+                    href: "mailto:alexis@uaidata.io?subject=Sprint%20AI%20Workflow"
                 }
             ]
         },
-        projects: {
-            title: "Ce que je construis",
-            subtitle: "Projets personnels — des outils que je voulais voir exister, alors je les ai créés.",
-            github: "GitHub →",
-            demo: "Démo en ligne →",
+        sprint: {
+            eyebrow: "Déroulé",
+            title: "Comment se déroule un sprint.",
+            subtitle: "Quatre étapes, une phrase chacune. Pas de jargon.",
+            steps: [
+                { week: "Semaine 0", title: "Cadrage.", body: "On se met d'accord sur l'unique résultat, les points d'intégration, et la métrique de succès. Vous recevez un document de cadrage d'une page avant tout travail." },
+                { week: "Semaine 1", title: "Spike.", body: "Je construis la version end-to-end la plus fine qui prouve que le workflow fonctionne. On fait le point le vendredi." },
+                { week: "Semaines 2-3", title: "Livraison.", body: "J'intègre dans votre stack réelle, j'écris les tests, et je durcis les bords que votre équipe va rencontrer le lundi." },
+                { week: "Semaine 4", title: "Passation.", body: "Documentation, playbook pour l'itération suivante, et un point à 30 jours. Votre équipe est ensuite propriétaire." }
+            ]
+        },
+        stack: {
+            eyebrow: "Stack",
+            title: "La stack que j'utilise vraiment.",
+            tools: ["Claude Code", "Python", "TypeScript", "Next.js", "PostgreSQL", "DuckDB", "devcontainers", "HubSpot", "Intercom", "Slack", "Notion", "Linear"],
+            devcontainer: "Devcontainers sandboxés : l'outillage IA accède uniquement à ce dont la tâche a besoin, rien de plus.",
+            footnote: "Si votre stack n'est pas dans cette liste, écrivez-moi et je vous dirai honnêtement si je suis la bonne personne."
+        },
+        work: {
+            eyebrow: "Réalisations",
+            title: "Réalisations récentes.",
+            subtitle: "Trois tuiles. Deux en ligne. Un write-up à venir.",
             items: [
-                { name: "ytsum", desc: "Téléchargeur de transcriptions YouTube avec résumé IA multi-fournisseurs.", github: "https://github.com/alexisgourdol/ytsum" },
-                { name: "Scope", desc: "Outil de gestion de projet personnel inspiré du design épuré de Linear.", github: "https://github.com/alexisgourdol/scope", demo: "https://scope-gamma-seven.vercel.app/issues" }
+                {
+                    name: "scope.pro",
+                    status: "en ligne",
+                    desc: "Issue tracker construit en une semaine avec Claude Code. Celui que j'utilise pour piloter mon propre travail. L'app principale est en SSO ; une démo publique en lecture seule est disponible.",
+                    href: "https://scope-gamma-seven.vercel.app/issues",
+                    cta: "Voir la démo"
+                },
+                {
+                    name: "bpm-finder",
+                    status: "en ligne",
+                    desc: "Trouver le BPM de n'importe quelle chanson via micro ou fichier audio. Construit et déployé en moins d'une heure, surtout pour prouver que la stack IA marchait end-to-end sur un problème non-trivial.",
+                    href: "https://bpmfinder-web.vercel.app/",
+                    cta: "Essayer"
+                },
+                {
+                    name: "Pattern devcontainer Claude Code",
+                    status: "case study à venir",
+                    desc: "Le setup devcontainer sandboxé qui restreint l'accès de l'outillage IA aux ressources pertinentes — pas d'écritures prod accidentelles, pas de suppressions incontrôlées. Utilisé en production. Write-up à venir en semaine 2.",
+                    href: null,
+                    cta: null
+                }
             ]
         },
         about: {
-            title: "La personne derrière les données",
+            eyebrow: "À propos",
+            title: "À propos d'Alexis.",
             body: [
-                "Je suis Alexis — analyste de données freelance basé à Paris (France). Avant de travailler en indépendant, j'ai passé plusieurs années en opérations dans des startups tech, où j'ai appris que le meilleur travail analytique commence par comprendre le business, pas juste la requête SQL.",
-                "J'ai été formé en Data Science et Data Engineering chez Le Wagon, je détiens le Certificat Professionnel Google Data Analytics.",
-                "Le nom 'uai' (prononcé 'ouaï') est une expression courante du Minas Gerais, au Brésil — d'où je suis partiellement originaire. Il exprime la surprise, la curiosité — exactement la réaction que je veux que les gens aient quand ils voient ce que leurs données peuvent leur révéler."
+                "Je suis un opérateur franco-brésilien devenu consultant en intégration IA. J'ai passé 10 ans à construire et faire tourner les opérations de startups (Movinga, Jobmaker, Lum Network, Tripda). En 2024, j'ai fait le bootcamp data-engineering de Le Wagon et j'ai commencé à livrer des workflows IA en production avec Claude Code.",
+                "La combinaison est le sujet. La plupart des \"consultants IA\" ne savent pas livrer du code. La plupart des ingénieurs ne savent pas lire un P&L ni concevoir un processus de vente. Je fais les deux, et je garde un périmètre assez petit pour que ce qui est construit soit vraiment utilisé.",
+                "Basé à Paris. Je travaille avec des fondateurs US et UE. Ouvert aux déplacements."
             ],
-            credentials: "Formation & certifications",
-            leWagon: "Le Wagon — Data Science & Engineering",
-            google: "Certificat Google Data Analytics"
+            credentials: "Langues",
+            languages: "Anglais · Français · Portugais · Espagnol"
         },
-        stats: {
-            items: [
-                { value: "15K+", label: "Enregistrements analysés" },
-                { value: "8+", label: "Ans en ops & data" },
-                { value: "3", label: "Langues parlées" },
-                { value: "100%", label: "Conformité NDA" }
-            ]
-        },
-        blog: {
-            title: "Écrits & réflexions",
-            subtitle: "Des articles occasionnels sur le travail data et les opérations en startup.",
-            read: "Lire →",
+        faq: {
+            eyebrow: "FAQ",
+            title: "Questions que posent les fondateurs.",
             items: [
                 {
-                    title: "Pourquoi la plupart des dashboards échouent (et comment réparer le vôtre)",
-                    date: "Avr 2026",
-                    excerpt: "Le problème n'est pas votre outil de visualisation. C'est que personne n'a été d'accord sur ce qu'il fallait mesurer."
+                    q: "En quoi est-ce différent d'un CTO fractionnel ou d'une agence ?",
+                    a: "Un fractionnel pilote toute votre ingénierie et facture à l'heure. Une agence construit un système, vous remet une boîte noire et passe à autre chose. Moi je fais un workflow, périmètre fixe. La différence : votre équipe peut lire et maintenir le code le lundi suivant la livraison, et je reste disponible 30 jours après. Vous repartez avec une capacité que vous possédez, pas une dépendance envers moi."
                 },
                 {
-                    title: "Des feuilles de calcul au SQL : une histoire de migration",
-                    date: "Mar 2026",
-                    excerpt: "Un regard en coulisses sur la migration d'un système de reporting Excel vieux de 5 ans vers une vraie base de données."
+                    q: "Et si mon équipe est non-technique ?",
+                    a: "La moitié de mes missions sont avec des équipes fondateur-led sans ingénieur senior. Le doc de passation et le point à 30 jours sont conçus pour ça."
                 },
                 {
-                    title: "L'EDA comme superpouvoir : ce que j'ai appris de 15K utilisateurs Waze",
-                    date: "Fév 2026",
-                    excerpt: "Comment l'analyse exploratoire a révélé des patterns surprenants dans le comportement utilisateur."
+                    q: "Pouvez-vous travailler avec nos contraintes data ou compliance ?",
+                    a: "Oui. Le pattern devcontainer restreint ce que l'outillage IA peut atteindre — ressources pertinentes incluses, tout le reste exclu. On parle des spécificités pendant l'audit."
+                },
+                {
+                    q: "Faites-vous des retainers ?",
+                    a: "Non. Les retainers récompensent le consultant pour facturer du temps ; les sprints nous récompensent tous les deux pour livrer. Pour une relation longue, on enchaîne les sprints."
+                },
+                {
+                    q: "Où êtes-vous basé, et pouvez-vous vous déplacer ?",
+                    a: "Paris. Je travaille à distance avec des clients US et UE, et je me déplace pour le kickoff si c'est important pour vous."
+                },
+                {
+                    q: "Et si notre projet fait plus que 4 semaines ?",
+                    a: "On le découpe en une séquence de sprints, chacun avec un livrable fonctionnel. Plus simple à piloter, plus simple à arrêter."
+                },
+                {
+                    q: "Pourquoi UAI DATA ?",
+                    a: "UAI (prononcé 'ouaï') est une expression courante du Minas Gerais, au Brésil — d'où je suis en partie. Ça signifie la surprise, la curiosité, ou juste 'ah bon !' — la réaction que je veux que les gens aient quand ils voient ce que l'IA peut vraiment faire pour leurs opérations."
                 }
             ]
         },
-        faq: {
-            title: "Questions & réponses",
-            items: [
-                { q: "Avec quels types de clients travaillez-vous ?", a: "Principalement des startups en phase de démarrage ou de croissance qui ont accumulé des données mais n'ont pas eu le temps de les exploiter. Je travaille aussi avec de petites équipes au sein de grandes entreprises qui ont besoin d'aide analytique ciblée." },
-                { q: "Quels outils utilisez-vous ?", a: "Python (Pandas, NumPy, Matplotlib/Seaborn), SQL, notebooks Jupyter, Metabase, Google Sheets et Looker Studio. Je m'adapte aux outils que vous utilisez déjà." },
-                { q: "Travaillez-vous à prix fixe ou à l'heure ?", a: "Les deux. Les projets courts et bien définis fonctionnent mieux à prix fixe. Le support analytique continu se fait généralement en forfait ou à la journée. Nous trouverons ce qui convient à votre projet." },
-                { q: "Combien de temps dure un projet typique ?", a: "Une analyse ciblée ou la construction d'un dashboard prend 1 à 3 semaines. Les migrations plus importantes dépendent du projet. Je vous donnerai un calendrier clair lors de notre appel découverte." },
-                { q: "Signez-vous des NDA ?", a: "Oui, toujours. Les données clients et le contexte business sont traités avec une totale confidentialité. La plupart de mon portfolio est anonymisé pour cette raison." }
-            ]
+        finalCta: {
+            title: "Vous voulez un regard senior extérieur sur où commencer avec l'IA ?",
+            body: "L'audit dure une heure. Vous repartez avec trois prochaines étapes concrètes que votre équipe peut activer cette semaine.",
+            cta: "Réserver l'audit",
+            sub: "Ou écrivez-moi directement : alexis@uaidata.io. Je lis tout."
         },
         footer: {
-            cta: "Travaillons ensemble",
-            sub: "Que vous ayez un projet défini ou juste une question sur vos données, je suis disponible pour en discuter.",
-            book: "Réserver un appel découverte",
-            copy: "© 2026 uai data. Tous droits réservés."
+            tagline: "UAI DATA — Alexis Gourdol",
+            location: "Paris, France · alexis@uaidata.io",
+            copy: "© 2026 uai data.",
+            cta: "Vous voulez un regard senior extérieur sur où commencer avec l'IA ?",
+            sub: "L'audit dure une heure. Vous repartez avec trois prochaines étapes concrètes que votre équipe peut activer cette semaine.",
+            book: "Réserver l'audit"
         }
     }
 };
