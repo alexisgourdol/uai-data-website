@@ -15,23 +15,23 @@ const TRANSLATIONS = {
             eyebrowShort: "AI integration sprints",
             headline: "AI workflows your team didn't have time to build. I ship them.",
             sub: "I run 4-week AI integration sprints for B2B SaaS founders. Fixed price, working software at the end, your team owns it.",
-            cta1: "Book a 60-min audit",
+            cta1: "Book a free 60-min audit",
             cta2: "Or email: alexis@uaidata.io"
         },
         proof: {
-            line: "Ex-COO at Lum Network ($323k TVL, on Cosmos-SDK). VP Project Management at Movinga (€80M raised). Built scope.pro and bpm-finder with Claude Code. Le Wagon instructor, 100+ data students."
+            line: "Ex-COO at Lum Network ($323k TVL, on Cosmos-SDK). VP Project Management at Movinga (€80M raised). Built Scope and bpm-finder with Claude Code. Le Wagon instructor, 100+ data students."
         },
         offer: {
             eyebrow: "Offer",
             title: "Two ways to work with me.",
-            subtitle: "One short engagement to figure out what to ship. One four-week sprint to ship it.",
+            subtitle: "One free call to figure out what to ship. One four-week sprint to ship it.",
             cards: [
                 {
-                    kicker: "Audit",
+                    kicker: "Audit · Free",
                     title: "AI Readiness Audit",
-                    body: "60-min call. 1-page written recap within 24 hours, with the 3 concrete next steps your team should ship first. If we work together on the sprint within 30 days, the audit fee credits to the sprint.",
+                    body: "Free 60-min call. 1-page written recap within 24 hours, with the 3 concrete next steps your team should ship first. No commitment to a sprint.",
                     best: "Best for: founders who want a senior outside read on where to start, not a \"strategic roadmap\" that ends up in a drawer.",
-                    cta: "Book the audit",
+                    cta: "Book the free audit",
                     href: "https://calendar.app.google/1PBpmZw9S5cVDVb26"
                 },
                 {
@@ -68,11 +68,11 @@ const TRANSLATIONS = {
             subtitle: "Three tiles. Two live. One write-up coming.",
             items: [
                 {
-                    name: "scope.pro",
-                    status: "live",
-                    desc: "Issue tracker built in a week with Claude Code. The one I use to run my own work every day. The main app is SSO-only; a public read-only demo is available.",
-                    href: "https://scope-gamma-seven.vercel.app/issues",
-                    cta: "See the demo"
+                    name: "Scope",
+                    status: "in daily use",
+                    desc: "Issue tracker built in a week with Claude Code. The one I use to run my own work every day.",
+                    href: null,
+                    cta: null
                 },
                 {
                     name: "bpm-finder",
@@ -146,8 +146,8 @@ const TRANSLATIONS = {
             location: "Paris, France · alexis@uaidata.io",
             copy: "© 2026 uai data.",
             cta: "Want a senior outside read on where to start with AI?",
-            sub: "The audit takes an hour. You leave with three concrete next steps your team can act on this week.",
-            book: "Book the audit"
+            sub: "The audit is free and takes an hour. You leave with three concrete next steps your team can act on this week.",
+            book: "Book the free audit"
         }
     },
 
@@ -167,23 +167,23 @@ const TRANSLATIONS = {
             eyebrowShort: "Sprints d'intégration IA",
             headline: "Les workflows IA que votre équipe n'a pas eu le temps de construire. Je les livre.",
             sub: "Je conduis des sprints d'intégration IA de 4 semaines pour fondateurs B2B SaaS. Prix fixe, logiciel fonctionnel à la fin, votre équipe en est propriétaire.",
-            cta1: "Réserver un audit de 60 min",
+            cta1: "Réserver un audit gratuit de 60 min",
             cta2: "Ou par email : alexis@uaidata.io"
         },
         proof: {
-            line: "Ancien COO chez Lum Network ($323k TVL, sur Cosmos-SDK). VP Project Management chez Movinga (80M€ levés). Auteur de scope.pro et bpm-finder avec Claude Code. Instructeur Le Wagon, 100+ étudiants data."
+            line: "Ancien COO chez Lum Network ($323k TVL, sur Cosmos-SDK). VP Project Management chez Movinga (80M€ levés). Auteur de Scope et bpm-finder avec Claude Code. Instructeur Le Wagon, 100+ étudiants data."
         },
         offer: {
             eyebrow: "Offre",
             title: "Deux façons de travailler avec moi.",
-            subtitle: "Une mission courte pour décider quoi livrer. Un sprint de quatre semaines pour le livrer.",
+            subtitle: "Un appel gratuit pour décider quoi livrer. Un sprint de quatre semaines pour le livrer.",
             cards: [
                 {
-                    kicker: "Audit",
+                    kicker: "Audit · Gratuit",
                     title: "Audit AI Readiness",
-                    body: "Appel de 60 min. Compte-rendu écrit d'une page sous 24h, avec les 3 prochaines étapes concrètes à livrer. Si nous travaillons ensemble sur un sprint dans les 30 jours, le prix de l'audit est crédité sur le sprint.",
+                    body: "Appel gratuit de 60 min. Compte-rendu écrit d'une page sous 24h, avec les 3 prochaines étapes concrètes à livrer. Sans engagement sur un sprint.",
                     best: "Pour les fondateurs qui veulent un regard senior extérieur sur le point de départ, pas une \"feuille de route stratégique\" qui finit dans un tiroir.",
-                    cta: "Réserver l'audit",
+                    cta: "Réserver l'audit gratuit",
                     href: "https://calendar.app.google/1PBpmZw9S5cVDVb26"
                 },
                 {
@@ -220,11 +220,11 @@ const TRANSLATIONS = {
             subtitle: "Trois tuiles. Deux en ligne. Un write-up à venir.",
             items: [
                 {
-                    name: "scope.pro",
-                    status: "en ligne",
-                    desc: "Issue tracker construit en une semaine avec Claude Code. Celui que j'utilise pour piloter mon propre travail. L'app principale est en SSO ; une démo publique en lecture seule est disponible.",
-                    href: "https://scope-gamma-seven.vercel.app/issues",
-                    cta: "Voir la démo"
+                    name: "Scope",
+                    status: "utilisé au quotidien",
+                    desc: "Issue tracker construit en une semaine avec Claude Code. Celui que j'utilise pour piloter mon propre travail.",
+                    href: null,
+                    cta: null
                 },
                 {
                     name: "bpm-finder",
@@ -298,8 +298,8 @@ const TRANSLATIONS = {
             location: "Paris, France · alexis@uaidata.io",
             copy: "© 2026 uai data.",
             cta: "Vous voulez un regard senior extérieur sur où commencer avec l'IA ?",
-            sub: "L'audit dure une heure. Vous repartez avec trois prochaines étapes concrètes que votre équipe peut activer cette semaine.",
-            book: "Réserver l'audit"
+            sub: "L'audit est gratuit et dure une heure. Vous repartez avec trois prochaines étapes concrètes que votre équipe peut activer cette semaine.",
+            book: "Réserver l'audit gratuit"
         }
     }
 };
