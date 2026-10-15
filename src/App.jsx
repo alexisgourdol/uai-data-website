@@ -1,29 +1,37 @@
-const { useState, useEffect, useRef } = React;
+import { useState, useEffect, useRef } from "react";
+import { TRANSLATIONS } from "./translations.js";
 
 // ─── Dark mode hook ───────────────────────────────────────────────────────────
+function applyTheme(dark) {
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+}
+
 function useDarkMode() {
-    const [dark, setDark] = useState(() => {
-        const stored = localStorage.getItem("uai-theme");
-        if (stored) return stored === "dark";
-        return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    });
+    // The prerendered markup is light; the inline script in index.html applies the real
+    // theme before paint, and we sync React to it after hydration.
+    const [dark, setDark] = useState(false);
 
     useEffect(() => {
-        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
-        localStorage.setItem("uai-theme", dark ? "dark" : "light");
-    }, [dark]);
+        setDark(document.documentElement.getAttribute("data-theme") === "dark");
 
-    // Listen for OS preference changes (only if user hasn't explicitly chosen)
-    useEffect(() => {
+        // Follow OS preference changes (only if the user hasn't explicitly chosen)
         const mq = window.matchMedia("(prefers-color-scheme: dark)");
         const handler = (e) => {
-            if (!localStorage.getItem("uai-theme")) setDark(e.matches);
+            if (localStorage.getItem("uai-theme")) return;
+            setDark(e.matches);
+            applyTheme(e.matches);
         };
         mq.addEventListener("change", handler);
         return () => mq.removeEventListener("change", handler);
     }, []);
 
-    return [dark, setDark];
+    const chooseTheme = (next) => {
+        setDark(next);
+        applyTheme(next);
+        localStorage.setItem("uai-theme", next ? "dark" : "light");
+    };
+
+    return [dark, chooseTheme];
 }
 
 
@@ -44,11 +52,10 @@ function useReveal(threshold = 0.12) {
 
 function Reveal({ children, delay = 0, className = "", style = {} }) {
     const [ref, visible] = useReveal();
+    // Hidden state lives in index.html CSS (.js .reveal) so prerendered content shows without JS
     return (
-        <div ref={ref} className={className} style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(28px)",
-            transition: `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`,
+        <div ref={ref} className={`reveal${visible ? " is-visible" : ""} ${className}`} style={{
+            transitionDelay: `${delay}ms`,
             ...style
         }}>
             {children}
@@ -1069,4 +1076,4 @@ function App() {
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{ "accent": "#F59E0B", "bg": "#FFFFFF", "fontSize": "regular" }/*EDITMODE-END*/;
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+export default App;
