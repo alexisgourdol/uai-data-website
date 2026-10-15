@@ -226,7 +226,7 @@ function Nav({ t, lang, setLang, dark, setDark }) {
                     </div>
                     <a href="https://calendar.app.google/1PBpmZw9S5cVDVb26" target="_blank" rel="noopener noreferrer"
                         style={{
-                            background: "var(--accent)", color: "#fff", padding: "8px 18px",
+                            background: "var(--accent)", color: "var(--text-on-accent)", padding: "8px 18px",
                             borderRadius: 8, fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
                             transition: "opacity 0.2s"
                         }}
@@ -257,7 +257,7 @@ function Nav({ t, lang, setLang, dark, setDark }) {
                         </a>
                     ))}
                     <a href="https://calendar.app.google/1PBpmZw9S5cVDVb26" target="_blank" rel="noopener noreferrer"
-                        style={{ display: "inline-block", marginTop: "1.5rem", background: "var(--accent)", color: "#fff", padding: "12px 24px", borderRadius: 8, fontWeight: 600, textDecoration: "none" }}>
+                        style={{ display: "inline-block", marginTop: "1.5rem", background: "var(--accent)", color: "var(--text-on-accent)", padding: "12px 24px", borderRadius: 8, fontWeight: 600, textDecoration: "none" }}>
                         {t.nav.cta}
                     </a>
                 </div>
@@ -542,7 +542,7 @@ function Hero({ t, accent, dark }) {
                             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                                 <a href="https://calendar.app.google/1PBpmZw9S5cVDVb26" target="_blank" rel="noopener noreferrer"
                                     style={{
-                                        background: "var(--accent)", color: "#fff", padding: "14px 28px",
+                                        background: "var(--accent)", color: "var(--text-on-accent)", padding: "14px 28px",
                                         borderRadius: "var(--radius-btn)", fontWeight: 700, fontSize: "1rem", textDecoration: "none",
                                         display: "inline-flex", alignItems: "center", gap: 8,
                                         boxShadow: "var(--shadow-cta)",
@@ -635,7 +635,7 @@ function Offer({ t }) {
                                     <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
                                         style={{
                                             display: "inline-flex", alignItems: "center", gap: 8,
-                                            background: "var(--accent)", color: "#fff",
+                                            background: "var(--accent)", color: "var(--text-on-accent)",
                                             padding: "11px 22px", borderRadius: "var(--radius-btn)",
                                             fontWeight: 700, fontSize: "0.9rem", textDecoration: "none",
                                             transition: "transform 0.2s, box-shadow 0.2s",
@@ -797,7 +797,7 @@ function About({ t }) {
                         {/* Accent card */}
                         <div style={{
                             position: "absolute", bottom: -20, right: -20, background: "var(--accent)",
-                            borderRadius: "var(--radius-card)", padding: "1rem 1.5rem", color: "#fff",
+                            borderRadius: "var(--radius-card)", padding: "1rem 1.5rem", color: "var(--text-on-accent)",
                             boxShadow: "0 8px 24px oklch(0.72 0.12 178 / 0.35)"
                         }}>
                             <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", opacity: 0.8, marginBottom: 2 }}>uai</div>
@@ -835,7 +835,7 @@ function About({ t }) {
 function FAQ({ t }) {
     const [open, setOpen] = useState(null);
     return (
-        <section style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
+        <section id="faq" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
             <div style={{ maxWidth: 760, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem", textAlign: "center" }}>
@@ -904,7 +904,7 @@ function Footer({ t, lang, setLang }) {
                         <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
                             <a href="https://calendar.app.google/1PBpmZw9S5cVDVb26" target="_blank" rel="noopener noreferrer"
                                 style={{
-                                    background: "var(--accent)", color: "#fff", padding: "14px 32px",
+                                    background: "var(--accent)", color: "var(--text-on-accent)", padding: "14px 32px",
                                     borderRadius: "var(--radius-btn)", fontWeight: 700, fontSize: "1rem", textDecoration: "none",
                                     boxShadow: "0 4px 20px oklch(0.72 0.12 178 / 0.4)",
                                     transition: "transform 0.2s, box-shadow 0.2s"
@@ -947,13 +947,13 @@ function Footer({ t, lang, setLang }) {
                                     }}>{l}</button>
                             ))}
                         </div>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                        <a href="https://www.linkedin.com/in/alexisgourdol" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
                             style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none", transition: "color 0.2s" }}
                             onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
                             onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.4)"}>
                             <icons.Linkedin />
                         </a>
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                        <a href="https://github.com/alexisgourdol/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
                             style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none", transition: "color 0.2s" }}
                             onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
                             onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.4)"}>
