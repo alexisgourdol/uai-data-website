@@ -1,4 +1,4 @@
-const TRANSLATIONS = {
+export const TRANSLATIONS = {
     en: {
         nav: {
             logo: "uai data",
