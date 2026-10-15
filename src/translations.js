@@ -301,5 +301,164 @@ export const TRANSLATIONS = {
             sub: "L'audit est gratuit et dure une heure. Vous repartez avec trois prochaines étapes concrètes que votre équipe peut activer cette semaine.",
             book: "Réserver l'audit gratuit"
         }
+    },
+
+    "pt-BR": {
+        nav: {
+            logo: "uai data",
+            offer: "Oferta",
+            sprint: "Sprint",
+            work: "Projetos",
+            about: "Sobre",
+            faq: "FAQ",
+            contact: "Contato",
+            cta: "Agendar o diagnóstico"
+        },
+        hero: {
+            eyebrow: "Sprints de integração de IA para fundadores de SaaS B2B",
+            eyebrowShort: "Sprints de integração de IA",
+            headline: "Os workflows de IA que seu time não teve tempo de construir. Eu entrego.",
+            sub: "Conduzo sprints de integração de IA de 4 semanas para fundadores de SaaS B2B. Preço fechado, software funcionando no final, e o código é do seu time.",
+            cta1: "Agendar um diagnóstico gratuito de 60 min",
+            cta2: "Ou por e-mail: alexis@uaidata.io"
+        },
+        proof: {
+            line: "Ex-COO da Lum Network ($323k TVL, em Cosmos-SDK). VP de Project Management na Movinga (€80M captados). Criei o Scope e o bpm-finder com Claude Code. Professor na Le Wagon, 100+ alunos de dados."
+        },
+        offer: {
+            eyebrow: "Oferta",
+            title: "Duas formas de trabalhar comigo.",
+            subtitle: "Uma conversa gratuita para definir o que entregar. Um sprint de quatro semanas para entregar.",
+            cards: [
+                {
+                    kicker: "Diagnóstico · Gratuito",
+                    title: "Diagnóstico AI Readiness",
+                    body: "Conversa gratuita de 60 min. Resumo escrito de uma página em até 24 horas, com os 3 próximos passos concretos que seu time deve entregar primeiro. Sem compromisso com um sprint.",
+                    best: "Ideal para: fundadores que querem um olhar sênior de fora sobre por onde começar, e não um \"roadmap estratégico\" que acaba esquecido na gaveta.",
+                    cta: "Agendar o diagnóstico gratuito",
+                    href: "https://calendar.app.google/1PBpmZw9S5cVDVb26"
+                },
+                {
+                    kicker: "Sprint",
+                    title: "Sprint AI Workflow",
+                    body: "4 semanas. Preço fechado (definimos o escopo numa conversa). No final, você tem uma integração funcionando no seu stack, um pipeline que seu time consegue manter na segunda-feira de manhã e um playbook escrito para a próxima iteração.",
+                    best: "Ideal para: times que já decidiram o que entregar e precisam de alguém que realmente entregue.",
+                    cta: "Conversar sobre um sprint",
+                    href: "mailto:alexis@uaidata.io?subject=Sprint%20AI%20Workflow"
+                }
+            ]
+        },
+        sprint: {
+            eyebrow: "Como funciona",
+            title: "Como funciona um sprint.",
+            subtitle: "Quatro etapas, uma frase cada. Sem jargão.",
+            steps: [
+                { week: "Semana 0", title: "Escopo.", body: "Definimos juntos o resultado único, os pontos de integração e a métrica de sucesso. Você recebe um documento de escopo de uma página antes de qualquer trabalho começar." },
+                { week: "Semana 1", title: "Spike.", body: "Construo a versão end-to-end mais enxuta que prova que o workflow funciona. Revisamos na sexta-feira." },
+                { week: "Semanas 2-3", title: "Entrega.", body: "Integro no seu stack real, escrevo os testes e reforço os pontos frágeis que seu time vai encontrar na segunda-feira." },
+                { week: "Semana 4", title: "Handover.", body: "Documentação, um playbook para a próxima iteração e um check-in em 30 dias. A partir daí, é do seu time." }
+            ]
+        },
+        stack: {
+            eyebrow: "Stack",
+            title: "O stack que eu realmente uso.",
+            tools: ["Claude Code", "Python", "TypeScript", "Next.js", "PostgreSQL", "DuckDB", "devcontainers", "HubSpot", "Intercom", "Slack", "Notion", "Linear"],
+            devcontainer: "Devcontainers isolados: as ferramentas de IA acessam só o que a tarefa precisa, nada além disso.",
+            footnote: "Se o seu stack não está nesta lista, me mande um e-mail e eu digo com honestidade se sou a pessoa certa."
+        },
+        work: {
+            eyebrow: "Projetos",
+            title: "Projetos recentes.",
+            subtitle: "Três projetos. Dois no ar. Um case a caminho.",
+            items: [
+                {
+                    name: "Scope",
+                    status: "em uso diário",
+                    desc: "Issue tracker construído em uma semana com Claude Code. É o que eu uso todo dia para gerenciar meu próprio trabalho.",
+                    href: null,
+                    cta: null
+                },
+                {
+                    name: "bpm-finder",
+                    status: "no ar",
+                    desc: "Descubra o BPM de qualquer música pelo microfone ou por um arquivo de áudio. Construído e publicado em menos de uma hora, principalmente para provar que o stack de IA funcionava de ponta a ponta num problema não trivial.",
+                    href: "https://bpmfinder-web.vercel.app/",
+                    cta: "Testar"
+                },
+                {
+                    name: "Padrão devcontainer Claude Code",
+                    status: "case em breve",
+                    desc: "O setup de devcontainer isolado que restringe as ferramentas de IA aos recursos de que precisam — sem escritas acidentais em produção, sem exclusões descontroladas. Usado em produção. Case completo na semana 2.",
+                    href: null,
+                    cta: null
+                }
+            ]
+        },
+        about: {
+            eyebrow: "Sobre",
+            title: "Sobre o Alexis.",
+            body: [
+                "Sou um operador franco-brasileiro que virou consultor de integração de IA. Passei 10 anos construindo e tocando operações em startups (Movinga, Jobmaker, Lum Network, Tripda). Em 2024 mergulhei no bootcamp de data engineering da Le Wagon e comecei a entregar workflows de IA em produção com Claude Code.",
+                "A combinação é o ponto. A maioria dos \"consultores de IA\" não sabe entregar código. A maioria dos engenheiros não sabe ler uma DRE nem desenhar um processo de vendas. Eu faço os dois, e mantenho o escopo pequeno o bastante para que o que é construído seja de fato usado.",
+                "Baseado em Paris. Trabalho com fundadores dos EUA e da Europa. Disponível para viajar."
+            ],
+            credentials: "Idiomas",
+            languages: "Inglês · Francês · Português · Espanhol"
+        },
+        faq: {
+            eyebrow: "FAQ",
+            title: "Perguntas que os fundadores fazem.",
+            items: [
+                {
+                    q: "Qual a diferença em relação a contratar um CTO fracionado ou uma agência?",
+                    a: "Um CTO fracionado comanda toda a sua engenharia e cobra por hora. Uma agência constrói um sistema, entrega uma caixa-preta e segue em frente. Eu faço um workflow, com escopo fechado. A diferença: seu time consegue ler e manter o código na segunda-feira seguinte à entrega, e eu fico disponível para um check-in em 30 dias. Você sai com uma capacidade que é sua, não com uma dependência de mim."
+                },
+                {
+                    q: "E se o meu time não for técnico?",
+                    a: "Metade dos meus projetos é com times liderados pelo fundador, sem nenhum engenheiro sênior na sala. O documento de handover e o check-in de 30 dias foram pensados exatamente para isso."
+                },
+                {
+                    q: "Você consegue trabalhar com nossos requisitos de segurança de dados ou compliance?",
+                    a: "Sim. O padrão devcontainer limita o que as ferramentas de IA conseguem acessar — recursos relevantes dentro, todo o resto fora. Falamos dos detalhes na conversa de diagnóstico."
+                },
+                {
+                    q: "Você trabalha com retainer?",
+                    a: "Não. Retainers recompensam o consultor por faturar horas; sprints recompensam nós dois por entregar. Se você quer uma relação de longo prazo, fazemos sprints consecutivos."
+                },
+                {
+                    q: "Onde você está baseado, e pode viajar?",
+                    a: "Paris. Trabalho remotamente com clientes dos EUA e da Europa, e viajo para o kickoff se isso for importante para você."
+                },
+                {
+                    q: "E se o nosso projeto for maior que 4 semanas?",
+                    a: "Dividimos em uma sequência de sprints, cada um com uma entrega funcionando. Mais fácil de gerenciar, mais fácil de parar."
+                },
+                {
+                    q: "Por que o nome UAI DATA?",
+                    a: "UAI é uma expressão típica de Minas Gerais — de onde eu sou em parte. Expressa surpresa, curiosidade, ou só um 'ué!' — a reação que eu quero que as pessoas tenham quando veem o que a IA pode realmente fazer pelas operações delas."
+                }
+            ]
+        },
+        finalCta: {
+            title: "Quer um olhar sênior de fora sobre por onde começar com IA?",
+            body: "O diagnóstico dura uma hora. Você sai com três próximos passos concretos que seu time pode colocar em prática nesta semana.",
+            cta: "Agendar o diagnóstico",
+            sub: "Ou me escreva diretamente: alexis@uaidata.io. Eu leio tudo."
+        },
+        footer: {
+            tagline: "UAI DATA — Alexis Gourdol",
+            location: "Paris, França · alexis@uaidata.io",
+            copy: "© 2026 uai data.",
+            cta: "Quer um olhar sênior de fora sobre por onde começar com IA?",
+            sub: "O diagnóstico é gratuito e dura uma hora. Você sai com três próximos passos concretos que seu time pode colocar em prática nesta semana.",
+            book: "Agendar o diagnóstico gratuito"
+        }
     }
 };
+
+// Switcher order and labels. The Brazilian Portuguese button reads "BR", not "PT".
+export const LANGUAGES = [
+    { code: "en", label: "EN" },
+    { code: "fr", label: "FR" },
+    { code: "pt-BR", label: "BR" }
+];

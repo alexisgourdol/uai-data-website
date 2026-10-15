@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { TRANSLATIONS } from "./translations.js";
+import { TRANSLATIONS, LANGUAGES } from "./translations.js";
 
 // ─── Dark mode hook ───────────────────────────────────────────────────────────
 function applyTheme(dark) {
@@ -218,16 +218,16 @@ function Nav({ t, lang, setLang, dark, setDark }) {
                         {dark ? <icons.Sun /> : <icons.Moon />}
                     </button>
                     <div style={{ display: "flex", gap: "0.25rem", fontSize: "0.8rem", fontWeight: 600 }}>
-                        {["en", "fr"].map(l => (
-                            <button key={l} onClick={() => setLang(l)}
+                        {LANGUAGES.map(({ code, label }) => (
+                            <button key={code} onClick={() => setLang(code)}
                                 style={{
                                     background: "none", border: "none", cursor: "pointer", padding: "4px 6px", borderRadius: 4,
-                                    color: lang === l ? "var(--accent)" : "var(--text-muted)",
-                                    fontWeight: lang === l ? 700 : 500,
+                                    color: lang === code ? "var(--accent)" : "var(--text-muted)",
+                                    fontWeight: lang === code ? 700 : 500,
                                     textTransform: "uppercase", letterSpacing: "0.05em",
                                     fontFamily: "var(--font-mono)", fontSize: "0.75rem"
                                 }}>
-                                {l}
+                                {label}
                             </button>
                         ))}
                     </div>
@@ -944,14 +944,14 @@ function Footer({ t, lang, setLang }) {
                     </span>
                     <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
                         <div style={{ display: "flex", gap: "0.25rem" }}>
-                            {["en", "fr"].map(l => (
-                                <button key={l} onClick={() => setLang(l)}
+                            {LANGUAGES.map(({ code, label }) => (
+                                <button key={code} onClick={() => setLang(code)}
                                     style={{
                                         background: "none", border: "none", cursor: "pointer", padding: "4px 6px",
-                                        color: lang === l ? "var(--accent)" : "rgba(255,255,255,0.4)",
+                                        color: lang === code ? "var(--accent)" : "rgba(255,255,255,0.4)",
                                         fontFamily: "var(--font-mono)", fontSize: "0.72rem", fontWeight: 600,
                                         textTransform: "uppercase", letterSpacing: "0.05em"
-                                    }}>{l}</button>
+                                    }}>{label}</button>
                             ))}
                         </div>
                         <a href="https://www.linkedin.com/in/alexisgourdol" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
