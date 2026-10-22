@@ -11,10 +11,10 @@ export const TRANSLATIONS = {
             cta: "Book the audit"
         },
         hero: {
-            eyebrow: "AI integration sprints for B2B SaaS founders",
+            eyebrow: "AI integration sprints for small and mid-sized businesses",
             eyebrowShort: "AI integration sprints",
             headline: "AI workflows your team didn't have time to build. I ship them.",
-            sub: "I run 4-week AI integration sprints for B2B SaaS founders. Fixed price, working software at the end, your team owns it.",
+            sub: "I run 4-week AI integration sprints for small and mid-sized businesses. Fixed price, working software at the end, your team owns it.",
             cta1: "Book a free 60-min audit",
             cta2: "Or email: alexis@uaidata.io"
         },
@@ -30,7 +30,7 @@ export const TRANSLATIONS = {
                     kicker: "Audit · Free",
                     title: "AI Readiness Audit",
                     body: "Free 60-min call. 1-page written recap within 24 hours, with the 3 concrete next steps your team should ship first. No commitment to a sprint.",
-                    best: "Best for: founders who want a senior outside read on where to start, not a \"strategic roadmap\" that ends up in a drawer.",
+                    best: "Best for: owners and managers who want a senior outside read on where to start, not a \"strategic roadmap\" that ends up in a drawer.",
                     cta: "Book the free audit",
                     href: "https://calendar.app.google/1PBpmZw9S5cVDVb26"
                 },
@@ -96,14 +96,14 @@ export const TRANSLATIONS = {
             body: [
                 "I'm a French-Brazilian operator turned AI-integration consultant. I spent 10 years building and running ops at startups (Movinga, Jobmaker, Lum Network, Tripda). In 2024 I went deep on Le Wagon's data-engineering bootcamp and started shipping production AI workflows with Claude Code.",
                 "The combination is the point. Most \"AI consultants\" can't ship code. Most engineers can't read a P&L or design a sales process. I do both, and I keep the scope small enough that what gets built actually gets used.",
-                "Based in Paris. Working with US and EU founders. Open to traveling."
+                "Based in Paris. Working with businesses in Brazil and the US. Open to traveling."
             ],
             credentials: "Languages",
             languages: "English · French · Portuguese · Spanish"
         },
         faq: {
             eyebrow: "FAQ",
-            title: "Questions founders ask.",
+            title: "Questions business owners ask.",
             items: [
                 {
                     q: "How is this different from hiring a fractional CTO or an agency?",
@@ -111,7 +111,7 @@ export const TRANSLATIONS = {
                 },
                 {
                     q: "What if my team is non-technical?",
-                    a: "Half my work is with founder-led teams where there's no senior engineer in the room. The handover doc and the 30-day check-in are designed for exactly this."
+                    a: "Most small and mid-sized businesses don't have a senior engineer in the room. The handover doc and the 30-day check-in are designed for exactly this."
                 },
                 {
                     q: "Can you work with our data security or compliance requirements?",
@@ -123,7 +123,7 @@ export const TRANSLATIONS = {
                 },
                 {
                     q: "Where are you based, and can you travel?",
-                    a: "Paris. I work remotely with US and EU clients, and travel for the kickoff if it matters to you."
+                    a: "Paris. I work remotely with clients in Brazil and the US, and travel for the kickoff if it matters to you."
                 },
                 {
                     q: "What if our project is bigger than 4 weeks?",
@@ -163,10 +163,10 @@ export const TRANSLATIONS = {
             cta: "Réserver l'audit"
         },
         hero: {
-            eyebrow: "Sprints d'intégration IA pour fondateurs B2B SaaS",
+            eyebrow: "Sprints d'intégration IA pour PME",
             eyebrowShort: "Sprints d'intégration IA",
             headline: "Les workflows IA que votre équipe n'a pas eu le temps de construire. Je les livre.",
-            sub: "Je conduis des sprints d'intégration IA de 4 semaines pour fondateurs B2B SaaS. Prix fixe, logiciel fonctionnel à la fin, votre équipe en est propriétaire.",
+            sub: "Je conduis des sprints d'intégration IA de 4 semaines pour les PME. Prix fixe, logiciel fonctionnel à la fin, votre équipe en est propriétaire.",
             cta1: "Réserver un audit gratuit de 60 min",
             cta2: "Ou par email : alexis@uaidata.io"
         },
@@ -182,7 +182,7 @@ export const TRANSLATIONS = {
                     kicker: "Audit · Gratuit",
                     title: "Audit AI Readiness",
                     body: "Appel gratuit de 60 min. Compte-rendu écrit d'une page sous 24h, avec les 3 prochaines étapes concrètes à livrer. Sans engagement sur un sprint.",
-                    best: "Pour les fondateurs qui veulent un regard senior extérieur sur le point de départ, pas une \"feuille de route stratégique\" qui finit dans un tiroir.",
+                    best: "Pour les dirigeants qui veulent un regard senior extérieur sur le point de départ, pas une \"feuille de route stratégique\" qui finit dans un tiroir.",
                     cta: "Réserver l'audit gratuit",
                     href: "https://calendar.app.google/1PBpmZw9S5cVDVb26"
                 },
@@ -248,14 +248,14 @@ export const TRANSLATIONS = {
             body: [
                 "Je suis un opérateur franco-brésilien devenu consultant en intégration IA. J'ai passé 10 ans à construire et faire tourner les opérations de startups (Movinga, Jobmaker, Lum Network, Tripda). En 2024, j'ai fait le bootcamp data-engineering de Le Wagon et j'ai commencé à livrer des workflows IA en production avec Claude Code.",
                 "La combinaison est le sujet. La plupart des \"consultants IA\" ne savent pas livrer du code. La plupart des ingénieurs ne savent pas lire un P&L ni concevoir un processus de vente. Je fais les deux, et je garde un périmètre assez petit pour que ce qui est construit soit vraiment utilisé.",
-                "Basé à Paris. Je travaille avec des fondateurs US et UE. Ouvert aux déplacements."
+                "Basé à Paris. Je travaille avec des entreprises au Brésil et aux États-Unis. Ouvert aux déplacements."
             ],
             credentials: "Langues",
             languages: "Anglais · Français · Portugais · Espagnol"
         },
         faq: {
             eyebrow: "FAQ",
-            title: "Questions que posent les fondateurs.",
+            title: "Questions que posent les dirigeants.",
             items: [
                 {
                     q: "En quoi est-ce différent d'un CTO fractionnel ou d'une agence ?",
@@ -263,7 +263,7 @@ export const TRANSLATIONS = {
                 },
                 {
                     q: "Et si mon équipe est non-technique ?",
-                    a: "La moitié de mes missions sont avec des équipes fondateur-led sans ingénieur senior. Le doc de passation et le point à 30 jours sont conçus pour ça."
+                    a: "La plupart des PME n'ont pas d'ingénieur senior en interne. Le doc de passation et le point à 30 jours sont conçus pour ça."
                 },
                 {
                     q: "Pouvez-vous travailler avec nos contraintes data ou compliance ?",
@@ -275,7 +275,7 @@ export const TRANSLATIONS = {
                 },
                 {
                     q: "Où êtes-vous basé, et pouvez-vous vous déplacer ?",
-                    a: "Paris. Je travaille à distance avec des clients US et UE, et je me déplace pour le kickoff si c'est important pour vous."
+                    a: "Paris. Je travaille à distance avec des clients au Brésil et aux États-Unis, et je me déplace pour le kickoff si c'est important pour vous."
                 },
                 {
                     q: "Et si notre projet fait plus que 4 semaines ?",
@@ -315,10 +315,10 @@ export const TRANSLATIONS = {
             cta: "Agendar o diagnóstico"
         },
         hero: {
-            eyebrow: "Sprints de integração de IA para fundadores de SaaS B2B",
+            eyebrow: "Sprints de integração de IA para pequenas e médias empresas",
             eyebrowShort: "Sprints de integração de IA",
             headline: "Os workflows de IA que seu time não teve tempo de construir. Eu entrego.",
-            sub: "Conduzo sprints de integração de IA de 4 semanas para fundadores de SaaS B2B. Preço fechado, software funcionando no final, e o código é do seu time.",
+            sub: "Conduzo sprints de integração de IA de 4 semanas para pequenas e médias empresas. Preço fechado, software funcionando no final, e o código é do seu time.",
             cta1: "Agendar um diagnóstico gratuito de 60 min",
             cta2: "Ou por e-mail: alexis@uaidata.io"
         },
@@ -334,7 +334,7 @@ export const TRANSLATIONS = {
                     kicker: "Diagnóstico · Gratuito",
                     title: "Diagnóstico AI Readiness",
                     body: "Conversa gratuita de 60 min. Resumo escrito de uma página em até 24 horas, com os 3 próximos passos concretos que seu time deve entregar primeiro. Sem compromisso com um sprint.",
-                    best: "Ideal para: fundadores que querem um olhar sênior de fora sobre por onde começar, e não um \"roadmap estratégico\" que acaba esquecido na gaveta.",
+                    best: "Ideal para: donos e gestores que querem um olhar sênior de fora sobre por onde começar, e não um \"roadmap estratégico\" que acaba esquecido na gaveta.",
                     cta: "Agendar o diagnóstico gratuito",
                     href: "https://calendar.app.google/1PBpmZw9S5cVDVb26"
                 },
@@ -400,14 +400,14 @@ export const TRANSLATIONS = {
             body: [
                 "Sou um operador franco-brasileiro que virou consultor de integração de IA. Passei 10 anos construindo e tocando operações em startups (Movinga, Jobmaker, Lum Network, Tripda). Em 2024 mergulhei no bootcamp de data engineering da Le Wagon e comecei a entregar workflows de IA em produção com Claude Code.",
                 "A combinação é o ponto. A maioria dos \"consultores de IA\" não sabe entregar código. A maioria dos engenheiros não sabe ler uma DRE nem desenhar um processo de vendas. Eu faço os dois, e mantenho o escopo pequeno o bastante para que o que é construído seja de fato usado.",
-                "Baseado em Paris. Trabalho com fundadores dos EUA e da Europa. Disponível para viajar."
+                "Baseado em Paris. Trabalho com empresas no Brasil e nos EUA. Disponível para viajar."
             ],
             credentials: "Idiomas",
             languages: "Inglês · Francês · Português · Espanhol"
         },
         faq: {
             eyebrow: "FAQ",
-            title: "Perguntas que os fundadores fazem.",
+            title: "Perguntas que os empresários fazem.",
             items: [
                 {
                     q: "Qual a diferença em relação a contratar um CTO fracionado ou uma agência?",
@@ -415,7 +415,7 @@ export const TRANSLATIONS = {
                 },
                 {
                     q: "E se o meu time não for técnico?",
-                    a: "Metade dos meus projetos é com times liderados pelo fundador, sem nenhum engenheiro sênior na sala. O documento de handover e o check-in de 30 dias foram pensados exatamente para isso."
+                    a: "A maioria das pequenas e médias empresas não tem um engenheiro sênior na equipe. O documento de handover e o check-in de 30 dias foram pensados exatamente para isso."
                 },
                 {
                     q: "Você consegue trabalhar com nossos requisitos de segurança de dados ou compliance?",
@@ -427,7 +427,7 @@ export const TRANSLATIONS = {
                 },
                 {
                     q: "Onde você está baseado, e pode viajar?",
-                    a: "Paris. Trabalho remotamente com clientes dos EUA e da Europa, e viajo para o kickoff se isso for importante para você."
+                    a: "Paris. Trabalho remotamente com clientes no Brasil e nos EUA, e viajo para o kickoff se isso for importante para você."
                 },
                 {
                     q: "E se o nosso projeto for maior que 4 semanas?",
