@@ -213,7 +213,7 @@ function Nav({ t, lang, setLang, dark, setDark }) {
                             transition: "color 0.2s, border-color 0.2s"
                         }}
                         title={dark ? "Switch to light mode" : "Switch to dark mode"}
-                        onMouseEnter={e => { e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.borderColor = "var(--accent)"; }}
+                        onMouseEnter={e => { e.currentTarget.style.color = "var(--accent-line)"; e.currentTarget.style.borderColor = "var(--accent-line)"; }}
                         onMouseLeave={e => { e.currentTarget.style.color = "var(--text-muted)"; e.currentTarget.style.borderColor = "var(--border)"; }}>
                         {dark ? <icons.Sun /> : <icons.Moon />}
                     </button>
@@ -222,7 +222,7 @@ function Nav({ t, lang, setLang, dark, setDark }) {
                             <button key={code} onClick={() => setLang(code)}
                                 style={{
                                     background: "none", border: "none", cursor: "pointer", padding: "4px 6px", borderRadius: 4,
-                                    color: lang === code ? "var(--accent)" : "var(--text-muted)",
+                                    color: lang === code ? "var(--accent-ink)" : "var(--text-muted)",
                                     fontWeight: lang === code ? 700 : 500,
                                     textTransform: "uppercase", letterSpacing: "0.05em",
                                     fontFamily: "var(--font-mono)", fontSize: "0.75rem"
@@ -565,7 +565,7 @@ function Hero({ t, accent, dark }) {
                                         borderRadius: "var(--radius-btn)", fontWeight: 600, fontSize: "1rem", textDecoration: "none",
                                         border: "1.5px solid var(--border)", transition: "border-color 0.2s, color 0.2s, background 0.2s"
                                     }}
-                                    onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.background = "var(--bg)"; }}
+                                    onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent-line)"; e.currentTarget.style.color = "var(--accent-ink)"; e.currentTarget.style.background = "var(--bg)"; }}
                                     onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text)"; e.currentTarget.style.background = "var(--surface)"; }}>
                                     {t.hero.cta2}
                                 </a>
@@ -614,7 +614,7 @@ function Offer({ t }) {
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.offer.eyebrow}</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.offer.eyebrow}</div>
                         <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.offer.title}</h2>
                         <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 560 }}>{t.offer.subtitle}</p>
                     </div>
@@ -632,7 +632,7 @@ function Offer({ t }) {
                                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
                                 <div style={{
                                     fontFamily: "var(--font-mono)", fontSize: "0.72rem", fontWeight: 700,
-                                    color: "var(--accent)", letterSpacing: "0.12em", textTransform: "uppercase",
+                                    color: "var(--accent-ink)", letterSpacing: "0.12em", textTransform: "uppercase",
                                     marginBottom: "0.75rem"
                                 }}>{c.kicker}</div>
                                 <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "var(--text)", marginBottom: "1rem", letterSpacing: "-0.01em" }}>{c.title}</h3>
@@ -669,7 +669,7 @@ function SprintSteps({ t }) {
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.sprint.eyebrow}</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.sprint.eyebrow}</div>
                         <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.sprint.title}</h2>
                         <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.sprint.subtitle}</p>
                     </div>
@@ -684,7 +684,7 @@ function SprintSteps({ t }) {
                             }}>
                                 <div style={{
                                     fontFamily: "var(--font-mono)", fontSize: "0.72rem", fontWeight: 700,
-                                    color: "var(--accent)", letterSpacing: "0.12em", textTransform: "uppercase",
+                                    color: "var(--accent-ink)", letterSpacing: "0.12em", textTransform: "uppercase",
                                     marginBottom: "0.75rem"
                                 }}>{s.week}</div>
                                 <h3 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", marginBottom: "0.6rem", letterSpacing: "-0.01em" }}>{s.title}</h3>
@@ -705,7 +705,7 @@ function Stack({ t }) {
             <div style={{ maxWidth: 880, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "2.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.stack.eyebrow}</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.stack.eyebrow}</div>
                         <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.stack.title}</h2>
                     </div>
                 </Reveal>
@@ -741,7 +741,7 @@ function Work({ t }) {
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.work.eyebrow}</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.work.eyebrow}</div>
                         <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.work.title}</h2>
                         <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.work.subtitle}</p>
                     </div>
@@ -768,7 +768,7 @@ function Work({ t }) {
                                     <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1.25rem", flex: 1 }}>{p.desc}</p>
                                     {p.href && p.cta && (
                                         <a href={p.href} target="_blank" rel="noopener noreferrer"
-                                            style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                                            style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", textDecoration: "none", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}>
                                             {p.cta} <icons.ArrowUpRight />
                                         </a>
                                     )}
@@ -817,7 +817,7 @@ function About({ t }) {
                 {/* Text */}
                 <div>
                     <Reveal>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.about.eyebrow}</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.about.eyebrow}</div>
                         <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "2rem" }}>{t.about.title}</h2>
                     </Reveal>
                     {t.about.body.map((para, i) => (
@@ -846,7 +846,7 @@ function FAQ({ t }) {
             <div style={{ maxWidth: 760, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem", textAlign: "center" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>FAQ</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>FAQ</div>
                         <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)" }}>{t.faq.title}</h2>
                     </div>
                 </Reveal>
@@ -863,7 +863,7 @@ function FAQ({ t }) {
                                         textAlign: "left", gap: "1rem"
                                     }}>
                                     <span style={{ fontWeight: 600, fontSize: "1rem", color: "var(--text)", lineHeight: 1.4 }}>{item.q}</span>
-                                    <span style={{ flexShrink: 0, color: "var(--accent)", transition: "transform 0.25s", transform: open === i ? "rotate(180deg)" : "rotate(0)" }}>
+                                    <span style={{ flexShrink: 0, color: "var(--accent-line)", transition: "transform 0.25s", transform: open === i ? "rotate(180deg)" : "rotate(0)" }}>
                                         <icons.ChevronDown />
                                     </span>
                                 </button>
