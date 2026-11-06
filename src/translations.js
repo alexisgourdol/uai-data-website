@@ -141,6 +141,10 @@ export const TRANSLATIONS = {
             cta: "Book the audit",
             sub: "Or email me directly: alexis@uaidata.io. I read everything."
         },
+        whatsapp: {
+            label: "Chat on WhatsApp",
+            message: "Hi Alexis, I found uaidata.io and I'd like to talk about AI in my business."
+        },
         footer: {
             tagline: "UAI DATA — Alexis Gourdol",
             location: "Paris, France · alexis@uaidata.io",
@@ -293,6 +297,10 @@ export const TRANSLATIONS = {
             cta: "Réserver l'audit",
             sub: "Ou écrivez-moi directement : alexis@uaidata.io. Je lis tout."
         },
+        whatsapp: {
+            label: "Discuter sur WhatsApp",
+            message: "Bonjour Alexis, j'ai découvert uaidata.io et j'aimerais parler d'IA dans mon entreprise."
+        },
         footer: {
             tagline: "UAI DATA — Alexis Gourdol",
             location: "Paris, France · alexis@uaidata.io",
@@ -444,6 +452,10 @@ export const TRANSLATIONS = {
             body: "O diagnóstico dura uma hora. Você sai com três próximos passos concretos que seu time pode colocar em prática nesta semana.",
             cta: "Agendar o diagnóstico",
             sub: "Ou me escreva diretamente: alexis@uaidata.io. Eu leio tudo."
+        },
+        whatsapp: {
+            label: "Conversar no WhatsApp",
+            message: "Oi Alexis, encontrei o uaidata.io e gostaria de conversar sobre IA na minha empresa."
         },
         footer: {
             tagline: "UAI DATA — Alexis Gourdol",
