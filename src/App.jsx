@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { TRANSLATIONS, LANGUAGES } from "./translations.js";
+import { pickLanguage, urlWithoutLang, STORAGE_KEY, DEFAULT_LANG } from "./lang.js";
 
 // ─── Dark mode hook ───────────────────────────────────────────────────────────
 function applyTheme(dark) {
@@ -34,6 +35,38 @@ function useDarkMode() {
     return [dark, chooseTheme];
 }
 
+// ─── Language hook (SCP-60) ───────────────────────────────────────────────────
+// The prerendered markup is English; after hydration we switch to the language picked
+// from ?lang=, the saved choice, or the browser (see lang.js).
+function readStored() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
+}
+
+function useLanguage() {
+    const [lang, setLang] = useState(DEFAULT_LANG);
+
+    useEffect(() => {
+        setLang(pickLanguage({
+            search: window.location.search,
+            stored: readStored(),
+            browserLanguages: navigator.languages?.length ? navigator.languages : [navigator.language]
+        }));
+    }, []);
+
+    useEffect(() => {
+        document.documentElement.lang = lang;
+    }, [lang]);
+
+    const chooseLanguage = (next) => {
+        setLang(next);
+        try { localStorage.setItem(STORAGE_KEY, next); } catch { /* private mode: choice lasts this visit */ }
+        const { pathname, search, hash } = window.location;
+        const clean = urlWithoutLang(pathname + search + hash);
+        if (clean !== pathname + search + hash) window.history.replaceState(null, "", clean);
+    };
+
+    return [lang, chooseLanguage];
+}
 
 function useReveal(threshold = 0.12) {
     const ref = useRef(null);
@@ -976,7 +1009,7 @@ function Footer({ t, lang, setLang }) {
 
 // ─── APP ──────────────────────────────────────────────────────────────────────
 function App() {
-    const [lang, setLang] = useState("en");
+    const [lang, setLang] = useLanguage();
     const [dark, setDark] = useDarkMode();
     const [tweaks, setTweaks] = useState({
         accent: "#F59E0B",
