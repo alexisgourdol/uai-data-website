@@ -14,6 +14,7 @@ export const TRANSLATIONS = {
             eyebrow: "AI integration sprints for small and mid-sized businesses",
             eyebrowShort: "AI integration sprints",
             headline: "AI workflows your team didn't have time to build. I ship them.",
+            headlineMark: "I ship them.",
             sub: "I run 4-week AI integration sprints for small and mid-sized businesses. Fixed price, working software at the end, your team owns it.",
             cta1: "Book a free 60-min audit",
             cta2: "Or email: alexis@uaidata.io"
@@ -170,6 +171,7 @@ export const TRANSLATIONS = {
             eyebrow: "Sprints d'intégration IA pour PME",
             eyebrowShort: "Sprints d'intégration IA",
             headline: "Les workflows IA que votre équipe n'a pas eu le temps de construire. Je les livre.",
+            headlineMark: "Je les livre.",
             sub: "Je conduis des sprints d'intégration IA de 4 semaines pour les PME. Prix fixe, logiciel fonctionnel à la fin, votre équipe en est propriétaire.",
             cta1: "Réserver un audit gratuit de 60 min",
             cta2: "Ou par email : alexis@uaidata.io"
@@ -326,6 +328,7 @@ export const TRANSLATIONS = {
             eyebrow: "Sprints de integração de IA para pequenas e médias empresas",
             eyebrowShort: "Sprints de integração de IA",
             headline: "Os workflows de IA que seu time não teve tempo de construir. Eu entrego.",
+            headlineMark: "Eu entrego.",
             sub: "Conduzo sprints de integração de IA de 4 semanas para pequenas e médias empresas. Preço fechado, software funcionando no final, e o código é do seu time.",
             cta1: "Agendar um diagnóstico gratuito de 60 min",
             cta2: "Ou por e-mail: alexis@uaidata.io"

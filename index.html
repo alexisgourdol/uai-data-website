@@ -62,23 +62,32 @@
             --accent: #F59E0B;
             --accent-hover: #D97706;
             --accent-subtle: rgba(245, 158, 11, 0.10);
-            --stats-bg: #1C1C1A;
+            /* ipê palette: jade = offer, roxo = work, rosa = content only.
+               A section uses amber plus at most one of them. */
             --project-1: #F59E0B;
-            --project-2: #6366F1;
-            --project-3: #0D9488;
-            --project-4: #EC4899;
+            --project-2: #6B4FD8;
+            --project-3: #0F8A74;
+            --project-4: #E0508F;
+            --on-jade: #FFFFFF;
             /* readable shades: text (ink) and shapes (line) need 4.5:1 and 3:1 */
             --accent-ink: #A94F06;
             --accent-line: #D97706;
-            --project-2-ink: #4F46E5;
-            --project-3-ink: #0F766E;
-            --project-4-ink: #BE185D;
+            --project-2-ink: #5236C2;
+            --project-3-ink: #0B6B5A;
+            --project-4-ink: #B42D6B;
             /* washes: tinted backgrounds for zones and lanes */
-            --project-2-wash: rgba(99, 102, 241, 0.07);
-            --project-3-wash: rgba(13, 148, 136, 0.07);
-            --project-4-wash: rgba(236, 72, 153, 0.07);
-            /* secondary text on always-dark surfaces (stats bar, footer CTA) */
-            --invert-muted: rgba(255, 255, 255, 0.68);
+            --project-2-wash: rgba(107, 79, 216, 0.07);
+            --project-3-wash: rgba(15, 138, 116, 0.08);
+            --project-4-wash: rgba(224, 80, 143, 0.07);
+            /* always-dark bands (proof bar, footer CTA): green-black; lighter than the page in dark mode */
+            --surface-invert: #102521;
+            --invert-muted: rgba(255, 255, 255, 0.72);
+            /* marker highlight: one hero phrase per page */
+            --marker: rgba(245, 158, 11, 0.38);
+            /* texture: one grain (opacity baked into the tile), one dot grid */
+            --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+            --grain-invert: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
+            --dot-grid: rgba(28, 28, 26, 0.07);
             /* status, aliased to the project colors */
             --status-done: var(--project-3);
             --status-active: var(--accent-line);
@@ -134,19 +143,23 @@
             --accent: #FBBF24;
             --accent-hover: #F59E0B;
             --accent-subtle: rgba(251, 191, 36, 0.12);
-            --stats-bg: #0D0D0B;
+            --surface-invert: #1A3A33;
             --project-1: #FBBF24;
-            --project-2: #818CF8;
-            --project-3: #2DD4BF;
-            --project-4: #F472B6;
+            --project-2: #9B87F5;
+            --project-3: #34C9AE;
+            --project-4: #F07AAE;
+            --on-jade: #0B1A17;
+            --marker: rgba(251, 191, 36, 0.30);
+            --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+            --dot-grid: rgba(240, 239, 232, 0.065);
             --accent-ink: #FBBF24;
             --accent-line: #FBBF24;
-            --project-2-ink: #A5B4FC;
-            --project-3-ink: #5EEAD4;
-            --project-4-ink: #F9A8D4;
-            --project-2-wash: rgba(129, 140, 248, 0.12);
-            --project-3-wash: rgba(45, 212, 191, 0.10);
-            --project-4-wash: rgba(244, 114, 182, 0.11);
+            --project-2-ink: #B7A8F8;
+            --project-3-ink: #6EDDC8;
+            --project-4-ink: #F6A6C9;
+            --project-2-wash: rgba(155, 135, 245, 0.11);
+            --project-3-wash: rgba(52, 201, 174, 0.10);
+            --project-4-wash: rgba(240, 122, 174, 0.11);
             --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.30);
             --shadow-card-dark: 0 12px 40px rgba(0, 0, 0, 0.50);
             --shadow-cta: 0 4px 20px rgba(245, 158, 11, 0.35);
@@ -159,7 +172,8 @@
 
         body {
             font-family: var(--font-head);
-            background: var(--bg);
+            background-color: var(--bg);
+            background-image: var(--grain);
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -196,6 +210,43 @@
         h3,
         h4 {
             font-family: var(--font-head);
+        }
+
+        /* ─── Texture ────────────────────────────────────────────────── */
+        /* Grain is a background layer, so it always sits under the content.
+           Sections with an opaque background re-apply it on top of their colour. */
+        .grain {
+            background-image: var(--grain);
+        }
+
+        .grain-invert {
+            background-image: var(--grain-invert);
+        }
+
+        /* Dot grid behind the hero, fading out downward. The mask is on the
+           pseudo-element, never on the section, so the CTAs stay opaque. */
+        .dot-grid {
+            isolation: isolate;
+        }
+
+        .dot-grid::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image: radial-gradient(var(--dot-grid) 1px, transparent 1.3px);
+            background-size: 18px 18px;
+            -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+            mask-image: linear-gradient(180deg, #000 55%, transparent);
+        }
+
+        .marker {
+            background: linear-gradient(transparent 60%, var(--marker) 60%);
+            color: inherit;
+            padding: 0 2px;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
         }
 
         /* ─── Responsive ─────────────────────────────────────────────── */
