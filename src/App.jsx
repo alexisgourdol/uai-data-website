@@ -523,6 +523,17 @@ function DataNetworkCanvas({ accent, dark }) {
 }
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
+// Highlights the closing phrase of the headline (one marker per page).
+function HeadlineWithMark({ text, mark }) {
+    if (!mark || !text.endsWith(mark)) return text;
+    return (
+        <>
+            {text.slice(0, text.length - mark.length)}
+            <mark className="marker">{mark}</mark>
+        </>
+    );
+}
+
 function Hero({ t, accent, dark }) {
     const scrollTo = (href) => {
         const el = document.querySelector(href);
@@ -530,7 +541,7 @@ function Hero({ t, accent, dark }) {
     };
 
     return (
-        <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 100, paddingBottom: 80, position: "relative", overflow: "hidden" }}>
+        <section className="dot-grid" style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 100, paddingBottom: 80, position: "relative", overflow: "hidden" }}>
             <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 clamp(1.5rem, 5vw, 3rem)", position: "relative", width: "100%" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }} className="hero-grid">
 
@@ -567,7 +578,7 @@ function Hero({ t, accent, dark }) {
                                 letterSpacing: "-0.03em", color: "var(--text)",
                                 marginBottom: "1.5rem"
                             }}>
-                                {t.hero.headline}
+                                <HeadlineWithMark text={t.hero.headline} mark={t.hero.headlineMark} />
                             </h1>
                         </Reveal>
 
@@ -622,7 +633,7 @@ function Hero({ t, accent, dark }) {
 // ─── PROOF BAR ─────────────────────────────────────────────────────────────
 function ProofBar({ t }) {
     return (
-        <section style={{ background: "#1C1C1A", padding: "2.5rem clamp(1.5rem, 5vw, 3rem)" }}>
+        <section className="grain-invert" style={{ backgroundColor: "var(--surface-invert)", padding: "2.5rem clamp(1.5rem, 5vw, 3rem)" }}>
             <div style={{ maxWidth: 880, margin: "0 auto" }}>
                 <Reveal>
                     <p style={{
@@ -644,11 +655,11 @@ function ProofBar({ t }) {
 // ─── OFFER (2 cards: Audit + Sprint) ──────────────────────────────────────────
 function Offer({ t }) {
     return (
-        <section id="offer" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)" }}>
+        <section id="offer" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", backgroundColor: "var(--project-3-wash)" }}>
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.offer.eyebrow}</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--project-3-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.offer.eyebrow}</div>
                         <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.offer.title}</h2>
                         <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 560 }}>{t.offer.subtitle}</p>
                     </div>
@@ -666,7 +677,7 @@ function Offer({ t }) {
                                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
                                 <div style={{
                                     fontFamily: "var(--font-mono)", fontSize: "0.72rem", fontWeight: 700,
-                                    color: "var(--accent-ink)", letterSpacing: "0.12em", textTransform: "uppercase",
+                                    color: "var(--project-3-ink)", letterSpacing: "0.12em", textTransform: "uppercase",
                                     marginBottom: "0.75rem"
                                 }}>{c.kicker}</div>
                                 <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "var(--text)", marginBottom: "1rem", letterSpacing: "-0.01em" }}>{c.title}</h3>
@@ -699,7 +710,7 @@ function Offer({ t }) {
 // ─── SPRINT STEPS ─────────────────────────────────────────────────────────────
 function SprintSteps({ t }) {
     return (
-        <section id="sprint" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
+        <section id="sprint" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", backgroundColor: "var(--surface-2)" }} className="grain">
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem" }}>
@@ -767,15 +778,13 @@ function Stack({ t }) {
 }
 
 // ─── WORK (Recent work — 3 tiles) ─────────────────────────────────────────────
-const workAccentColors = ["var(--project-1)", "var(--project-2)", "var(--project-3)"];
-
 function Work({ t }) {
     return (
-        <section id="work" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
+        <section id="work" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", backgroundColor: "var(--surface-2)" }} className="grain">
             <div style={{ maxWidth: 1120, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem" }}>
-                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.work.eyebrow}</div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--project-2-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.work.eyebrow}</div>
                         <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.work.title}</h2>
                         <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 520 }}>{t.work.subtitle}</p>
                     </div>
@@ -792,7 +801,7 @@ function Work({ t }) {
                             }}
                                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
                                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
-                                <div style={{ height: 4, background: workAccentColors[i] }}></div>
+                                <div style={{ height: 4, background: "var(--project-2)" }}></div>
                                 <div style={{ padding: "1.75rem 1.75rem 1.75rem", display: "flex", flexDirection: "column", flex: 1 }}>
                                     <div style={{
                                         fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "var(--text-muted)",
@@ -819,7 +828,7 @@ function Work({ t }) {
 // ─── ABOUT ────────────────────────────────────────────────────────────────────
 function About({ t }) {
     return (
-        <section id="about" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
+        <section id="about" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", backgroundColor: "var(--surface-2)" }} className="grain">
             <div style={{ maxWidth: 1120, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center" }} className="about-grid">
                 {/* Photo / avatar placeholder */}
                 <Reveal>
@@ -876,7 +885,7 @@ function About({ t }) {
 function FAQ({ t }) {
     const [open, setOpen] = useState(null);
     return (
-        <section id="faq" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", background: "var(--surface-2)" }}>
+        <section id="faq" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)", backgroundColor: "var(--surface-2)" }} className="grain">
             <div style={{ maxWidth: 760, margin: "0 auto" }}>
                 <Reveal>
                     <div style={{ marginBottom: "3.5rem", textAlign: "center" }}>
@@ -923,15 +932,10 @@ function Footer({ t, lang, setLang }) {
     return (
         <footer id="contact">
             {/* CTA Block */}
-            <section style={{
+            <section className="grain-invert" style={{
                 padding: "8rem clamp(1.5rem, 5vw, 3rem)",
-                background: "#1C1C1A", textAlign: "center", position: "relative", overflow: "hidden"
+                backgroundColor: "var(--surface-invert)", textAlign: "center", position: "relative", overflow: "hidden"
             }}>
-                <div style={{
-                    position: "absolute", inset: 0, pointerEvents: "none",
-                    backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
-                    backgroundSize: "28px 28px"
-                }}></div>
                 <div style={{ position: "relative", maxWidth: 640, margin: "0 auto" }}>
                     <Reveal>
                         <h2 style={{ fontSize: "clamp(2.25rem, 5vw, 3.5rem)", fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", marginBottom: "1.25rem", lineHeight: 1.1 }}>
@@ -939,7 +943,7 @@ function Footer({ t, lang, setLang }) {
                         </h2>
                     </Reveal>
                     <Reveal delay={80}>
-                        <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.7, marginBottom: "2.5rem" }}>{t.footer.sub}</p>
+                        <p style={{ fontSize: "1.1rem", color: "var(--invert-muted)", lineHeight: 1.7, marginBottom: "2.5rem" }}>{t.footer.sub}</p>
                     </Reveal>
                     <Reveal delay={160}>
                         <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
