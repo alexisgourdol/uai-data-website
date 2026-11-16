@@ -5,6 +5,7 @@ export const TRANSLATIONS = {
             offer: "Offer",
             sprint: "Sprint",
             work: "Work",
+            writing: "Writing",
             about: "About",
             faq: "FAQ",
             contact: "Contact",
@@ -66,7 +67,7 @@ export const TRANSLATIONS = {
         work: {
             eyebrow: "Work",
             title: "Recent work.",
-            subtitle: "Three tiles. Two live. One write-up coming.",
+            subtitle: "Three things I built and use every week.",
             items: [
                 {
                     name: "Scope",
@@ -84,12 +85,19 @@ export const TRANSLATIONS = {
                 },
                 {
                     name: "Claude Code devcontainer pattern",
-                    status: "case study soon",
-                    desc: "The sandboxed devcontainer setup that scopes AI tooling to the resources it needs — no accidental prod writes, no runaway deletions. Used in production. Write-up coming in week 2.",
-                    href: null,
-                    cta: null
+                    status: "case study",
+                    desc: "The sandboxed devcontainer setup that scopes AI tooling to the resources it needs — no accidental prod writes, no runaway deletions. Used in production.",
+                    href: "https://alexisgourdol.substack.com/p/a-firewall-cant-tell-your-test-database",
+                    cta: "Read the case study"
                 }
             ]
+        },
+        writing: {
+            eyebrow: "Writing",
+            title: "Notes from the work.",
+            subtitle: "What I build, what broke, and what I changed. Written for business owners, with the technical detail for whoever sets it up.",
+            all: "All posts on Substack",
+            read: "Read on Substack"
         },
         about: {
             eyebrow: "About",
@@ -162,6 +170,7 @@ export const TRANSLATIONS = {
             offer: "Offre",
             sprint: "Sprint",
             work: "Réalisations",
+            writing: "Articles",
             about: "À propos",
             faq: "FAQ",
             contact: "Contact",
@@ -223,7 +232,7 @@ export const TRANSLATIONS = {
         work: {
             eyebrow: "Réalisations",
             title: "Réalisations récentes.",
-            subtitle: "Trois tuiles. Deux en ligne. Un write-up à venir.",
+            subtitle: "Trois outils que j'ai construits et que j'utilise chaque semaine.",
             items: [
                 {
                     name: "Scope",
@@ -241,12 +250,19 @@ export const TRANSLATIONS = {
                 },
                 {
                     name: "Pattern devcontainer Claude Code",
-                    status: "case study à venir",
-                    desc: "Le setup devcontainer sandboxé qui restreint l'accès de l'outillage IA aux ressources pertinentes — pas d'écritures prod accidentelles, pas de suppressions incontrôlées. Utilisé en production. Write-up à venir en semaine 2.",
-                    href: null,
-                    cta: null
+                    status: "case study",
+                    desc: "Le setup devcontainer sandboxé qui restreint l'accès de l'outillage IA aux ressources pertinentes — pas d'écritures prod accidentelles, pas de suppressions incontrôlées. Utilisé en production.",
+                    href: "https://alexisgourdol.substack.com/p/a-firewall-cant-tell-your-test-database",
+                    cta: "Lire le case study"
                 }
             ]
+        },
+        writing: {
+            eyebrow: "Articles",
+            title: "Notes de terrain.",
+            subtitle: "Ce que je construis, ce qui a cassé et ce que j'ai changé. Écrit pour les dirigeants, avec le détail technique pour qui le met en place. Articles en anglais.",
+            all: "Tous les articles sur Substack",
+            read: "Lire sur Substack"
         },
         about: {
             eyebrow: "À propos",
@@ -319,6 +335,7 @@ export const TRANSLATIONS = {
             offer: "Oferta",
             sprint: "Sprint",
             work: "Projetos",
+            writing: "Artigos",
             about: "Sobre",
             faq: "FAQ",
             contact: "Contato",
@@ -380,7 +397,7 @@ export const TRANSLATIONS = {
         work: {
             eyebrow: "Projetos",
             title: "Projetos recentes.",
-            subtitle: "Três projetos. Dois no ar. Um case a caminho.",
+            subtitle: "Três ferramentas que construí e uso toda semana.",
             items: [
                 {
                     name: "Scope",
@@ -398,12 +415,19 @@ export const TRANSLATIONS = {
                 },
                 {
                     name: "Padrão devcontainer Claude Code",
-                    status: "case em breve",
-                    desc: "O setup de devcontainer isolado que restringe as ferramentas de IA aos recursos de que precisam — sem escritas acidentais em produção, sem exclusões descontroladas. Usado em produção. Case completo na semana 2.",
-                    href: null,
-                    cta: null
+                    status: "case",
+                    desc: "O setup de devcontainer isolado que restringe as ferramentas de IA aos recursos de que precisam — sem escritas acidentais em produção, sem exclusões descontroladas. Usado em produção.",
+                    href: "https://alexisgourdol.substack.com/p/a-firewall-cant-tell-your-test-database",
+                    cta: "Ler o case"
                 }
             ]
+        },
+        writing: {
+            eyebrow: "Artigos",
+            title: "Notas do trabalho.",
+            subtitle: "O que eu construo, o que quebrou e o que mudei. Escrito para donos de negócio, com o detalhe técnico para quem vai implementar. Artigos em inglês.",
+            all: "Todos os artigos no Substack",
+            read: "Ler no Substack"
         },
         about: {
             eyebrow: "Sobre",
