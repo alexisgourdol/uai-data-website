@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { TRANSLATIONS, LANGUAGES } from "./translations.js";
 import { pickLanguage, urlWithoutLang, STORAGE_KEY, DEFAULT_LANG } from "./lang.js";
 import { whatsappUrl } from "./whatsapp.js";
+import { POSTS, SUBSTACK_URL, formatPostDate } from "./posts.js";
 
 // ─── Dark mode hook ───────────────────────────────────────────────────────────
 function applyTheme(dark) {
@@ -196,6 +197,7 @@ function Nav({ t, lang, setLang, dark, setDark }) {
         { label: t.nav.offer, href: "#offer" },
         { label: t.nav.sprint, href: "#sprint" },
         { label: t.nav.work, href: "#work" },
+        { label: t.nav.writing, href: "#writing" },
         { label: t.nav.about, href: "#about" },
         { label: t.nav.faq, href: "#faq" },
         { label: t.nav.contact, href: "#contact" }
@@ -825,6 +827,59 @@ function Work({ t }) {
     );
 }
 
+// ─── WRITING (Substack posts, newest first) ───────────────────────────────────
+function Writing({ t, lang }) {
+    return (
+        <section id="writing" style={{ padding: "7rem clamp(1.5rem, 5vw, 3rem)" }}>
+            <div style={{ maxWidth: 1120, margin: "0 auto" }}>
+                <Reveal>
+                    <div style={{ marginBottom: "3.5rem" }}>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--project-2-ink)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{t.writing.eyebrow}</div>
+                        <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--text)", marginBottom: "0.75rem" }}>{t.writing.title}</h2>
+                        <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: 560 }}>{t.writing.subtitle}</p>
+                    </div>
+                </Reveal>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.25rem" }} className="portfolio-grid">
+                    {POSTS.map((p, i) => (
+                        <Reveal key={p.url} delay={i * 80}>
+                            <a href={p.url} target="_blank" rel="noopener noreferrer" style={{
+                                background: "var(--surface-2)", borderRadius: "var(--radius-card)", overflow: "hidden",
+                                border: "1px solid var(--border)", textDecoration: "none",
+                                transition: "box-shadow 0.25s, transform 0.25s",
+                                height: "100%", display: "flex", flexDirection: "column"
+                            }}
+                                onMouseEnter={e => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                                onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
+                                <img src={p.image} alt={p.alt} width={960} height={543} loading="lazy" decoding="async"
+                                    style={{ width: "100%", height: "auto", aspectRatio: "16 / 9", objectFit: "cover", display: "block", borderBottom: "1px solid var(--border)" }} />
+                                <div style={{ padding: "1.5rem 1.75rem 1.75rem", display: "flex", flexDirection: "column", flex: 1 }}>
+                                    <time dateTime={p.date} style={{
+                                        fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "var(--text-muted)",
+                                        marginBottom: "0.75rem", textTransform: "uppercase", letterSpacing: "0.08em"
+                                    }}>{formatPostDate(p.date, lang)}</time>
+                                    <h3 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", marginBottom: "0.75rem", letterSpacing: "-0.01em", lineHeight: 1.35 }}>{p.title}</h3>
+                                    <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1.25rem", flex: 1 }}>{p.subtitle}</p>
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-ink)", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                                        {t.writing.read} <icons.ArrowUpRight />
+                                    </span>
+                                </div>
+                            </a>
+                        </Reveal>
+                    ))}
+                </div>
+
+                <div style={{ marginTop: "2rem" }}>
+                    <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer"
+                        style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--accent-ink)", textDecoration: "none", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                        {t.writing.all} <icons.ArrowUpRight />
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+}
+
 // ─── ABOUT ────────────────────────────────────────────────────────────────────
 function About({ t }) {
     return (
@@ -1084,6 +1139,7 @@ function App() {
             <SprintSteps t={t} />
             <Stack t={t} />
             <Work t={t} />
+            <Writing t={t} lang={lang} />
             <About t={t} />
             <FAQ t={t} />
             <Footer t={t} lang={lang} setLang={setLang} />
